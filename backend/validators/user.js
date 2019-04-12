@@ -1,21 +1,7 @@
 'use sctict';
 
-const custom = require('./custom');
 const { vk } = require('../resources');
-const { check, body, param } = require('express-validator/check');
-
-const userName = [
-  body('first_name')
-    .trim()
-    .not().isEmpty().withMessage(vk('fn_req'))
-    .isLength({ max: 64 }).withMessage(vk('fn_long'))
-    .custom(custom.hasLetters).withMessage(vk('name_non_digits')),
-  body('last_name')
-    .trim()
-    .not().isEmpty().withMessage(vk('ln_req'))
-    .isLength({ max: 64 }).withMessage(vk('ln_long'))
-    .custom(custom.hasLetters).withMessage(vk('last_name_non_digits'))
-];
+const { body } = require('express-validator/check');
 
 const register1 = [
   body('email')
