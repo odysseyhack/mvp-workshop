@@ -39,6 +39,9 @@ _Prototype at end of Hackathon_
 
 ![Public Dashboard Explore](/screenshots/3_Explore.png)
 
+#### Validators Dashboard 
+![Validators Dashboard Home Screen](/screenshots/1_AllRequests.png)
+
 ### X-factor 
 _Why a game changer_
 
