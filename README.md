@@ -16,10 +16,12 @@ Decentralized platform allowing validators to certificate new small-scale green 
 ### Minimum Viable Product 
 _Prototype at end of Hackathon_
 
-Architecture (PoC):
+#### Architecture (PoC)
+
 1. **Blockchain:**
 * Parity PoA network
 * Smart Contract - Validator, Green device, households and 3rd party data providers- proposing, voting, removing
+
 2. **Backend:**
 * Gathering data from validated 3rd party data providers 
 * Data from energy input - store and process data (MySQL)
@@ -31,7 +33,7 @@ Architecture (PoC):
 * Private Dashboard - Used by Validators
 
 #### Public Dashboard 
-![Public Dashboard Home Screen]("https://lh6.googleusercontent.com/h_JMA5J6inWbA-aPXrE6CZ9i5tYxZyfV303GQj4uSAUz2zb33vmWB7zUHJahkiQy7jtbf6elLvUBorNAk2cs=w3360-h1896-rw")
+![Public Dashboard Home Screen]('https://lh6.googleusercontent.com/h_JMA5J6inWbA-aPXrE6CZ9i5tYxZyfV303GQj4uSAUz2zb33vmWB7zUHJahkiQy7jtbf6elLvUBorNAk2cs=w3360-h1896-rw')
 
 ### X-factor 
 _Why a game changer_
