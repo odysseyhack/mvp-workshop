@@ -1,0 +1,5 @@
+node_modules
+blockchain/build
+.idea
+.vscode
+.env
