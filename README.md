@@ -77,6 +77,10 @@ The solution that we are building combines these two approaches.
 ### Large Scale Adoption 
 _Which ecosystems approach and trends make your solution likely to fly?_
 
+* PoA Beacon chain with state transition functions (InterBlockchainCommunication protocol, Polkadot like)
+* Shared security based sidechain where small house providers could submit their tx. On every period ends (1day or 7days or 1month) state transaction is called and validator committee (pseudo randomly chosen number validators that is drastically smaller than the actual number of validators)
+* Merkel Root tree hash is stored for every single household as proof of validation of previous data. After household sidechain submits their state transition function validator committees are executing tx to verify if Merkle root (provided by household sidechain in state transition function) is right.
+* Sidechain are optional, if households are willing to use centralized platform.
 
 ## Impact
 
