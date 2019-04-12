@@ -23,7 +23,8 @@ module.exports = (sequelize, dataTypes) => {
     models.UserAuth.belongsTo(models.User, {
       onDelete: 'CASCADE', // todo: FK is on delete 'set null', and column is null
       foreignKey: {
-        allowNull: false
+        allowNull: false,
+        underscored: true
       }
     });
   };

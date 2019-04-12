@@ -22,13 +22,10 @@ const register1 = [
     .trim()
     .not().isEmpty().withMessage(vk('mail_req'))
     .isEmail().withMessage(vk('mail_valid'))
-    .isLength({ max: 128 }).withMessage(vk('mail_long'))
-    .custom(custom.validateUserEmail).withMessage(vk('mail_already_use')),
+    .isLength({ max: 128 }).withMessage(vk('mail_long')),
   body('password')
     .not().isEmpty().withMessage(vk('pass_req'))
     .isLength({ min: 8 }).withMessage(vk('pass_min'))
-    .custom(custom.hasDigits).withMessage(vk('pass_digits'))
-    .custom(custom.hasLetters).withMessage(vk('pass_non_digits'))
 ];
 
 const register2 = [
@@ -41,12 +38,10 @@ const register2 = [
 const register3 = [
   body('device_model')
     .trim()
-    .not().isEmpty().withMessage(vk('mail_req'))
-    .isLength({ max: 128 }).withMessage(vk('mail_long')),
+    .not().isEmpty().withMessage(vk('device_model_req')),
   body('serial_number')
     .trim()
-    .not().isEmpty().withMessage(vk('mail_req'))
-    .isLength({ max: 128 }).withMessage(vk('mail_long'))
+    .not().isEmpty().withMessage(vk('serial_req'))
 ];
 
 const register = [];
@@ -55,5 +50,6 @@ register.push(register1, register2, register3);
 module.exports = {
   register1,
   register2,
-  register
+  register,
+  login: register1
 };
