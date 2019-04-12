@@ -1,0 +1,21 @@
+.topMenu {
+  height: 80px;
+  background-color: #fff;
+}
+
+.navbar .navbar-nav a.nav-link {
+  color: #69707f;
+  font-weight: 500;
+  padding-top: 27px;
+  padding-bottom: 27px;
+  border-bottom: 3px solid #fff;
+}
+
+.navbar .navbar-nav a.nav-link:hover {
+  color: #2e384d;
+}
+
+.navbar .navbar-nav a.nav-link.active-nav-link {
+  color: #38bb8d;
+  border-color: #38bb8d;
+}

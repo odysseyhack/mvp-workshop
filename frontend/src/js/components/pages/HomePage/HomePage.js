@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import './HomePage.css'
-import TopMenu from '../../organisms/TopMenu/TopMenu'
 import * as appActions from '../../../redux/actions'
 import RegularLayout from '../../layouts/RegularLayout/RegularLayout'
 
@@ -19,9 +18,14 @@ class HomePage extends React.Component {
   render () {
     return (
       <>
-        <TopMenu actions={appActions} />
         <RegularLayout>
-          <Container style={{ color: '#fff' }}>HOME PAGE</Container>
+          <Container>
+            HOME PAGEdd
+            <h1>h111</h1>
+            <h2>h22h22h2</h2>
+            <h3>h333</h3>
+            <h4>h444</h4>
+          </Container>
         </RegularLayout>
       </>
     )
