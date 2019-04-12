@@ -33,7 +33,9 @@ _Prototype at end of Hackathon_
 * Private Dashboard - Used by Validators
 
 #### Public Dashboard 
-![Public Dashboard Home Screen](https://monosnap.com/direct/RBFX4cAnzAU7uPkXRLTinhezjW95GY)
+![Public Dashboard Home Screen](/screenshots/1_Home.png)
+![Public Dashboard My Installations](/screenshots/2_MyInstallations.png)
+![Public Dashboard Explore](/screenshots/3_Explore.png)
 
 ### X-factor 
 _Why a game changer_
