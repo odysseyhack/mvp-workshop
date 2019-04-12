@@ -3,9 +3,11 @@
 const utils = require('../utils/utils');
 const Response = require('../utils/response');
 const usersService = require('../services/users');
+const authc = require('./authc');
+const { AuthenticationError } = require('../utils/errors');
 
 module.exports = {
-  // login,
+  login,
   register
 };
 
@@ -15,30 +17,23 @@ async function register (req, res, next) {
       'email', 'location', 'device_model', 'serial_number'
     ], req.body);
 
-    await usersService.register(request, req.body.password);
+    const sessionProps = await usersService.register(request, req.body.password);
 
     // create fully authenticated session
-    // authc.setAuthenticated(req, sessionProperties);
-    // authc.setTotpValidated(req);
+    authc.setAuthenticated(req, sessionProps);
 
-    res.send(Response.success(request));
-    res.end();
+    res.send(Response.success(request)).end();
   } catch (err) {
     next(err);
   }
 }
 
-// async function login (req, res, next) {
-//   try {
-//     const sessionProperties = await usersService.login(req.body.email, req.body.password);
-
-//     if (sessionProperties) {
-//     //   authc.setAuthenticated(req, sessionProperties);
-//       res.end();
-//     } else {
-//       next(new AuthenticationError());
-//     }
-//   } catch (err) {
-//     next(new AuthenticationError(err));
-//   }
-// }
+async function login (req, res, next) {
+  try {
+    const sessionProperties = await usersService.login(req.body.email, req.body.password);
+    authc.setAuthenticated(req, sessionProperties);
+    res.status(200).end();
+  } catch (err) {
+    next(new AuthenticationError(err));
+  }
+}

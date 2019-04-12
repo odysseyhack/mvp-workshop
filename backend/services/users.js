@@ -2,9 +2,14 @@
 
 const db = require('../models');
 const passwords = require('../utils/password');
+const errors = require('../utils/errors');
+const auth = require('./auth');
+const {
+  AuthenticationError
+} = require('../utils/errors');
 
 module.exports = {
-  // login,
+  login,
   register,
   checkIfUserExists
 };
@@ -14,8 +19,21 @@ async function checkIfUserExists (email) {
   return found != null;
 }
 
+async function getUser (email) {
+  return db.User.findOne({
+    where: {
+      email
+    }
+  });
+}
+
 async function register (request, password) {
   try {
+    const alreadyExist = await getUser(request.email);
+    if (alreadyExist) {
+      throw new errors.ConflictError();
+    }
+
     const User = await db.User.create(request).catch((err) => console.log(err));
 
     if (!User) {
@@ -24,36 +42,31 @@ async function register (request, password) {
 
     const hash = await passwords.createHash(password);
 
-    await db.UserAuth.create({'userId': 2, 'hash': hash});
+    await db.UserAuth.create({ 'UserId': User.id, 'hash': hash });
+    return getSessionProperties(User.get());
   } catch (err) {
     throw err;
   }
 }
 
-// async function login (email, password) {
-//   const User = await db.User.findOne({
-//     where: {
-//       email: email,
-//       enabled: true
-//     },
-//     attributes: sessionProperties,
-//     include: [{
-//       model: db.UserAuth,
-//       attributes: ['id', 'hash', 'attempt_counter', 'last_attempt_time']
-//     }]
-//   });
+async function login (email, password) {
+  const User = await getUser(email);
 
-//   if (!User || !User.UserAuth) {
-//     return false;
-//   }
+  if (!User) {
+    throw new AuthenticationError();
+  }
 
-//   const ok = await auth.checkPassword(User.id, password);
+  const ok = await auth.checkPassword(User.id, password);
+  if (!ok) {
+    throw new AuthenticationError();
+  }
 
-//   if (!ok) {
-//     return false;
-//   }
+  return getSessionProperties(User.get());
+}
 
-//   const roles = await getRoleIds(User.dataValues.id);
-
-//   return getSessionProperties(User.dataValues, roles);
-// }
+async function getSessionProperties (obj) {
+  return {
+    id: obj.id,
+    email: obj.email
+  };
+}

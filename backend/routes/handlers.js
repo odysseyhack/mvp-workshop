@@ -16,6 +16,8 @@ function error (err, req, res, next) {
     res.status(401).json(Response.error(401, 'Unauthorized'));
   } else if (err instanceof errors.AuthorizationError) {
     res.status(403).json(Response.error(403, 'Forbidden'));
+  } else if (err instanceof errors.ConflictError) {
+    res.status(409).json(Response.error(409, 'Conflict Error'));
   } else if (err instanceof errors.ValidationError) {
     res.status(422).json(Response.error(422, 'Validation error', err.errors()));
   } else if (err instanceof errors.NotFoundError) {

@@ -17,6 +17,8 @@ clientRouter.use(bodyParser.urlencoded({
 
 clientRouter.use(session);
 clientRouter.get('/health', health);
+
+clientRouter.post('/users/login', val.user.login, users.login);
 clientRouter.post('/users/register', val.user.register, users.register);
 
 // client validation helpers resources
