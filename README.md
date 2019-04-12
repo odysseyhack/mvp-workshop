@@ -1,4 +1,4 @@
-# MVP Workshop - Fossil Free Future - Create The Key Enabler For Energy Transition
+# MVP Workshop - Fossil Free Future - Create The Key Enabler For Energy Transition 
 
 # Odyssey Hackathon Impact Canvas
 
@@ -34,7 +34,9 @@ _Prototype at end of Hackathon_
 
 #### Public Dashboard 
 ![Public Dashboard Home Screen](/screenshots/1_Home.png)
+
 ![Public Dashboard My Installations](/screenshots/2_MyInstallations.png)
+
 ![Public Dashboard Explore](/screenshots/3_Explore.png)
 
 ### X-factor 
