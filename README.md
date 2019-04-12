@@ -59,6 +59,8 @@ _Prototype at end of Hackathon_
 
 ![Validators Dashboard Devices](/screenshots/2_Devices.png)
 
+![Validators Dashboard Locations](/screenshots/3_Locations.png)
+
 ### X-factor 
 _Why a game changer_
 
