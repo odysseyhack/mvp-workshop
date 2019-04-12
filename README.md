@@ -18,14 +18,19 @@ _Prototype at end of Hackathon_
 
 Architecture (PoC):
 1. **Blockchain:**
+
 ⋅⋅* Parity PoA network
 ⋅⋅* Smart Contract - Validator, Green device, households and 3rd party data providers- proposing, voting, removing
+
 2. **Backend:**
+
 ⋅⋅* Gathering data from validated 3rd party data providers 
 ⋅⋅* Data from energy input - store and process data (MySQL)
 ⋅⋅* Validating proposed data by households (rule-engine ML)
 ⋅⋅* Handling communication with Frontend and Blockchain
+
 3. **Frontend:**
+
 ⋅⋅* Public dashboard - Used by Public users
 ⋅⋅* Private dashboard - Used by Validators 
 
