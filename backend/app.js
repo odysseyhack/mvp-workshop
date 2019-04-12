@@ -38,3 +38,5 @@ app.use(error);
 const server = http.createServer(app);
 
 server.listen(PORT, () => logger.info(`Listening on ${PORT}`));
+
+module.exports = server;
