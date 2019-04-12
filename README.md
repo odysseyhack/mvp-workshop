@@ -62,11 +62,11 @@ _Why a game changer_
 
 There are two possible approaches in resolving this problem:
 1. The bottom up approach 
-  Building the network by validating all individual locations and ensuring that the energy which comes from these locations is green and meets all criteria.
+> Building the network by validating all individual locations and ensuring that the energy which comes from these locations is green and meets all criteria.
 
 
 2. The top down approach - Big data analysis 
-  Since we know that only 30% of households with PV devices are actually registered in the system, we can take all smart meters data, and try to find similar corellations and predict which locations might also have PV devices, but are not registered yet.
+> Since we know that only 30% of households with PV devices are actually registered in the system, we can take all smart meters data, and try to find similar corellations and predict which locations might also have PV devices, but are not registered yet.
 
 The solution that we proposed combines these two approaches.
 
