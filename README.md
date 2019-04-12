@@ -5,8 +5,13 @@
 ## Key Elements
 
 ### Problem Analysis
+* Verification and cerfitication of small-scale green energy producers
+* Eliminating grey energy trading on the green energy market
 
 ### Solution
+Public web dashboard allowing small-scale green energy producers to register their location, manage all their PV devices from one place and tracking all green energy outputs.
+
+Decentralized platform allowing validators to certificate new small-scale green energy producers, vote on adding new PV devices with all parameters to the blockchain, monitor the network and the cheating risk associated to each output, re-send risky location to certification queue, vote on granting access to the new validator or revoking access to the existing one.
 
 ### Minimum Viable Product 
 _Prototype at end of Hackathon_
@@ -20,11 +25,22 @@ _Which ecosystems approach and trends make your solution likely to fly?_
 ## Impact
 
 ### Impact on User
+Enabling small-scale green energy producers to feed their energy into the system and monitor their earnings.
+
+Incentives for Users:
+* No extra costs
+* Monitor earnings
+* Transparent and fair system
 
 ### Impact on User-Context 
 _Industry and Stakeholders_
+* Delegated authority to governments, universities, national energy companies - validators representing MID (mediator of individual data)
+* Transparent and fair system
+* Enabling new business models 
 
 ### Impact on Society 
+* Incentivizing green energy production by enabling small-scale producers to enter the system
+* Eliminating grey energy trading on the green energy market
 
 ## Essential Details
 
@@ -58,5 +74,4 @@ _SMART goals_
 * As a User ISBAT register my house by providing geo location and adding all green devices that I have installed 
 * As a User ISBAT add new green device or remove the existing one
 * As a User ISBAT see all green energy outputs
-
 
