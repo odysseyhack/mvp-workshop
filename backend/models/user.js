@@ -14,7 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
 
-    location: {
+    latitude: {
+      type: DataTypes.STRING(128),
+      allowNull: false
+    },
+
+    longitude: {
       type: DataTypes.STRING(128),
       allowNull: false
     },
