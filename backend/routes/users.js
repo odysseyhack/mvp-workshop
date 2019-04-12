@@ -14,9 +14,9 @@ module.exports = {
 async function register (req, res, next) {
   try {
     const request = utils.getSubset([
-      'email', 'location', 'device_model', 'serial_number'
+      'email', 'latitude', 'device_model', 'serial_number', 'longitude'
     ], req.body);
-
+    console.log(request)
     const sessionProps = await usersService.register(request, req.body.password);
 
     // create fully authenticated session

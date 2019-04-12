@@ -15,7 +15,11 @@ const register1 = [
 ];
 
 const register2 = [
-  body('location')
+  body('longitude')
+    .trim()
+    .not().isEmpty().withMessage(vk('mail_req'))
+    .isLength({ max: 128 }).withMessage(vk('mail_long')),
+  body('latitude')
     .trim()
     .not().isEmpty().withMessage(vk('mail_req'))
     .isLength({ max: 128 }).withMessage(vk('mail_long'))
