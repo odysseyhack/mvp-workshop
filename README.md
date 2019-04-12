@@ -7,9 +7,12 @@
 * Eliminating grey energy trading on the green energy market
 
 ### Solution
-Public web dashboard allowing small-scale green energy producers to register their location, manage all their PV devices from one place and tracking all green energy outputs.
+Public Dashboard | Validators Dashboard
+------------ | -------------
 
-Decentralized platform allowing validators to certificate new small-scale green energy producers, vote on adding new PV devices with all parameters to the blockchain, monitor the network and the cheating risk associated to each output, re-send risky location to certification queue, vote on granting access to the new validator or revoking access to the existing one.
+Public web dashboard allowing small-scale green energy producers to register their location, manage all their PV devices from one place and tracking all green energy outputs. | Decentralized platform allowing validators to certificate new small-scale green energy producers, vote on adding new PV devices with all parameters to the blockchain, monitor the network and the cheating risk associated to each output, re-send risky location to certification queue, vote on granting access to the new validator or revoking access to the existing one.
+
+
 
 ### Minimum Viable Product 
 _Prototype at end of Hackathon_
