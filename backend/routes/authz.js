@@ -25,7 +25,6 @@ function isUserInRole (req, roleId) {
 function isUserInAnyRole (req, roles) {
   const all = req.session.user.role || [];
   const test = roles || [];
-
   for (let i = 0; i < test.length; i++) {
     if (all.indexOf(test[i]) >= 0) {
       return true;

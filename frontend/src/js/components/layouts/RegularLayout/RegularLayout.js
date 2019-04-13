@@ -10,7 +10,7 @@ class RegularLayout extends Component {
         return (
             <div>
                 <TopMenu />
-                <Container>
+                <Container className='mt-4'>
                     {children}
                 </Container>
             </div>

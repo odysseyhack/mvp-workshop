@@ -1,0 +1,51 @@
+.requestType {
+  border-radius: 4px;
+  padding: 8px 12px;
+  display: inline;
+  font-size: 12px;
+}
+
+.goodRequest {
+  background-color: #e5f8fa;
+  color: #4dc2e2;
+}
+
+.badRequest {
+  background-color: #feeff0;
+  color: #f96270;
+}
+
+.requestStatusTrue {
+  color: #38bb8d;
+}
+
+.requestStatusFalse {
+  color: #f96270;
+}
+
+.rigthIconCard {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+.rigthIconCardStatus {
+  position: absolute;
+  right: 15px;
+  top: 5px;
+}
+
+.rigthVotes {
+  position: absolute;
+  right: 35px;
+  top: 0;
+  color: #8798ad;
+}
+
+.requestCard .col {
+  padding: 0;
+}
+
+.btn.defaultButtonRed {
+  background-color: #f96270;
+}
