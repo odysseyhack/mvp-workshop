@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return Promise.all([queryInterface.addColumn(
       'user',
-      'role', {
+      'role_id', {
         type: Sequelize.BIGINT.UNSIGNED,
         references: {
           model: 'role',
@@ -14,6 +14,6 @@ module.exports = {
     ]);
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn('user', 'role');
+    return queryInterface.removeColumn('user', 'role_id');
   }
 };

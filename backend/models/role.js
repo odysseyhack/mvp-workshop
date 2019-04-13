@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Role.associate = function (models) {
-    models.UserAuth.hasMany(models.User, {
+    models.Role.hasMany(models.User, {
       foreignKey: {
         allowNull: false,
         underscored: true

@@ -30,7 +30,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-
+      status: {
+        type: Sequelize.ENUM('UNKNOWN', 'PENDING', 'DENIED', 'ACTIVE'),
+        allowNull: false
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE

@@ -16,12 +16,12 @@ module.exports = (sequelize, dataTypes) => {
   });
 
   UserBattery.associate = function (models) {
-    models.UserAuth.belongsTo(models.User, {
+    models.UserBattery.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
     });
-    models.UserAuth.belongsTo(models.Battery, {
+    models.UserBattery.belongsTo(models.Battery, {
       foreignKey: {
         allowNull: false
       }

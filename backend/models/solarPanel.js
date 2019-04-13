@@ -30,23 +30,18 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       field: 'min_operating_temperature'
+    },
+    status: {
+      type: dataTypes.ENUM('UNKNOWN', 'PENDING', 'DENIED', 'ACTIVE'),
+      allowNull: false
     }
   }, {
     underscored: true,
     freezeTableName: true,
-    tableName: 'solar_device',
+    tableName: 'solar_panel',
     charset: 'utf8',
     collate: 'utf8_unicode_ci'
   });
-
-  SolarPanel.associate = function (models) {
-    models.SolarPanel.belongsTo(models.User, {
-      onDelete: 'CASCADE', // todo: FK is on delete 'set null', and column is null
-      foreignKey: {
-        allowNull: false
-      }
-    });
-  };
 
   return SolarPanel;
 };

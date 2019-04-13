@@ -24,7 +24,7 @@ async function register (req, res, next) {
     // create fully authenticated session
     authc.setAuthenticated(req, sessionProps);
 
-    res.send(Response.success(request)).end();
+    res.send(Response.success(sessionProps)).end();
   } catch (err) {
     next(err);
   }

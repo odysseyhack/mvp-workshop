@@ -4,10 +4,11 @@ const db = require('../models');
 const passwords = require('../utils/password');
 const errors = require('../utils/errors');
 const auth = require('./auth');
-const { getSolarPanel } = require('./panel');
+const { getSolarPanel, getUserPanel } = require('./panel');
 const {
   AuthenticationError,
-  InvalidRequestError
+  InvalidRequestError,
+  ConflictError
 } = require('../utils/errors');
 
 module.exports = {
@@ -37,7 +38,7 @@ async function register (request, password) {
     if (alreadyExist) {
       throw new errors.ConflictError();
     }
-
+    request.role_id = 1;
     const User = await db.User.create(request);
 
     if (!User) {
@@ -46,7 +47,7 @@ async function register (request, password) {
 
     const hash = await passwords.createHash(password);
 
-    await db.UserAuth.create({ 'UserId': User.id, 'hash': hash });
+    await db.UserAuth.create({ 'user_id': User.id, 'hash': hash });
     return getSessionProperties(User.get());
   } catch (err) {
     throw err;
@@ -81,9 +82,14 @@ async function addSolarPanel (userId, data) {
     throw new InvalidRequestError();
   }
 
+  const alreadyExists = await getUserPanel(userId, panel.id);
+  if (alreadyExists) {
+    throw new ConflictError();
+  }
+
   const userPanels = {
-    SolarPanelId: panel.id,
-    UserId: userId
+    solar_panel_id: panel.id,
+    user_id: userId
   };
 
   await db.UserPanel.create(userPanels);

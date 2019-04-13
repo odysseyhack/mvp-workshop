@@ -8,6 +8,7 @@ const users = require('./users');
 const val = require('../validators');
 const h = require('./handlers');
 const auth = require('./authc');
+const panelRoute = require('./panel');
 
 const clientRouter = express.Router();
 
@@ -28,7 +29,13 @@ clientRouter.post(`/validations/register1`, val.user.register1, h.ok);
 clientRouter.post(`/validations/register2`, val.user.register2, h.ok);
 
 clientRouter.post('/users/:id/solar-panels', auth.isAuthc, auth.isAuthz('id'), users.addSolarPanel);
+clientRouter.get('/solar-panels', panelRoute.getPanels);
 
+clientRouter.post('/validators/:id/solar-panels', auth.isAuthc, auth.isAuthz('id'), panelRoute.createPanelVote);
+clientRouter.post('/validators/:id/solar-panels/:panelId/downvote', auth.isAuthc, auth.isAuthz('id'), panelRoute.createPanelDownvote);
+clientRouter.post('/validators/:id/solar-panels/suggestions/:suggestionId/vote', auth.isAuthc, auth.isAuthz('id'), panelRoute.addNewVote);
+
+clientRouter.get('/solar-panels/suggestions', panelRoute.getSuggestionList);
 module.exports = {
   clientRouter
 };
