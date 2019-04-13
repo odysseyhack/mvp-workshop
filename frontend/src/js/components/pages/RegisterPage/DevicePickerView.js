@@ -2,6 +2,32 @@ import React from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 
 class DevicePickerView extends React.Component {
+  renderButtonsForPicker = () => {
+    return (
+      <Row className='mt-2'>
+        <Col>
+          <Button
+            variant='outline-primary'
+            type='submit'
+            onClick={this.props.goToPrevStep}
+            className='w-100 ghostButton defaultButton'
+          >
+            Previous
+          </Button>
+        </Col>
+        <Col>
+          <Button
+            variant='primary'
+            type='submit'
+            onClick={this.props.submitData}
+            className='w-100 border-0 defaultButton'
+          >
+            Submit
+          </Button>
+        </Col>
+      </Row>
+    )
+  }
   render () {
     return (
       <Form>
@@ -23,29 +49,7 @@ class DevicePickerView extends React.Component {
             onChange={this.props.handleChange}
           />
         </Form.Group>
-
-        <Row className='mt-2'>
-          <Col>
-            <Button
-              variant='outline-primary'
-              type='submit'
-              onClick={this.props.goToPrevStep}
-              className='w-100 ghostButton defaultButton'
-            >
-              Previous
-            </Button>
-          </Col>
-          <Col>
-            <Button
-              variant='primary'
-              type='submit'
-              onClick={this.props.submitData}
-              className='w-100 border-0 defaultButton'
-            >
-              Submit
-            </Button>
-          </Col>
-        </Row>
+        {this.renderButtonsForPicker()}
       </Form>
     )
   }
