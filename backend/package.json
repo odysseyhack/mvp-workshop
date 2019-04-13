@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "mocha"
+    "test": "mocha",
+    "format": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all"
   },
   "author": "",
   "license": "ISC",
@@ -29,8 +30,8 @@
     "mysql2": "^1.6.5",
     "nodemailer": "^6.1.0",
     "nodemailer-smtp-transport": "^2.7.4",
-    "read-excel-file": "^2.0.10",
-    "sequelize": "^5.3.3",
+    "sequelize": "4.37.4",
+    "sequelize-cli": "4.0.0",
     "weather-js": "^2.0.0",
     "web3": "1.0.0-beta.37",
     "winston": "^3.2.1"

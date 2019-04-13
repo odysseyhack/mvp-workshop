@@ -14,6 +14,6 @@ module.exports = {
     ]);
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn('user', 'role');
+    return queryInterface.removeColumn('user', 'role_id');
   }
 };

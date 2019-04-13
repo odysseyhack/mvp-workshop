@@ -28,6 +28,21 @@ const register2 = [
 const register3 = [
   body('device_model')
     .trim()
+    .not().isEmpty().withMessage(vk('device_model_req'))
+    .isLength({ max: 128 }).withMessage(vk('mail_long')),
+  body('serial_number')
+    .trim()
+    .not().isEmpty().withMessage(vk('serial_req'))
+    .isLength({ max: 128 }).withMessage(vk('mail_long')),
+  body('hash')
+    .trim()
+    .not().isEmpty().withMessage(vk('serial_req'))
+    .isLength({ max: 512 }).withMessage(vk('mail_long'))
+];
+
+const solarPanel = [
+  body('device_model')
+    .trim()
     .not().isEmpty().withMessage(vk('device_model_req')),
   body('serial_number')
     .trim()

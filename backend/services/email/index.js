@@ -1,25 +1,26 @@
 'use strict';
 
 const mailService = require('./transporter');
+const fromAccount = process.env.EMAIL_ACCOUNT;
+const db = require('../../models');
+const crypto = require('crypto');
+const url = process.env.HOST_URL;
 
 class EmailSender {
-  async sendEmail (options, view, data) {
+  async sendEmail (options) {
+    const hash = crypto.randomBytes(128).toString('hex');
+
     let setup = {
-      from: options.from,
+      from: fromAccount,
       to: options.to,
-      subject: options.subject
+      subject: options.subject,
+      text: url + hash
     };
 
-    return new Promise((resolve, reject) => {
-      mailService.sendMail(setup, function (error, info) {
-        if (error) {
-          resolve(false);
-        } else {
-          console.log('Email sent: ' + info.response);
-          resolve(true);
-        }
-      });
-    });
+    await Promise.all([
+      mailService.sendMail(setup),
+      db.Hash.create({hash: hash})
+    ]);
   }
 }
 

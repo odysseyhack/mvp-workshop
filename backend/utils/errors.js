@@ -19,10 +19,13 @@ class NotFoundError extends Error {}
 
 class ConflictError extends Error {}
 
+class InvalidRequestError extends Error {}
+
 module.exports = {
   AuthenticationError,
   AuthorizationError,
   ValidationError,
   NotFoundError,
-  ConflictError
+  ConflictError,
+  InvalidRequestError
 };

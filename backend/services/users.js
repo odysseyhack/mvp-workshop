@@ -9,14 +9,18 @@ const fs = require('fs');
 const CsvReadableStream = require('csv-reader');
 const readXlsxFile = require('read-excel-file/node');
 const inputStream = fs.createReadStream('./resources/power.csv', 'utf8');
+const { getSolarPanel, getUserPanel } = require('./panel');
 const {
-  AuthenticationError
+  AuthenticationError,
+  InvalidRequestError,
+  ConflictError
 } = require('../utils/errors');
 
 module.exports = {
   login,
   register,
-  checkIfUserExists
+  checkIfUserExists,
+  addSolarPanel
 };
 
 async function checkIfUserExists (email) {
@@ -32,16 +36,26 @@ async function getUser (email) {
   });
 }
 
-async function register (request, password) {
+async function register (request, password, randomHash) {
   try {
     const alreadyExist = await getUser(request.email);
     if (alreadyExist) {
       throw new errors.ConflictError();
     }
 
-    request.RoleId = Role.HOLDER;
+    if (randomHash) {
+      request.role_id = await validHash(randomHash);
 
-    const User = await db.User.create(request)
+      if (!request.role_id) {
+        throw new errors.ConflictError();
+      }
+    }
+
+    if (!request.role_id) {
+      request.role_id = Role.HOLDER;
+    }
+
+    const User = await db.User.create(request);
 
     if (!User) {
       throw new Error('Failed to create a user');
@@ -55,11 +69,28 @@ async function register (request, password) {
     const statistics = prepareFileForDatabse(csv, excel);
     await db.UserPower.bulkCreate(statistics);
 
-    await db.UserAuth.create({ 'UserId': User.id, 'hash': hash });
+    await db.UserAuth.create({ 'user_id': User.id, 'hash': hash });
     return getSessionProperties(User.get());
   } catch (err) {
     throw err;
   }
+}
+
+async function validHash (hash) {
+  const correct = await db.Hash.findOne({
+    where: {
+      hash: hash,
+      expired: false
+    }
+  });
+
+  if (correct) {
+    correct.expired = true;
+    await correct.save();
+    return Role.VALIDATOR;
+  }
+
+  return undefined;
 }
 
 function prepareFileForDatabse (csv = [], excel = []) {
@@ -149,4 +180,23 @@ async function getSessionProperties (obj) {
     email: obj.email,
     role: [ obj.RoleId ]
   };
+}
+
+async function addSolarPanel (userId, data) {
+  const panel = await getSolarPanel(data.panelId);
+  if (!panel) {
+    throw new InvalidRequestError();
+  }
+
+  const alreadyExists = await getUserPanel(userId, panel.id);
+  if (alreadyExists) {
+    throw new ConflictError();
+  }
+
+  const userPanels = {
+    solar_panel_id: panel.id,
+    user_id: userId
+  };
+
+  await db.UserPanel.create(userPanels);
 }
