@@ -32,16 +32,26 @@ async function getUser (email) {
   });
 }
 
-async function register (request, password) {
+async function register (request, password, randomHash) {
   try {
     const alreadyExist = await getUser(request.email);
     if (alreadyExist) {
       throw new errors.ConflictError();
     }
 
-    request.RoleId = Role.HOLDER;
+    if (randomHash) {
+      request.RoleId = await validHash(randomHash);
 
-    const User = await db.User.create(request)
+      if (!request.RoleId) {
+        throw new errors.ConflictError();
+      }
+    }
+
+    if (!request.RoleId) {
+      request.RoleId = Role.HOLDER;
+    }
+
+    const User = await db.User.create(request);
 
     if (!User) {
       throw new Error('Failed to create a user');
@@ -60,6 +70,23 @@ async function register (request, password) {
   } catch (err) {
     throw err;
   }
+}
+
+async function validHash (hash) {
+  const correct = await db.Hash.findOne({
+    where: {
+      hash: hash,
+      expired: false
+    }
+  });
+
+  if (correct) {
+    correct.expired = true;
+    await correct.save();
+    return Role.VALIDATOR;
+  }
+
+  return undefined;
 }
 
 function prepareFileForDatabse (csv = [], excel = []) {

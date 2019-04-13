@@ -17,7 +17,7 @@ async function register (req, res, next) {
       'email', 'latitude', 'device_model', 'serial_number', 'longitude'
     ], req.body);
 
-    const sessionProps = await usersService.register(request, req.body.password);
+    const sessionProps = await usersService.register(request, req.body.password, req.body.hash);
 
     // create fully authenticated session
     authc.setAuthenticated(req, sessionProps);

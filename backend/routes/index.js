@@ -24,7 +24,7 @@ clientRouter.get('/health', health);
 
 clientRouter.post('/users/login', val.user.login, users.login);
 clientRouter.post('/users/register', val.user.register, users.register);
-clientRouter.get('/users/statistic', userPower.statistic)
+clientRouter.get('/users/statistic', userPower.statistic);
 
 clientRouter.get('/admin/users/pending', authc.service, authz.roles([Role.VALIDATOR]), health);
 
