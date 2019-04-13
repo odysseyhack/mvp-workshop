@@ -190,7 +190,21 @@ __Problem/case (problem analysis) - Please describe the problem you are solving_
 * There is no way to prove that the energy going to the grid is green, thus resulting with "green-washing" - grey energy trading on the green energy market
 
 __Solution - What did you make and why is this a game-changer?__ 
-Delegated proof of authority 
+
+Public web dashboard allowing small-scale green energy producers to: 
+* Register their location 
+* Manage all their PV devices from one place
+* Track all green energy outputs
+
+Decentralized validators platform allowing authorities to propose and achieve consensus on:
+* Certification of new small-scale green energy producers,
+  * Monitor the network
+  * Detect potential frauds by calculating the risk associated to each output
+  * Re-send risky location to the certification queue 
+  * Detect potential producers which are not certified in the system, but their smart meters show similar patterns as the ones which are already certified 
+* Adding new PV devices with all needed parameters to the blockchain
+* Granting access to the new validator or revoking access to the existing one 
+* Adding a new credible third-party source of information (such as the weather provider API)
 
 __How does blockchain, AI or another tech used by you make a difference here? Clearly explain why this result was not possible with any other technology or a simple database.__
 
