@@ -100,6 +100,10 @@ _Industry and Stakeholders_
 
 ### Legal Arrangements
 
+* No private data stored on the blockchain
+  * GDPR compliant
+* Only location range for other households visible, not precise location
+
 ### Open Source Strategy
 
 ### Interconnectedness
