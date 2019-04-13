@@ -16,6 +16,7 @@
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "email": "^0.2.6",
+    "ethereumjs-abi": "^0.6.7",
     "express": "^4.16.4",
     "express-mysql-session": "^2.1.0",
     "express-session": "^1.16.1",
@@ -28,6 +29,7 @@
     "nodemailer-smtp-transport": "^2.7.4",
     "sequelize": "^5.3.3",
     "weather-js": "^2.0.0",
+    "web3": "1.0.0-beta.37",
     "winston": "^3.2.1"
   }
 }
