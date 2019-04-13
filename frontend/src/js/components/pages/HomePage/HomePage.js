@@ -19,45 +19,6 @@ import {
   Legend
 } from 'recharts'
 
-const data = [
-  {
-    name: 'Jan',
-    Spent: 4000,
-    Produced: 2400,
-    Sent: 2400
-  },
-  {
-    name: 'Feb',
-    Spent: 3000,
-    Produced: 1398,
-    Sent: 2210
-  },
-  {
-    name: 'Mar',
-    Spent: 2000,
-    Produced: 1276,
-    Sent: 2290
-  },
-  {
-    name: 'Apr',
-    Spent: 2780,
-    Produced: 3908,
-    Sent: 2000
-  },
-  {
-    name: 'May',
-    Spent: 1890,
-    Produced: 4800,
-    Sent: 2181
-  },
-  {
-    name: 'Jun',
-    Spent: 2390,
-    Produced: 3800,
-    Sent: 2500
-  }
-]
-
 const defaultOptions = {
   animDuration: 1,
   showValue: true,
@@ -104,7 +65,7 @@ class HomePage extends React.Component {
 
   renderConsumptionChart = () => {
     return (
-      <BarChart width={690} height={330} data={data}>
+      <BarChart width={690} height={330} data={[]}>
         <CartesianGrid vertical={false} strokeDasharray='3 3' />
         <XAxis dataKey='name' stroke='#BFC5D2' />
         <YAxis
