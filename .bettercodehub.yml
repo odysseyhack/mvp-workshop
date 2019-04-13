@@ -1,6 +1,4 @@
 exclude:
-- /screenshots/.*
-- .*/FileYouWantToExclude\.java
 
 component_depth: 2
 languages:
@@ -9,6 +7,3 @@ languages:
 
 test:
     include:
-      - .*/integrationtests/.*\.java
-      - .*TestFile\.java
-      - /TestComponent/.*\.java
