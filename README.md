@@ -123,10 +123,9 @@ _Industry and Stakeholders_
 ### Milestones Up Ahead 
 
 #### Business & Product
-* Establish deversified and credible network of validators
-* Form industry council for setting the proposed protocol standards of data
-* Media partnerships for wide adoption
-* EU / Government partnerships for setting up the proper incentives
+* __Establish deversified and credible network of validators__ - At least 9 validators consisted of governments, grid operators, universities in __the first three months__.
+* Form industry council for setting the proposed protocol standards of data - Include producers covering in total at least 50% of the industry market share in Europe in __the first three months__.
+* EU / Government partnerships for setting up the proper incentives - Establishing a working group in __the first three months__, propose a strategy for incentives in __the first year__.
 
 #### Tech
 * PoA Beacon chain 
@@ -139,11 +138,56 @@ _Industry and Stakeholders_
 ### 100 days target
 _SMART goals_
 
+#### Timeline
+
+##### Week #1-2
+* Form a team
+* Product Discovery Workshop
+* UX Design
+
+##### Month #1
+
+##### Month #2
+
+##### Month #3
+
+#### Risky Assumptions - Hypothesis to validate
+* Are we able to gather top industry players together to set standards
+* Are we able to find data paterns and train the system to predict locations which should be registered
+* Are we able to incentivize more people to enter the system, are financial benefits enough 
+
+#### Resources
+
+##### Team
+* Product Team - 6 people team, engaged full time, consisted of: 
+  * Four Full Stack Developers 
+  * Product Designer 
+  * Product Manager 
+* Domain / Industry Experts (from Vattenfall and MVP Workshop)
+  * Product Owner (Vattenfall) - Full Time engagement
+  * Tech Architecture - Weekly consulting
+  * Legal Expert (Vattenfall) - Bi-weekly consulting
+* Marketing & PR
+  * Outsource agency (or dedicated team from Vattenfall)
+* Business Development / Partnership
+  * Dedicated team from Vattenfall
+
+##### Knowledge
+* Data format for different manufacturers
+* Industry protocols and standards - Minimum set of information needed for the system
+
+##### Budget
+* Product Design & Development - 24.000 € / month
+* Marketing - 5.000 € / month
+* Business Development / Partnership - 10.000 € / month (includes travels)
 
 # Team Deliverable 4 - online questionnaire
 
 __Problem/case (problem analysis) - Please describe the problem you are solving__
 
+
 __Solution - What did you make and why is this a game-changer?__ 
+Delegated proof of authority 
 
 __How does blockchain, AI or another tech used by you make a difference here? Clearly explain why this result was not possible with any other technology or a simple database.__
+
