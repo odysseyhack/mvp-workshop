@@ -17,7 +17,31 @@ class LocationsPage extends React.Component {
     }
   }
 
+  renderLocationCardRow = () => {
+    return (
+      <Row className='mt-4 pl-3 pr-3'>
+        <Col md='3'>
+          <p className='installationSections'>TITLE</p>
+        </Col>
+        <Col>
+          <p className='installationSections'>DEVICES</p>
+        </Col>
+        <Col>
+          <p className='installationSections'>PRODUCING</p>
+        </Col>
+        <Col>
+          <p className='installationSections'>CONSUMING</p>
+        </Col>
+        <Col>
+          <p className='installationSections'>SENDING TO GRID</p>
+        </Col>
+        <Col />
+      </Row>
+    )
+  }
+
   render () {
+    const LocationCardRow = this.renderLocationCardRow
     return (
       <RegularLayout>
         <h3>Locations</h3>
@@ -47,24 +71,7 @@ class LocationsPage extends React.Component {
           dueDate='10 minutes'
         />
         <h3>Approved locations</h3>
-        <Row className='mt-4 pl-3 pr-3'>
-          <Col md='3'>
-            <p className='installationSections'>TITLE</p>
-          </Col>
-          <Col>
-            <p className='installationSections'>DEVICES</p>
-          </Col>
-          <Col>
-            <p className='installationSections'>PRODUCING</p>
-          </Col>
-          <Col>
-            <p className='installationSections'>CONSUMING</p>
-          </Col>
-          <Col>
-            <p className='installationSections'>SENDING TO GRID</p>
-          </Col>
-          <Col />
-        </Row>
+        <LocationCardRow />
         <LocationCard
           downvoteCount={2}
           upvoteCount={1}
