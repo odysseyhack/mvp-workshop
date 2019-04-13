@@ -9,11 +9,6 @@ it('renders DashboardCard no props', () => {
   ReactDOM.unmountComponentAtNode(div)
 })
 
-it('renders DashboardCard no props', () => {
-  const div = document.createElement('div')
-  ReactDOM.render(<DashboardCard />, div)
-  ReactDOM.unmountComponentAtNode(div)
-})
 it('renders DashboardCard with image only', () => {
   const div = document.createElement('div')
   ReactDOM.render(
