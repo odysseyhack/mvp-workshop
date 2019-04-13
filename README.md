@@ -197,11 +197,12 @@ Public web dashboard allowing small-scale green energy producers to:
 * Track all green energy outputs
 
 Decentralized validators platform allowing authorities to propose and achieve consensus on:
-* Certification of new small-scale green energy producers,
-  * Monitor the network
-  * Detect potential frauds by calculating the risk associated to each output
-  * Re-send risky location to the certification queue 
-  * Detect potential producers which are not certified in the system, but their smart meters show similar patterns as the ones which are already certified 
+* Certification of new small-scale green energy producers by:
+  * Processing requests for new locations coming from the Public web dashboard
+  * Monitoring the network
+  * Detecting potential frauds by calculating the risk associated to each output
+  * Re-sending risky location to the certification queue 
+  * Detecting potential producers which are not certified in the system, but their smart meters show similar patterns as the ones which are already certified 
 * Adding new PV devices with all needed parameters to the blockchain
 * Granting access to the new validator or revoking access to the existing one 
 * Adding a new credible third-party source of information (such as the weather provider API)
