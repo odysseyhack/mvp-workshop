@@ -9,13 +9,6 @@ import * as appActions from '../../../redux/actions'
 import SplitLayout from '../../layouts/SplitLayout/SplitLayout'
 
 class LoginPage extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      loading: false
-    }
-  }
-
   renderLoginForm = () => {
     return (
       <Form>
@@ -28,11 +21,7 @@ class LoginPage extends React.Component {
           <p className='text-uppercase'>Password</p>
           <Form.Control type='password' placeholder='Password' />
         </Form.Group>
-        <Button
-          variant='primary'
-          type='submit'
-          className='w-100 mt-2 defaultButton'
-        >
+        <Button type='submit' className='w-100 mt-2 defaultButton'>
           Sign in
         </Button>
         <p className='mt-3 text-center'>
