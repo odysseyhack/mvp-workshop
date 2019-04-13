@@ -122,6 +122,21 @@ _Industry and Stakeholders_
 
 ### Open Source Strategy
 
+Certify.Energy is fully open sourced project, which is important for various reasons:
+
+> The freedom to run the program as you wish, for any purpose (freedom 0).
+
+We aim to solve real problem, but we are not able to do it alone. Building a protocol which will be widely adopted at the global level requires complete trust, government support and community formed around it that will work on all pieces which will take us closer to define needed standards.
+
+> The freedom to study how the program works, and change it so it does your computing as you wish (freedom 1). Access to the source code is a precondition for this.
+
+Big industry players will be able to develop their tools and APIs 
+
+> The freedom to redistribute copies so you can help others (freedom 2).
+> The freedom to distribute copies of your modified versions to others (freedom 3). By doing this you can give the whole community a chance to benefit from your changes. Access to the source code is a precondition for this.
+
+The platform will serve as a reliable foundation for many other applications in the renewable energy industry (such as P2P energy trading).
+
 ### Interconnectedness
 
 ## Incubation Plan 
