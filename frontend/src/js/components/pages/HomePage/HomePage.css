@@ -1,3 +1,9 @@
+html,
+body,
+div#root,
+div.FullScreenBgLayout {
+  min-height: 100vh;
+}
 body {
   font-family: "Rubik", sans-serif;
   background-color: #f4f6fc;
@@ -27,10 +33,41 @@ h4 {
 
 p {
   font-weight: 400;
+  color: #8798ad;
+  margin: 0;
 }
 
 .btn {
   font-size: 15px;
   font-weight: 500;
   color: #fff;
+}
+
+.gauge-container {
+  max-width: 220px;
+  margin: 0 -20px;
+  width: 100%;
+  display: block;
+  margin: auto;
+}
+
+svg * {
+  font-family: "Rubik", sans-serif;
+}
+.gauge {
+  position: absolute;
+  width: 100%;
+  max-width: 220px;
+  top: 15px;
+}
+.gauge .value-text {
+  font-size: 28px;
+  font-weight: 400;
+  fill: #2e384d;
+}
+
+@media screen and (min-width: 767px) and (max-width: 992px) {
+  .gauge {
+    margin: 0 -20px;
+  }
 }

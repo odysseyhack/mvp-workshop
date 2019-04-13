@@ -10,8 +10,11 @@ import GuestUserRoute from './atoms/GuestUserRoute/GuestUserRoute'
 
 import LoadingPage from './pages/LoadingPage/LoadingPage'
 import HomePage from './pages/HomePage/HomePage'
+import InstallationPage from './pages/InstallationPage/InstallationPage'
+import ExplorePage from './pages/ExplorePage/ExplorePage'
 import LoginPage from './pages/LoginPage/LoginPage'
 import RegisterPage from './pages/RegisterPage/RegisterPage'
+// import DashboardPage from './pages/DashboardPage/DashboardPage'
 import SomethingWentWrong from './pages/SomethingWentWrongPage/SomethingWentWrongPage'
 import apiUtils from '../utils/api-utils'
 
@@ -38,6 +41,16 @@ class App extends Component {
         <GuestUserRoute exact path='/' component={HomePage} />
         <GuestUserRoute exact path='/login' component={LoginPage} />
         <GuestUserRoute exact path='/register' component={RegisterPage} />
+
+        <GuestUserRoute exact path='/overview' component={HomePage} />
+        <GuestUserRoute
+          exact
+          path='/installations'
+          component={InstallationPage}
+        />
+        <GuestUserRoute exact path='/explore' component={ExplorePage} />
+
+        {/* <GuestUserRoute exact path='/home' component={DashboardPage} /> */}
 
         {/* <AuthUserRoute exact path='/profile' component={ProfilePage} /> */}
         <Route component={SomethingWentWrong} />

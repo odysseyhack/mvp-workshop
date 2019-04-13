@@ -1,0 +1,28 @@
+.installationCard {
+  border-radius: 0;
+  height: 70px;
+  border: 0;
+  border-left: 3px solid transparent;
+}
+
+.installationCard * {
+  font-weight: 400;
+}
+
+.installationCard .installationTitle {
+  font-weight: 500;
+}
+
+.installationCard:hover {
+  border-color: #38bb8d;
+}
+
+.installationCard:hover .installationTitle {
+  color: #38bb8d;
+}
+
+.manageInstallationButton {
+  color: #38bb8d;
+  font-weight: 500;
+  cursor: pointer;
+}

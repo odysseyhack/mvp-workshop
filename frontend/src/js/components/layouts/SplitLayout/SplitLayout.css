@@ -1,0 +1,25 @@
+.splitLayoutContainer {
+  background-color: #fff;
+}
+
+.containerBackground {
+  background: url("../../../../assets/images/background.png") no-repeat;
+  background-position: bottom;
+}
+
+.minHeight {
+  min-height: 100vh;
+}
+
+@media only screen and (max-width: 767px) {
+  .splitLayoutBackground {
+    height: initial;
+  }
+  .containerBackground {
+    background-size: 100% 100%;
+  }
+}
+
+a {
+  color: #38bb8d;
+}
