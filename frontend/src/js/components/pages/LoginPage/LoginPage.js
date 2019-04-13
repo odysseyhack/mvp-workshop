@@ -21,11 +21,9 @@ class LoginPage extends React.Component {
           <p className='text-uppercase'>Password</p>
           <Form.Control type='password' placeholder='Password' />
         </Form.Group>
-
         <Button type='submit' className='w-100 mt-2 defaultButton'>
           Sign in
         </Button>
-
         <p className='mt-3 text-center'>
           Don't have an account? <Link to='/register'>Sign up</Link>
         </p>
@@ -41,7 +39,6 @@ class LoginPage extends React.Component {
             className='m-auto card-container border-0'
             style={{ position: 'initial' }}
           >
-
             <Link to='/' className='position-absolute' style={{ top: 20 }}>
               <div className='m-auto card-container'>
                 <img
@@ -51,12 +48,9 @@ class LoginPage extends React.Component {
                 />
               </div>
             </Link>
-
             <h3>Sign in</h3>
             <p>Please enter your credentials to proceed.</p> <br />
-            
             {this.renderLoginForm()}
-
           </Card>
         </div>
       </SplitLayout>
