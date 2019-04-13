@@ -16,7 +16,7 @@ async function register (req, res, next) {
     const request = utils.getSubset([
       'email', 'latitude', 'device_model', 'serial_number', 'longitude'
     ], req.body);
-    console.log(request)
+
     const sessionProps = await usersService.register(request, req.body.password);
 
     // create fully authenticated session

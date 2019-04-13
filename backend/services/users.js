@@ -4,6 +4,7 @@ const db = require('../models');
 const passwords = require('../utils/password');
 const errors = require('../utils/errors');
 const auth = require('./auth');
+const { Role } = require('../utils/enums');
 const {
   AuthenticationError
 } = require('../utils/errors');
@@ -22,7 +23,7 @@ async function checkIfUserExists (email) {
 async function getUser (email) {
   return db.User.findOne({
     where: {
-      email
+      email: email
     }
   });
 }
@@ -34,7 +35,9 @@ async function register (request, password) {
       throw new errors.ConflictError();
     }
 
-    const User = await db.User.create(request).catch((err) => console.log(err));
+    request.RoleId = Role.HOLDER;
+
+    const User = await db.User.create(request)
 
     if (!User) {
       throw new Error('Failed to create a user');
@@ -67,6 +70,7 @@ async function login (email, password) {
 async function getSessionProperties (obj) {
   return {
     id: obj.id,
-    email: obj.email
+    email: obj.email,
+    role: [ obj.RoleId ]
   };
 }
