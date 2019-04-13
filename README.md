@@ -180,16 +180,11 @@ _SMART goals_
 
 #### Timeline
 
-##### Week #1-2
-* Form a team
-* Product Discovery Workshop
-* UX Design
-
-##### Month #1
-
-##### Month #2
-
-##### Month #3
+Week #1-2 					| Month #1 			| Month #2 			| Month #3
+------------ 				| ------------- 	| ------------- 	| -------------
+Form a team 				| Content cell 2 	| Content column 2 	| Content column 2
+Product Discovery Workshop 	| Content column 2 	| Content column 2 	| Content column 2
+UX Design 					| Content column 2 	| Content column 2 	| Content column 2
 
 #### Risky Assumptions - Hypothesis to validate
 * Are we able to gather top industry players together to set standards
