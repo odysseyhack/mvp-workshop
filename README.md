@@ -182,9 +182,9 @@ _SMART goals_
 
 Week #1-2 					| Month #1 			| Month #2 			| Month #3
 ------------ 				| ------------- 	| ------------- 	| -------------
-Form a team 				| Content cell 2 	| Content column 2 	| Content column 2
-Product Discovery Workshop 	| Content column 2 	| Content column 2 	| Content column 2
-UX Design 					| Content column 2 	| Content column 2 	| Content column 2
+Form a team 				| Governance on chain 	| Mobile App (Public)	| Mobile App (Validators)
+Product Discovery Workshop 	| Enable protocol to communicate with other chains 	| Isolation forest implementation 	| Isolation forest training data
+UX Design 					|  	| One class SVM implementation  	| One class SVM training data
 
 #### Risky Assumptions - Hypothesis to validate
 * Are we able to gather top industry players together to set standards
