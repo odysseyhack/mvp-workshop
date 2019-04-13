@@ -19,6 +19,45 @@ import {
   Legend
 } from 'recharts'
 
+const data = [
+  {
+    name: 'Jan',
+    Spent: 4000,
+    Produced: 2400,
+    Sent: 2400
+  },
+  {
+    name: 'Feb',
+    Spent: 3000,
+    Produced: 1398,
+    Sent: 2210
+  },
+  {
+    name: 'Mar',
+    Spent: 2000,
+    Produced: 1276,
+    Sent: 2290
+  },
+  {
+    name: 'Apr',
+    Spent: 2780,
+    Produced: 3908,
+    Sent: 2000
+  },
+  {
+    name: 'May',
+    Spent: 1890,
+    Produced: 4800,
+    Sent: 2181
+  },
+  {
+    name: 'Jun',
+    Spent: 2390,
+    Produced: 3800,
+    Sent: 2500
+  }
+]
+
 const defaultOptions = {
   animDuration: 1,
   showValue: true,
@@ -63,133 +102,106 @@ class HomePage extends React.Component {
     }
   }
 
+  renderConsumptionChart = () => {
+    return (
+      <BarChart width={690} height={330} data={data}>
+        <CartesianGrid vertical={false} strokeDasharray='3 3' />
+        <XAxis dataKey='name' stroke='#BFC5D2' />
+        <YAxis
+          yAxisId='left'
+          orientation='left'
+          stroke='#BFC5D2'
+          unit={' kW'}
+          width={100}
+          tickMargin={15}
+        />
+        <Tooltip />
+        <Legend align='right' verticalAlign='top' />
+        <Bar yAxisId='left' dataKey='Produced' fill='#38BB8D' unit={' kW'} />
+        <Bar yAxisId='left' dataKey='Spent' fill='#F9D477' unit={' kW'} />
+        <Bar
+          yAxisId='left'
+          dataKey='Sent'
+          unit={' kW'}
+          name='Sent to system'
+          fill='#8182C9'
+        />
+      </BarChart>
+    )
+  }
+
+  renderLeftSide = () => {
+    return (
+      <Col md='4'>
+        <DashboardCard
+          image={require('../../../../assets/images/weather-sunny.png')}
+          title='12°C'
+          description='Groningen, NL'
+        />
+        <DashboardCard
+          image={require('../../../../assets/images/icon-irradiance.png')}
+          title={
+            <span>
+              667.0 W/m<sup>2</sup>
+            </span>
+          }
+          description='Irradiance'
+        />
+        <DashboardCard basic>
+          <Row>
+            <Col>
+              <p>55.16V</p>
+            </Col>
+            <Col className='text-right'>
+              <p>6.70A</p>
+            </Col>
+          </Row>
+          <BateryDiagram value={86} />
+          <p className='text-center'>BATTERY LEVEL</p>
+        </DashboardCard>
+      </Col>
+    )
+  }
+
+  renderRightSide = () => {
+    const ConsumptionChart = this.renderConsumptionChart
+    return (
+      <Col md='8'>
+        <DashboardCard basic big>
+          <p className='mb-3'>MY ENERGY CONSUMPTION</p>
+          <ConsumptionChart />
+        </DashboardCard>
+        <Row>
+          <Col>
+            <DashboardCard
+              noMargin
+              image={require('../../../../assets/images/icon-production.png')}
+              title='4,090 W'
+              description='Production'
+            />
+          </Col>
+          <Col>
+            <DashboardCard
+              noMargin
+              image={require('../../../../assets/images/icon-consumption.png')}
+              title='3,527 W'
+              description='Consumption'
+            />
+          </Col>
+        </Row>
+      </Col>
+    )
+  }
+
   render () {
-    const data = [
-      {
-        name: 'Jan',
-        Spent: 4000,
-        Produced: 2400,
-        Sent: 2400
-      },
-      {
-        name: 'Feb',
-        Spent: 3000,
-        Produced: 1398,
-        Sent: 2210
-      },
-      {
-        name: 'Mar',
-        Spent: 2000,
-        Produced: 1276,
-        Sent: 2290
-      },
-      {
-        name: 'Apr',
-        Spent: 2780,
-        Produced: 3908,
-        Sent: 2000
-      },
-      {
-        name: 'May',
-        Spent: 1890,
-        Produced: 4800,
-        Sent: 2181
-      },
-      {
-        name: 'Jun',
-        Spent: 2390,
-        Produced: 3800,
-        Sent: 2500
-      }
-    ]
+    const LeftSide = this.renderLeftSide
+    const RightSide= this.renderRightSide
     return (
       <RegularLayout>
         <h2>Overview</h2>
         <Row>
-          <Col md='4'>
-            <DashboardCard
-              image={require('../../../../assets/images/weather-sunny.png')}
-              title='12°C'
-              description='Groningen, NL'
-            />
-            <DashboardCard
-              image={require('../../../../assets/images/icon-irradiance.png')}
-              title={
-                <span>
-                  667.0 W/m<sup>2</sup>
-                </span>
-              }
-              description='Irradiance'
-            />
-            <DashboardCard basic>
-              <Row>
-                <Col>
-                  <p>55.16V</p>
-                </Col>
-                <Col className='text-right'>
-                  <p>6.70A</p>
-                </Col>
-              </Row>
-              <BateryDiagram value={86} />
-              <p className='text-center'>BATTERY LEVEL</p>
-            </DashboardCard>
-          </Col>
-          <Col md='8'>
-            <DashboardCard basic big>
-              <p className='mb-3'>MY ENERGY CONSUMPTION</p>
-              <BarChart width={690} height={330} data={data}>
-                <CartesianGrid vertical={false} strokeDasharray='3 3' />
-                <XAxis dataKey='name' stroke='#BFC5D2' />
-                <YAxis
-                  yAxisId='left'
-                  orientation='left'
-                  stroke='#BFC5D2'
-                  unit={' kW'}
-                  width={100}
-                  tickMargin={15}
-                />
-                <Tooltip />
-                <Legend align='right' verticalAlign='top' />
-                <Bar
-                  yAxisId='left'
-                  dataKey='Produced'
-                  fill='#38BB8D'
-                  unit={' kW'}
-                />
-                <Bar
-                  yAxisId='left'
-                  dataKey='Spent'
-                  fill='#F9D477'
-                  unit={' kW'}
-                />
-                <Bar
-                  yAxisId='left'
-                  dataKey='Sent'
-                  unit={' kW'}
-                  name='Sent to system'
-                  fill='#8182C9'
-                />
-              </BarChart>
-            </DashboardCard>
-            <Row>
-              <Col>
-                <DashboardCard
-                  noMargin
-                  image={require('../../../../assets/images/icon-production.png')}
-                  title='4,090 W'
-                  description='Production'
-                />
-              </Col>
-              <Col>
-                <DashboardCard
-                  noMargin
-                  image={require('../../../../assets/images/icon-consumption.png')}
-                  title='3,527 W'
-                  description='Consumption'
-                />
-              </Col>
-            </Row>
-          </Col>
+          <LeftSide />
+          <RightSide />
         </Row>
       </RegularLayout>
     )
