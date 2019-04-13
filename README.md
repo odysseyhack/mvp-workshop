@@ -259,3 +259,7 @@ The solution that we are building combines these two approaches.
 
 ## Technology Impact
 _How does blockchain, AI or another tech used by you make a difference here? Clearly explain why this result was not possible with any other technology or a simple database._
+
+Private Blockchain / Delegated Proof of Authority gives the validators role to the committee, not an individual. In that way, the system is decentralized, reliable and transparent, without harming privacy, while sidechains bring efficiency to it.
+
+Machine Learning enables finding patterns and detect uncertified locations which produce green energy by connecting what we know (previously certified locations) and remaining set of Big Data.
