@@ -43,7 +43,13 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function (models) {
     models.User.hasOne(models.UserAuth, { foreignKey: { allowNull: false } });
-    models.User.belongs(models.Role, { foreignKey: { allowNull: false } });
+    /* models.User.belongsTo(models.Role, {
+      onDelete: 'CASCADE', // todo: FK is on delete 'set null', and column is null
+      foreignKey: {
+        allowNull: false,
+        underscored: true,
+        as: 'role_id'
+      } }); */
   };
 
   return User;

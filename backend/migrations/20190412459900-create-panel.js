@@ -1,39 +1,33 @@
 'use strict';
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('user', {
+    return queryInterface.createTable('solar_panel', {
       id: {
         type: Sequelize.BIGINT.UNSIGNED,
         autoIncrement: true,
         primaryKey: true
       },
 
-      email: {
-        type: Sequelize.STRING(128),
-        unique: true,
-        allowNull: false,
-        validate: {
-          isEmail: true
-        }
+      producer: {
+        type: Sequelize.STRING(32),
+        allowNull: false
       },
-
-      latitude: {
-        type: Sequelize.STRING(128),
+      model_number: {
+        type: Sequelize.STRING(64),
+        allowNull: false
+      },
+      max_output_power_wats: {
+        type: Sequelize.BIGINT.UNSIGNED,
         allowNull: false
       },
 
-      longitude: {
-        type: Sequelize.STRING(128),
+      max_operating_temperature: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
-
-      device_model: {
-        type: Sequelize.STRING(128),
-        allowNull: false
-      },
-
-      serial_number: {
-        type: Sequelize.STRING(128),
+      min_operating_temperature: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
 
@@ -41,16 +35,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-
       updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }
-    }, {
-      charset: 'utf8'
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('user');
+    return queryInterface.dropTable('solar_panel');
   }
 };

@@ -4,14 +4,17 @@ const db = require('../models');
 const passwords = require('../utils/password');
 const errors = require('../utils/errors');
 const auth = require('./auth');
+const { getSolarPanel } = require('./panel');
 const {
-  AuthenticationError
+  AuthenticationError,
+  InvalidRequestError
 } = require('../utils/errors');
 
 module.exports = {
   login,
   register,
-  checkIfUserExists
+  checkIfUserExists,
+  addSolarPanel
 };
 
 async function checkIfUserExists (email) {
@@ -22,8 +25,9 @@ async function checkIfUserExists (email) {
 async function getUser (email) {
   return db.User.findOne({
     where: {
-      email
-    }
+      email: email
+    },
+    attributes: ['email']
   });
 }
 
@@ -34,7 +38,7 @@ async function register (request, password) {
       throw new errors.ConflictError();
     }
 
-    const User = await db.User.create(request).catch((err) => console.log(err));
+    const User = await db.User.create(request);
 
     if (!User) {
       throw new Error('Failed to create a user');
@@ -69,4 +73,18 @@ async function getSessionProperties (obj) {
     id: obj.id,
     email: obj.email
   };
+}
+
+async function addSolarPanel (userId, data) {
+  const panel = await getSolarPanel(data.panelId);
+  if (!panel) {
+    throw new InvalidRequestError();
+  }
+
+  const userPanels = {
+    SolarPanelId: panel.id,
+    UserId: userId
+  };
+
+  await db.UserPanel.create(userPanels);
 }
