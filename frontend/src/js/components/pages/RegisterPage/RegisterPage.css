@@ -1,0 +1,18 @@
+.ghostButton:hover,
+button.btn-outline-primary.btn.ghostButton:active,
+.defaultButton:hover,
+button.btn-primary.btn.defaultButton:active {
+  background-color: #38bb8d;
+  color: #fff !important;
+}
+
+.defaultButton {
+  background-color: #38bb8d;
+  height: 40px;
+}
+
+.ghostButton {
+  border-color: #38bb8d;
+  background-color: transparent;
+  color: #38bb8d;
+}

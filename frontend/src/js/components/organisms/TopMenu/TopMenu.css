@@ -1,6 +1,9 @@
 .topMenu {
   height: 80px;
   background-color: #fff;
+  -webkit-box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.05);
 }
 
 .navbar .navbar-nav a.nav-link {
@@ -8,7 +11,7 @@
   font-weight: 500;
   padding-top: 27px;
   padding-bottom: 27px;
-  border-bottom: 3px solid #fff;
+  border-bottom: 3px solid transparent;
 }
 
 .navbar .navbar-nav a.nav-link:hover {

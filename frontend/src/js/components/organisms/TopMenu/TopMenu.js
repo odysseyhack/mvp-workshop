@@ -33,12 +33,24 @@ class TopMenu extends Component {
           <Navbar.Toggle />
           <Navbar.Collapse className='justify-content-end'>
             <Nav>
-              <Link className={this.getClassNames('/login')} to='/login'>
+              <Link className={this.getClassNames('/')} to='/'>
+                Overview
+              </Link>
+              <Link
+                className={this.getClassNames('/installations')}
+                to='/installations'
+              >
+                My installations
+              </Link>
+              <Link className={this.getClassNames('/explore')} to='/explore'>
+                Explore
+              </Link>
+              {/* <Link className={this.getClassNames('/login')} to='/login'>
                 Login
               </Link>
               <Link className={this.getClassNames('/register')} to='/register'>
                 Register
-              </Link>
+              </Link> */}
             </Nav>
           </Navbar.Collapse>
         </Container>
