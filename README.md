@@ -4,7 +4,7 @@
 
 ### Problem Analysis
 * Verification and cerfitication of small-scale green energy producers
-* Eliminating grey energy trading on the green energy market
+* "Green-washing" - grey energy trading on the green energy market
 
 ### Solution
 **Public web dashboard** allowing small-scale green energy producers to register their location, manage all their PV devices from one place and tracking all green energy outputs.
