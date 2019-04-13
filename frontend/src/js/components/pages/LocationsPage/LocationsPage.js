@@ -40,36 +40,10 @@ class LocationsPage extends React.Component {
     )
   }
 
-  render () {
+  renderApprovedLocations = () => {
     const LocationCardRow = this.renderLocationCardRow
     return (
-      <RegularLayout>
-        <h3>Locations</h3>
-        {/* <MyMap /> */}
-        <h3>Requested locations</h3>
-        <Row className='mt-4 pl-3 pr-3'>
-          <Col md='3'>
-            <p className='installationSections'>TITLE</p>
-          </Col>
-          <Col>
-            <p className='installationSections'>ACTION TYPE</p>
-          </Col>
-          <Col>
-            <p className='installationSections'>DATE INITIATED</p>
-          </Col>
-          <Col md='5' className='p-0'>
-            <p className='installationSections'>DUE DATE</p>
-          </Col>
-        </Row>
-        <RequestCard
-          downvoteCount={2}
-          upvoteCount={1}
-          title='Groningen'
-          location='Theatre Discrict 123'
-          type='new-location'
-          initiatedDate='MAR 11, 2019'
-          dueDate='10 minutes'
-        />
+      <>
         <h3>Approved locations</h3>
         <LocationCardRow />
         <LocationCard
@@ -82,6 +56,44 @@ class LocationsPage extends React.Component {
           consuming='2,000'
           sendingToGrid='2,000'
         />
+      </>
+    )
+  }
+  renderRequestLocations = () => {
+    return (
+      <Row className='mt-4 pl-3 pr-3'>
+        <Col md='3'>
+          <p className='installationSections'>TITLE</p>
+        </Col>
+        <Col>
+          <p className='installationSections'>ACTION TYPE</p>
+        </Col>
+        <Col>
+          <p className='installationSections'>DATE INITIATED</p>
+        </Col>
+        <Col md='5' className='p-0'>
+          <p className='installationSections'>DUE DATE</p>
+        </Col>
+      </Row>
+    )
+  }
+  render () {
+    return (
+      <RegularLayout>
+        <h3>Locations</h3>
+        {/* <MyMap /> */}
+        <h3>Requested locations</h3>
+        {this.renderRequestLocations()}
+        <RequestCard
+          downvoteCount={2}
+          upvoteCount={1}
+          title='Groningen'
+          location='Theatre Discrict 123'
+          type='new-location'
+          initiatedDate='MAR 11, 2019'
+          dueDate='10 minutes'
+        />
+        {this.renderApprovedLocations()}
       </RegularLayout>
     )
   }
