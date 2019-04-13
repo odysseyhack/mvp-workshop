@@ -66,6 +66,41 @@ class RegisterPage extends React.Component {
     this.setState({ location })
   }
 
+  renderStepOne = () => {
+    const { step } = this.state
+    return step === 1 ? (
+      <CredentialView
+        state={this.state}
+        goToNextStep={this.goToNextStep}
+        handleChange={this.handleChange}
+      />
+    ) : null
+  }
+  renderStepTwo = () => {
+    const { step } = this.state
+    return step === 2 ? (
+      <LocationView
+        state={this.state}
+        goToNextStep={this.goToNextStep}
+        goToPrevStep={this.goToPrevStep}
+        setLocation={this.setLocation}
+        handleChange={this.handleChange}
+      />
+    ) : null
+  }
+  renderStepThree = () => {
+    const { step } = this.state
+    return step === 3 ? (
+      <DevicePickerView
+        state={this.state}
+        goToPrevStep={this.goToPrevStep}
+        setLocation={this.setLocation}
+        handleChange={this.handleChange}
+        submitData={this.submitData}
+      />
+    ) : null
+  }
+
   render () {
     const { step } = this.state
 
@@ -89,31 +124,9 @@ class RegisterPage extends React.Component {
               </div>
             </Link>
             <h3 className='text-center'>Register</h3>
-            {step === 1 && (
-              <CredentialView
-                state={this.state}
-                goToNextStep={this.goToNextStep}
-                handleChange={this.handleChange}
-              />
-            )}
-            {step === 2 && (
-              <LocationView
-                state={this.state}
-                goToNextStep={this.goToNextStep}
-                goToPrevStep={this.goToPrevStep}
-                setLocation={this.setLocation}
-                handleChange={this.handleChange}
-              />
-            )}
-            {step === 3 && (
-              <DevicePickerView
-                state={this.state}
-                goToPrevStep={this.goToPrevStep}
-                setLocation={this.setLocation}
-                handleChange={this.handleChange}
-                submitData={this.submitData}
-              />
-            )}
+            {this.renderStepOne()}
+            {this.renderStepTwo()}
+            {this.renderStepThree()}
           </Card>
           <div
             className='position-absolute d-flex'
