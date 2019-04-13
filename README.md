@@ -168,9 +168,9 @@ _SMART goals_
   * Tech Architecture - Weekly consulting
   * Legal Expert (Vattenfall) - Bi-weekly consulting
 * Marketing & PR
-  * Outsource agency (or dedicated team from Vattenfall)
+  * Outsource agency (or dedicated people from Vattenfall)
 * Business Development / Partnership
-  * Dedicated team from Vattenfall
+  * Dedicated people from Vattenfall
 
 ##### Knowledge
 * Data format for different manufacturers
