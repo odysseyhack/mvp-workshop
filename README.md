@@ -1,4 +1,4 @@
-# Odyssey Hackathon Impact Canvas
+# Certify.Energy - Odyssey Hackathon Impact Canvas
 
 ## Key Elements
 
