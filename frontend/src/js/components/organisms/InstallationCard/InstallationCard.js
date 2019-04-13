@@ -24,10 +24,7 @@ class InstallationCard extends React.Component {
       consumption,
       lastUpdate
     } = this.props
-    // const className = classNames('dashboard-card', {
-    //   'big-dashboard-card': big,
-    //   'm-0': noMargin
-    // })
+
     return (
       <Card className='installationCard mt-3 mb-3 pl-3 pr-3'>
         <Row className='h-100'>
@@ -40,11 +37,17 @@ class InstallationCard extends React.Component {
             />
             {name}
           </Col>
+
           <Col className='m-auto'>{battery}%</Col>
+
           <Col className='m-auto'>{voltage} V</Col>
+
           <Col className='m-auto'>{production} W</Col>
+
           <Col className='m-auto'>{consumption} W</Col>
+
           <Col className='m-auto'>{lastUpdate} min ago</Col>
+
           <Col className='m-auto manageInstallationButton'>Manage</Col>
         </Row>
       </Card>

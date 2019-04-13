@@ -17,20 +17,27 @@ class DevicesPage extends React.Component {
   }
 
   renderDeviceCardRow = () => {
+
     return (
+
       <Row className='mt-4 pl-3 pr-3'>
+
         <Col md='3'>
           <p className='installationSections'>MODEL</p>
         </Col>
+
         <Col>
           <p className='installationSections'>TYPE OF DEVICE</p>
         </Col>
+
         <Col>
           <p className='installationSections'>MAX POWER (PMAX)</p>
         </Col>
+
         <Col>
           <p className='installationSections'>OPERATING TEMPERATURE</p>
         </Col>
+        
         <Col />
       </Row>
     )
@@ -40,10 +47,13 @@ class DevicesPage extends React.Component {
     const DeviceCardRow = this.renderDeviceCardRow
     return (
       <RegularLayout>
+
         <Row>
+
           <Col>
             <h3>Devices</h3>
           </Col>
+
           <Col>
             <Button
               variant='primary'
@@ -53,8 +63,11 @@ class DevicesPage extends React.Component {
               + Add new device
             </Button>
           </Col>
+
         </Row>
+
         <DeviceCardRow />
+
         <DeviceCard
           minTemp={-40}
           maxTemp={90}
@@ -63,7 +76,9 @@ class DevicesPage extends React.Component {
           brand='LG'
           pmax={390}
         />
+
       </RegularLayout>
+
     )
   }
 }

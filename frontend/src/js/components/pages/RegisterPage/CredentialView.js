@@ -6,6 +6,7 @@ class CredentialView extends React.Component {
   render () {
     return (
       <Form>
+        
         <Form.Group controlId='email'>
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -28,6 +29,7 @@ class CredentialView extends React.Component {
             onChange={this.props.handleChange}
           />
         </Form.Group>
+
         <Button
           variant='primary'
           type='submit'
@@ -36,6 +38,7 @@ class CredentialView extends React.Component {
         >
           Sign up
         </Button>
+
         <p className='mt-3 text-center'>
           Already have an account? <Link to='/login'>Sign in</Link>
         </p>

@@ -7,6 +7,7 @@ import './DeviceCard.css'
 import * as appActions from '../../../redux/actions'
 
 class DeviceCard extends React.Component {
+  
   constructor (props) {
     super(props)
     this.state = {
@@ -33,6 +34,7 @@ class DeviceCard extends React.Component {
             Solar panel
           </div>
         )
+
       case 'battery':
         return (
           <div>
@@ -45,6 +47,7 @@ class DeviceCard extends React.Component {
             Battery
           </div>
         )
+
       default:
         break
     }
@@ -54,6 +57,7 @@ class DeviceCard extends React.Component {
   render () {
     const { model, brand, pmax, minTemp, maxTemp } = this.props
     const DeviceType = this.renderDeviceType
+
     return (
       <Card className='installationCard mt-3 mb-3 pl-3 pr-3'>
         <Row className='h-100'>
@@ -62,13 +66,17 @@ class DeviceCard extends React.Component {
             <br />
             <p>{brand}</p>
           </Col>
+
           <Col className='m-auto'>
             <DeviceType />
           </Col>
+
           <Col className='m-auto'>{pmax} W</Col>
+
           <Col className='m-auto'>
             {this.tempPrefix(minTemp)} °C ~ {this.tempPrefix(maxTemp)} °C
           </Col>
+
           <Col className='m-auto manageInstallationButton'>Manage</Col>
         </Row>
       </Card>

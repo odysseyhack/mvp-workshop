@@ -31,6 +31,7 @@ class DevicePickerView extends React.Component {
   render () {
     return (
       <Form>
+
         <Form.Group controlId='panelModel'>
           <Form.Label>Your solar panel model</Form.Label>
           <Form.Control
@@ -40,6 +41,7 @@ class DevicePickerView extends React.Component {
             onChange={this.props.handleChange}
           />
         </Form.Group>
+
         <Form.Group controlId='panelSerialNumber'>
           <Form.Label>Your solar panel serial number</Form.Label>
           <Form.Control
@@ -49,7 +51,9 @@ class DevicePickerView extends React.Component {
             onChange={this.props.handleChange}
           />
         </Form.Group>
+
         {this.renderButtonsForPicker()}
+        
       </Form>
     )
   }

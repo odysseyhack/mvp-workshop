@@ -13,6 +13,7 @@ import LocationView from './LocationView'
 import DevicePickerView from './DevicePickerView'
 
 class RegisterPage extends React.Component {
+
   constructor (props) {
     super(props)
     this.state = {
@@ -44,7 +45,9 @@ class RegisterPage extends React.Component {
 
   submitData = e => {
     e.preventDefault()
+
     const { actions } = this.props
+    
     const {
       email,
       password,
@@ -52,6 +55,7 @@ class RegisterPage extends React.Component {
       panelModel,
       panelSerialNumber
     } = this.state
+
     const data = {
       email,
       password,
@@ -59,6 +63,7 @@ class RegisterPage extends React.Component {
       panelModel,
       panelSerialNumber
     }
+
     actions.registerUser(data)
   }
 
@@ -76,8 +81,10 @@ class RegisterPage extends React.Component {
       />
     ) : null
   }
+
   renderStepTwo = () => {
     const { step } = this.state
+
     return step === 2 ? (
       <LocationView
         state={this.state}
@@ -88,8 +95,11 @@ class RegisterPage extends React.Component {
       />
     ) : null
   }
+
   renderStepThree = () => {
+
     const { step } = this.state
+
     return step === 3 ? (
       <DevicePickerView
         state={this.state}
@@ -99,6 +109,7 @@ class RegisterPage extends React.Component {
         submitData={this.submitData}
       />
     ) : null
+    
   }
 
   render () {
@@ -110,6 +121,7 @@ class RegisterPage extends React.Component {
           className='vertical-center position-relative'
           style={{ display: 'grid' }}
         >
+
           <Card
             className='m-auto card-container border-0'
             style={{ position: 'initial' }}
@@ -123,18 +135,25 @@ class RegisterPage extends React.Component {
                 />
               </div>
             </Link>
+
             <h3 className='text-center'>Register</h3>
+
             {this.renderStepOne()}
+
             {this.renderStepTwo()}
+
             {this.renderStepThree()}
           </Card>
+
           <div
             className='position-absolute d-flex'
             style={{ bottom: 0, left: 0, right: 0 }}
           >
             <ProgressSteps stepCount={3} activeStep={step} />
           </div>
+
         </div>
+
       </SplitLayout>
     )
   }
