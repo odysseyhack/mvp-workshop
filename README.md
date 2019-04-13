@@ -262,4 +262,4 @@ _How does blockchain, AI or another tech used by you make a difference here? Cle
 
 Private Blockchain / Delegated Proof of Authority gives the validators role to the committee, not an individual. In that way, the system is decentralized, reliable and transparent, without harming privacy, while sidechains bring efficiency to it.
 
-Machine Learning enables finding patterns and detect uncertified locations which produce green energy by connecting what we know (previously certified locations) and remaining set of Big Data.
+Machine Learning enables finding patterns and detecting uncertified locations which produce green energy by connecting what we know (previously certified locations) and remaining set of Big Data.
