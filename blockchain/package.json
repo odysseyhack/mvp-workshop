@@ -2,5 +2,10 @@
   "name": "blockchain",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "ethereumjs-abi": "^0.6.7",
+    "openzeppelin-test-helpers": "^0.3.2"
+  }
 }

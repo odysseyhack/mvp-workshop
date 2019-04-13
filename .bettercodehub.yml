@@ -1,0 +1,4 @@
+exclude:
+- /screenshots/.*
+- .*/npm-debug\.log
+component_depth: 1

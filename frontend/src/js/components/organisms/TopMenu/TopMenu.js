@@ -17,6 +17,49 @@ class TopMenu extends Component {
     return className
   }
 
+  renderValidatorMenu = () => {
+    return (
+      <Navbar.Collapse className='justify-content-end'>
+        <Nav>
+          <Link className={this.getClassNames('/requests')} to='/requests'>
+            Requests
+          </Link>
+          <Link className={this.getClassNames('/devices')} to='/devices'>
+            Devices
+          </Link>
+          <Link className={this.getClassNames('/locations')} to='/locations'>
+            Locations
+          </Link>
+          <Link className={this.getClassNames('/validators')} to='/validators'>
+            Validators
+          </Link>
+        </Nav>
+      </Navbar.Collapse>
+    )
+  }
+
+  renderPublicMenuAuth = () => {
+    return null
+    // (
+    //   <Navbar.Collapse className='justify-content-end'>
+    //     <Nav>
+    //       <Link className={this.getClassNames('/')} to='/'>
+    //         Overview
+    //       </Link>
+    //       <Link
+    //         className={this.getClassNames('/installations')}
+    //         to='/installations'
+    //       >
+    //         My installations
+    //       </Link>
+    //       <Link className={this.getClassNames('/explore')} to='/explore'>
+    //         Explore
+    //       </Link>
+    //     </Nav>
+    //   </Navbar.Collapse>
+    // )
+  }
+
   render () {
     return (
       <Navbar className='topMenu' expand='lg' variant='light' sticky='top'>
@@ -31,16 +74,8 @@ class TopMenu extends Component {
             </Navbar.Brand>
           </Link>
           <Navbar.Toggle />
-          <Navbar.Collapse className='justify-content-end'>
-            <Nav>
-              <Link className={this.getClassNames('/login')} to='/login'>
-                Login
-              </Link>
-              <Link className={this.getClassNames('/register')} to='/register'>
-                Register
-              </Link>
-            </Nav>
-          </Navbar.Collapse>
+          {this.renderPublicMenuAuth()}
+          {this.renderValidatorMenu()}
         </Container>
       </Navbar>
     )

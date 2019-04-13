@@ -10,8 +10,17 @@ import GuestUserRoute from './atoms/GuestUserRoute/GuestUserRoute'
 
 import LoadingPage from './pages/LoadingPage/LoadingPage'
 import HomePage from './pages/HomePage/HomePage'
+import InstallationPage from './pages/InstallationPage/InstallationPage'
+
+import RequestsPage from './pages/RequestsPage/RequestsPage'
+import DevicesPage from './pages/DevicesPage/DevicesPage'
+import LocationsPage from './pages/LocationsPage/LocationsPage'
+import ValidatorsPage from './pages/ValidatorsPage/ValidatorsPage'
+
+import ExplorePage from './pages/ExplorePage/ExplorePage'
 import LoginPage from './pages/LoginPage/LoginPage'
 import RegisterPage from './pages/RegisterPage/RegisterPage'
+// import DashboardPage from './pages/DashboardPage/DashboardPage'
 import SomethingWentWrong from './pages/SomethingWentWrongPage/SomethingWentWrongPage'
 import apiUtils from '../utils/api-utils'
 
@@ -38,6 +47,21 @@ class App extends Component {
         <GuestUserRoute exact path='/' component={HomePage} />
         <GuestUserRoute exact path='/login' component={LoginPage} />
         <GuestUserRoute exact path='/register' component={RegisterPage} />
+
+        <GuestUserRoute exact path='/overview' component={HomePage} />
+        <GuestUserRoute
+          exact
+          path='/installations'
+          component={InstallationPage}
+        />
+        <GuestUserRoute exact path='/explore' component={ExplorePage} />
+
+        <GuestUserRoute exact path='/requests' component={RequestsPage} />
+        <GuestUserRoute exact path='/devices' component={DevicesPage} />
+        <GuestUserRoute exact path='/locations' component={LocationsPage} />
+        <GuestUserRoute exact path='/validators' component={ValidatorsPage} />
+
+        {/* <GuestUserRoute exact path='/home' component={DashboardPage} /> */}
 
         {/* <AuthUserRoute exact path='/profile' component={ProfilePage} /> */}
         <Route component={SomethingWentWrong} />
