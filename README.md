@@ -123,6 +123,7 @@ Certify.Energy owns Public Web Dashboard, which is the only touchpoint for the e
   * Validators need to be in Europe
   * User needs to agree that validators can see data
   * User can see location range for other households, there is no exposure of the exact location
+  * Standard Contractrual Clauses (EU Model Clauses) signed by each non-EU validator, users are informed about it
 
 ### Open Source Strategy
 
