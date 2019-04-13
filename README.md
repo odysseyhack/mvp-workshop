@@ -143,6 +143,9 @@ Big industry players will be able to develop their tools and APIs
 The platform will serve as a reliable foundation for many other applications in the renewable energy industry (such as P2P energy trading).
 
 ### Interconnectedness
+* Open Source strategy for faster standardization of third party data
+* Chosen technology stack can be relatively easily connected with other blockchains
+* Compliant with all standards
 
 ## Incubation Plan 
 
