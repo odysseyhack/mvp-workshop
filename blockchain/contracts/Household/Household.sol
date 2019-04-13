@@ -2,8 +2,9 @@ pragma solidity >=0.4.21 <0.6.0;
 
 import "./IHousehold.sol";
 import "../Voting.sol";
+import "../GreenDevice/GreenDevice.sol";
 
-contract Household is IHousehold, Voting {
+contract Household is IHousehold, Voting, GreenDevice {
 
     struct HouseholdData {
         bytes32 long;
@@ -20,6 +21,7 @@ contract Household is IHousehold, Voting {
     function proposeHousehold(bytes32 _id, bytes32 _long, bytes32 _lati, bytes32 _model) public onlyValidator returns (bool) {
         require(election[_id].blockNumber == 0);
         require(election[_id].propositionType == add);
+        require(greenDevice[_model] == true);
         bool finished = _voteH(_id);
 
         households[_id].long = _long;
@@ -46,8 +48,8 @@ contract Household is IHousehold, Voting {
         bool finished = _voteH(_id);
 
         if (finished) {
-            delete households[_id];
             emit LogHouseholdRemoved(_id, households[_id].long, households[_id].lati, households[_id].model);
+            delete households[_id];
         }
     }
 }

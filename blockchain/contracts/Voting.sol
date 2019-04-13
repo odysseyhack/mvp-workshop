@@ -6,7 +6,7 @@ contract Voting is Validated {
     uint256 votingPeriod = 1000; // number of blocks validators should be able to vote after which election is discarded
     bytes1 add;
     bytes1 remove = '1';
-    uint256 minNumberOfVotesForHousehold = 3;
+    uint256 minNumberOfVotesForHousehold = 2;
 
     struct proposition {
         bytes1 propositionType;

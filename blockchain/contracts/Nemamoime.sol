@@ -5,7 +5,7 @@ import "./GreenDevice/GreenDevice.sol";
 import "./Household/Household.sol";
 import "./Validators/Validator.sol";
 
-contract nemamoime is Validator, Household, GreenDevice, API {
+contract nemamoime is Validator, Household, API {
 
     constructor () public {
     }

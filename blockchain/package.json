@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "chai": "^4.2.0",
+    "ethereumjs-abi": "^0.6.7",
     "openzeppelin-test-helpers": "^0.3.2"
   }
 }

@@ -7,6 +7,6 @@ contract IGreenDevice {
 
     function voteGreenDeviceRemove(bytes32 _model) public returns (bool);
 
-    event LogGreenDeviceRemoved(bytes32 _url);
-    event LogGreenDeviceAdded(bytes32 _url);
+    event LogGreenDeviceRemoved(bytes32 _model);
+    event LogGreenDeviceAdded(bytes32 _model);
 }
