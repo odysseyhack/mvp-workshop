@@ -76,20 +76,23 @@ _Which ecosystems approach and trends make your solution likely to fly?_
 Enabling small-scale green energy producers to feed their energy into the system and monitor their earnings.
 
 Incentives for Users:
-* No extra costs
-* Financial benefits
-* Monitor earnings or cost deductions 
-* Transparent and fair system
+* **No extra costs**
+* **Financial benefits**
+* **Monitor earnings** or cost deductions
+* **Transparent** and fair system
 
 ### Impact on User-Context 
 _Industry and Stakeholders_
-* Delegated authority to governments, grid operators, universities - validators representing MID (mediator of individual data)
-* Transparent and fair system
-* Enabling new business models 
+* Recognizing **green energy** entering the system
+* Capitalizing on the existing **(big) data**
+* **Delegated authority** to governments, grid operators, universities - validators representing MID (mediator of individual data)
+* **Transparent** and fair system
+* Enabling **new business models** and incentives for the end user
 
 ### Impact on Society 
-* Incentivizing green energy production by enabling small-scale producers to enter the system
-* Eliminating "green-washing" - grey energy trading on the green energy market
+* Incentivizing **wide adoption** of the green energy production by enabling small-scale producers to enter the system
+* Eliminating **"green-washing"** - grey energy trading on the green energy market
+* Empowering big players to invent new **sustainable / socially responsible business models**
 
 ## Essential Details
 
