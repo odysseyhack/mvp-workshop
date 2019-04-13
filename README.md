@@ -183,20 +183,22 @@ _SMART goals_
 
 # Team Deliverable 4 - online questionnaire
 
-__Problem/case (problem analysis) - Please describe the problem you are solving__
+## Problem/case (problem analysis)
+_Please describe the problem you are solving_
 * There is no way for small-scale green energy producers to validate the energy they produce
 * There are no enough incentives for them to register 
 > Only 30% of households with PV devices in Netherlands are actually registered
 * There is no way to prove that the energy going to the grid is green, thus resulting with "green-washing" - grey energy trading on the green energy market
 
-__Solution - What did you make and why is this a game-changer?__ 
+## Solution 
+_What did you make and why is this a game-changer?_ 
 
-Public web dashboard allowing small-scale green energy producers to: 
+__Public web dashboard__ allowing small-scale green energy producers to: 
 * Register their location 
 * Manage all their PV devices from one place
 * Track all green energy outputs
 
-Decentralized validators platform allowing authorities to propose and achieve consensus on:
+__Decentralized validators platform__ allowing authorities to propose and achieve consensus on:
 * Certification of new small-scale green energy producers by:
   * Processing requests for new locations coming from the Public web dashboard
   * Monitoring the network
@@ -207,5 +209,5 @@ Decentralized validators platform allowing authorities to propose and achieve co
 * Granting access to the new validator or revoking access to the existing one 
 * Adding a new credible third-party source of information (such as the weather provider API)
 
-__How does blockchain, AI or another tech used by you make a difference here? Clearly explain why this result was not possible with any other technology or a simple database.__
-
+## Technology Impact
+_How does blockchain, AI or another tech used by you make a difference here? Clearly explain why this result was not possible with any other technology or a simple database._
