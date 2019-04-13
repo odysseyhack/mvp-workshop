@@ -5,6 +5,7 @@ const session = require('./session');
 const bodyParser = require('body-parser');
 const { health } = require('./health');
 const users = require('./users');
+const userPower = require('./userPower');
 const val = require('../validators');
 const h = require('./handlers');
 const authc = require('./authc');
@@ -23,6 +24,7 @@ clientRouter.get('/health', health);
 
 clientRouter.post('/users/login', val.user.login, users.login);
 clientRouter.post('/users/register', val.user.register, users.register);
+clientRouter.get('/users/statistic', userPower.statistic)
 
 clientRouter.get('/admin/users/pending', authc.service, authz.roles([Role.VALIDATOR]), health);
 

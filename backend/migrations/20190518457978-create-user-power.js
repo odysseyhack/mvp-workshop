@@ -9,12 +9,22 @@ module.exports = {
         primaryKey: true
       },
 
-      time: {
+      date: {
         type: Sequelize.DATE,
         allowNull: false
       },
 
-      power: {
+      produced: {
+        type: Sequelize.BIGINT,
+        allowNUll: false
+      },
+
+      grid: {
+        type: Sequelize.BIGINT,
+        allowNUll: false
+      },
+
+      consumed: {
         type: Sequelize.DOUBLE,
         allowNUll: false
       },

@@ -8,13 +8,23 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     },
 
-    time: {
+    date: {
       type: DataTypes.DATE,
       allowNull: false
     },
 
-    power: {
-      type: DataTypes.STRING(128),
+    produced: {
+      type: DataTypes.BIGINT,
+      allowNull: false
+    },
+
+    consumed: {
+      type: DataTypes.BIGINT,
+      allowNull: false
+    },
+
+    grid: {
+      type: DataTypes.BIGINT,
       allowNull: false
     },
 
@@ -35,7 +45,8 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE', // todo: FK is on delete 'set null', and column is null
       foreignKey: {
         allowNull: false,
-        underscored: true
+        underscored: true,
+        as: 'user_id'
       }
     });
   };

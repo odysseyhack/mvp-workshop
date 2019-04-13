@@ -5,7 +5,10 @@ const passwords = require('../utils/password');
 const errors = require('../utils/errors');
 const auth = require('./auth');
 const { Role } = require('../utils/enums');
+const fs = require('fs');
+const CsvReadableStream = require('csv-reader');
 const readXlsxFile = require('read-excel-file/node');
+const inputStream = fs.createReadStream('./resources/power.csv', 'utf8');
 const {
   AuthenticationError
 } = require('../utils/errors');
@@ -38,31 +41,91 @@ async function register (request, password) {
 
     request.RoleId = Role.HOLDER;
 
-    // const User = await db.User.create(request)
+    const User = await db.User.create(request)
 
-    // if (!User) {
-    //   throw new Error('Failed to create a user');
-    // }
+    if (!User) {
+      throw new Error('Failed to create a user');
+    }
 
     const hash = await passwords.createHash(password);
-    prepareCSVData();
-    // await db.UserAuth.create({ 'UserId': User.id, 'hash': hash });
-    // return getSessionProperties(User.get());
-    
-    return null;
+
+    const excel = await prepareFromExcel();
+    const csv = await prepareFromCSV(User.id);
+
+    const statistics = prepareFileForDatabse(csv, excel);
+    await db.UserPower.bulkCreate(statistics);
+
+    await db.UserAuth.create({ 'UserId': User.id, 'hash': hash });
+    return getSessionProperties(User.get());
   } catch (err) {
     throw err;
   }
 }
 
-function prepareCSVData () {
-  
- 
-// File path.
-readXlsxFile('/path/to/file').then((rows) => {
-  // `rows` is an array of rows
-  // each row being an array of cells.
-})
+function prepareFileForDatabse (csv = [], excel = []) {
+  const statistics = [];
+  let csvRow = csv.pop();
+  let excelRow = excel.pop();
+
+  while (csvRow && excelRow) {
+    if (excelRow.produced - csvRow.grid >= 0) {
+      statistics.push({
+        ...csvRow,
+        ...excelRow,
+        consumed: excelRow.produced - csvRow.grid
+      });
+    }
+
+    excelRow = excel.pop();
+    csvRow = csv.pop();
+  }
+
+  return statistics;
+}
+
+async function prepareFromExcel () {
+  const database = [];
+
+  await new Promise((resolve, reject) => {
+    readXlsxFile('./resources/excel.xlsx').then((rows) => {
+      for (let i in rows) {
+        if (typeof rows[i][60] !== 'number') {
+          continue;
+        }
+
+        database.push({
+          produced: rows[i][60]
+        });
+      }
+
+      resolve(database);
+    });
+  });
+
+  return database;
+}
+
+async function prepareFromCSV (userId) {
+  let dataTodatabase = [];
+
+  dataTodatabase = await new Promise((resolve, reject) => {
+    inputStream
+      .pipe(CsvReadableStream({ parseNumbers: true, parseBooleans: true, trim: true, skipHeader: true }))
+      .on('data', function (row) {
+        dataTodatabase.push({
+          grid: row[7],
+          date: row[4],
+          UserId: userId
+        });
+
+        if (row[0] === 20) {
+          resolve(dataTodatabase);
+        }
+      })
+      .on('end', function (data) {});
+  });
+
+  return dataTodatabase;
 }
 
 async function login (email, password) {
