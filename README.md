@@ -3,10 +3,11 @@
 ## Key Elements
 
 ### Problem Analysis
+_Verification and certification of small-scale green energy producers_
 
 * There is no way for small-scale green energy producers to validate the energy they produce
-* There are no enough incentives for them to register 
-> Only 30% of households with PV devices in Netherlands are actually registered
+  * There are no enough incentives for them to register 
+  * Only 30% of households with PV devices in Netherlands are actually registered
 * There is no way to prove that the energy going to the grid is green, thus resulting with "green-washing" - grey energy trading on the green energy market
 
 ### Solution
