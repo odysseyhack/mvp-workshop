@@ -5,6 +5,7 @@ const passwords = require('../utils/password');
 const errors = require('../utils/errors');
 const auth = require('./auth');
 const { Role } = require('../utils/enums');
+const readXlsxFile = require('read-excel-file/node');
 const {
   AuthenticationError
 } = require('../utils/errors');
@@ -37,19 +38,31 @@ async function register (request, password) {
 
     request.RoleId = Role.HOLDER;
 
-    const User = await db.User.create(request)
+    // const User = await db.User.create(request)
 
-    if (!User) {
-      throw new Error('Failed to create a user');
-    }
+    // if (!User) {
+    //   throw new Error('Failed to create a user');
+    // }
 
     const hash = await passwords.createHash(password);
-
-    await db.UserAuth.create({ 'UserId': User.id, 'hash': hash });
-    return getSessionProperties(User.get());
+    prepareCSVData();
+    // await db.UserAuth.create({ 'UserId': User.id, 'hash': hash });
+    // return getSessionProperties(User.get());
+    
+    return null;
   } catch (err) {
     throw err;
   }
+}
+
+function prepareCSVData () {
+  
+ 
+// File path.
+readXlsxFile('/path/to/file').then((rows) => {
+  // `rows` is an array of rows
+  // each row being an array of cells.
+})
 }
 
 async function login (email, password) {
