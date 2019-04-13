@@ -7,6 +7,9 @@ const { health } = require('./health');
 const users = require('./users');
 const val = require('../validators');
 const h = require('./handlers');
+const authc = require('./authc');
+const authz = require('./authz');
+const { Role } = require('../utils/enums');
 
 const clientRouter = express.Router();
 
@@ -20,6 +23,8 @@ clientRouter.get('/health', health);
 
 clientRouter.post('/users/login', val.user.login, users.login);
 clientRouter.post('/users/register', val.user.register, users.register);
+
+clientRouter.get('/admin/users/pending', authc.service, authz.roles([Role.VALIDATOR]), health);
 
 // client validation helpers resources
 clientRouter.post(`/validations/register1`, val.user.register1, h.ok);
