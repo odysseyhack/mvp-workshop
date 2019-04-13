@@ -43,21 +43,96 @@ class RequestCard extends React.Component {
     return <span className='requestStatusFalse'>No consensus met</span>
   }
 
-  render () {
-    const {
-      title,
-      location,
-      initiatedDate,
-      dueDate,
-      upvoteCount,
-      downvoteCount,
-      showStatus    } = this.props
-    // const className = classNames('dashboard-card', {
-    //   'big-dashboard-card': big,
-    //   'm-0': noMargin
-    // })
-    const TypeField = this.renderType
+  renderVoting = () => {
+    const { dueDate, upvoteCount, downvoteCount } = this.props
+    return (
+      <Col className='m-auto p-0' md='5'>
+        {dueDate}
+        <div className='d-inline-block float-right' style={{ marginRight: 40 }}>
+          <Button
+            variant='primary'
+            type='submit'
+            className='w-auto border-0 mr-2 defaultButton'
+          >
+            {this.renderVoteResult(
+              require('../../../../assets/images/upvote-white.png'),
+              `Upvote (${upvoteCount})`
+            )}
+          </Button>
+
+          <Button
+            variant='primary'
+            type='submit'
+            className='w-auto border-0 defaultButton defaultButtonRed'
+          >
+            {this.renderVoteResult(
+              require('../../../../assets/images/downvote-white.png'),
+              `Downvote (${downvoteCount})`
+            )}
+          </Button>
+          {this.renderIconRight('rigthIconCard')}
+        </div>
+      </Col>
+    )
+  }
+
+  renderVoteResult = (image, text) => {
+    return (
+      <>
+        <img alt='icon downvote' className='mr-2' src={image} height='15' />
+        {text}
+      </>
+    )
+  }
+
+  renderIconRight = className => {
+    return (
+      <img
+        alt='icon right'
+        className={className}
+        src={require('../../../../assets/images/right.png')}
+        height='12'
+      />
+    )
+  }
+
+  renderStatus = () => {
+    const { dueDate, upvoteCount, downvoteCount } = this.props
     const StatusText = this.renderStatusText
+    return (
+      <>
+        <Col className='m-auto p-0' md='2'>
+          {dueDate}
+        </Col>
+        <Col className='m-auto p-0' md='3'>
+          <div className='d-inline-block'>
+            <StatusText />
+            <div className='d-inline-block rigthVotes'>
+              <div className='d-inline-block mr-4'>
+                {this.renderVoteResult(
+                  require('../../../../assets/images/upvote-gray.png'),
+                  upvoteCount
+                )}
+              </div>
+              <div className='d-inline-block'>
+                {this.renderVoteResult(
+                  require('../../../../assets/images/downvote-gray.png'),
+                  downvoteCount
+                )}
+              </div>
+            </div>
+            {this.renderIconRight('rigthIconCardStatus')}
+          </div>
+        </Col>
+      </>
+    )
+  }
+
+  render () {
+    const { title, location, initiatedDate, showStatus } = this.props
+    const TypeField = this.renderType
+    const Voting = this.renderVoting
+    const Status = this.renderStatus
     return (
       <Card className='installationCard requestCard mt-3 mb-3 pl-3 pr-3'>
         <Row className='h-100'>
@@ -70,86 +145,7 @@ class RequestCard extends React.Component {
             <TypeField />
           </Col>
           <Col className='m-auto'>{initiatedDate}</Col>
-          {showStatus ? (
-            <>
-              <Col className='m-auto p-0' md='2'>
-                {dueDate}
-              </Col>
-              <Col className='m-auto p-0' md='3'>
-                <div className='d-inline-block'>
-                  <StatusText />
-                  <div className='d-inline-block rigthVotes'>
-                    <div className='d-inline-block mr-4'>
-                      <img
-                        alt='icon upvote'
-                        className='mr-2'
-                        src={require('../../../../assets/images/upvote-gray.png')}
-                        height='15'
-                      />
-                      {upvoteCount}
-                    </div>
-                    <div className='d-inline-block'>
-                      <img
-                        alt='icon downvote'
-                        className='mr-2'
-                        src={require('../../../../assets/images/downvote-gray.png')}
-                        height='15'
-                      />
-                      {downvoteCount}
-                    </div>
-                  </div>
-                  <img
-                    alt='icon right'
-                    className='rigthIconCardStatus'
-                    src={require('../../../../assets/images/right.png')}
-                    height='12'
-                  />
-                </div>
-              </Col>
-            </>
-          ) : (
-            <Col className='m-auto p-0' md='5'>
-              {dueDate}
-              <div
-                className='d-inline-block float-right'
-                style={{ marginRight: 40 }}
-              >
-                <Button
-                  variant='primary'
-                  type='submit'
-                  className='w-auto border-0 mr-2 defaultButton'
-                >
-                  <img
-                    alt='icon upvote'
-                    className='mr-2'
-                    src={require('../../../../assets/images/upvote-white.png')}
-                    height='15'
-                  />
-                  Upvote ({upvoteCount})
-                </Button>
-
-                <Button
-                  variant='primary'
-                  type='submit'
-                  className='w-auto border-0 defaultButton defaultButtonRed'
-                >
-                  <img
-                    alt='icon downvote'
-                    className='mr-2'
-                    src={require('../../../../assets/images/downvote-white.png')}
-                    height='15'
-                  />
-                  Downvote ({downvoteCount})
-                </Button>
-                <img
-                  alt='icon right'
-                  className='rigthIconCard'
-                  src={require('../../../../assets/images/right.png')}
-                  height='12'
-                />
-              </div>
-            </Col>
-          )}
+          {showStatus ? <Status /> : <Voting />}
         </Row>
       </Card>
     )
