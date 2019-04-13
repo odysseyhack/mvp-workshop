@@ -115,10 +115,14 @@ _Industry and Stakeholders_
 ### Code Validation
 
 ### Legal Arrangements
-
-* No private data stored on the blockchain
-  * GDPR compliant
-* Only location range for other households visible, not precise location
+Certify.Energy owns Public Web Dashboard, which is the only touchpoing for the end-users
+* We only ask for location (no other private information exposed) and devices
+* System could ask for KYC/AML process in the future if we want to extend incentives for users (for example tax deduction)
+* No private data stored on the blockchain, ever
+* GDPR compliant
+  * Validators need to be in Europe
+  * User needs to agree that validators can see data
+  * User can see location range for other households, there is no exposure of the exact location
 
 ### Open Source Strategy
 
