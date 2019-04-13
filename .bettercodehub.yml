@@ -1,0 +1,14 @@
+exclude:
+- /screenshots/.*
+- .*/FileYouWantToExclude\.java
+
+component_depth: 2
+languages:
+- solidity
+- javascript
+
+test:
+    include:
+      - .*/integrationtests/.*\.java
+      - .*TestFile\.java
+      - /TestComponent/.*\.java
