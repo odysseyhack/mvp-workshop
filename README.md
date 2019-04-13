@@ -115,7 +115,7 @@ _Industry and Stakeholders_
 ### Code Validation
 
 ### Legal Arrangements
-Certify.Energy owns Public Web Dashboard, which is the only touchpoing for the end-users
+Certify.Energy owns Public Web Dashboard, which is the only touchpoint for the end-users
 * We only ask for location (no other private information exposed) and devices
 * System could ask for KYC/AML process in the future if we want to extend incentives for users (for example tax deduction)
 * No private data stored on the blockchain, ever
