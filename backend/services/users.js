@@ -9,14 +9,18 @@ const fs = require('fs');
 const CsvReadableStream = require('csv-reader');
 const readXlsxFile = require('read-excel-file/node');
 const inputStream = fs.createReadStream('./resources/power.csv', 'utf8');
+const { getSolarPanel, getUserPanel } = require('./panel');
 const {
-  AuthenticationError
+  AuthenticationError,
+  InvalidRequestError,
+  ConflictError
 } = require('../utils/errors');
 
 module.exports = {
   login,
   register,
-  checkIfUserExists
+  checkIfUserExists,
+  addSolarPanel
 };
 
 async function checkIfUserExists (email) {
@@ -40,15 +44,15 @@ async function register (request, password, randomHash) {
     }
 
     if (randomHash) {
-      request.RoleId = await validHash(randomHash);
+      request.role_id = await validHash(randomHash);
 
-      if (!request.RoleId) {
+      if (!request.role_id) {
         throw new errors.ConflictError();
       }
     }
 
-    if (!request.RoleId) {
-      request.RoleId = Role.HOLDER;
+    if (!request.role_id) {
+      request.role_id = Role.HOLDER;
     }
 
     const User = await db.User.create(request);
@@ -65,7 +69,7 @@ async function register (request, password, randomHash) {
     const statistics = prepareFileForDatabse(csv, excel);
     await db.UserPower.bulkCreate(statistics);
 
-    await db.UserAuth.create({ 'UserId': User.id, 'hash': hash });
+    await db.UserAuth.create({ 'user_id': User.id, 'hash': hash });
     return getSessionProperties(User.get());
   } catch (err) {
     throw err;
@@ -176,4 +180,23 @@ async function getSessionProperties (obj) {
     email: obj.email,
     role: [ obj.RoleId ]
   };
+}
+
+async function addSolarPanel (userId, data) {
+  const panel = await getSolarPanel(data.panelId);
+  if (!panel) {
+    throw new InvalidRequestError();
+  }
+
+  const alreadyExists = await getUserPanel(userId, panel.id);
+  if (alreadyExists) {
+    throw new ConflictError();
+  }
+
+  const userPanels = {
+    solar_panel_id: panel.id,
+    user_id: userId
+  };
+
+  await db.UserPanel.create(userPanels);
 }
