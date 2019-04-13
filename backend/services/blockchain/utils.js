@@ -12,5 +12,5 @@ function toBytes32(data) {
 }
 
 function fromBytes32(data) {
-    return abi.rawDecode(data);
+    return abi.rawDecode(["bytes32"], [data]);
 }
