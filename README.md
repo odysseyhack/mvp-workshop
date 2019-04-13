@@ -83,7 +83,7 @@ Incentives for Users:
 
 ### Impact on User-Context 
 _Industry and Stakeholders_
-* Recognizing **green energy** entering the system
+* Validation of the **green energy** entering the system
 * Capitalizing on the existing **(big) data**
 * **Delegated authority** to governments, grid operators, universities - validators representing MID (mediator of individual data)
 * **Transparent** and fair system
