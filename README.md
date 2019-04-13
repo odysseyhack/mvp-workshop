@@ -249,7 +249,7 @@ __Decentralized validators platform__ allowing authorities to propose and achiev
 * Granting access to the new validator or revoking access to the existing one 
 * Adding a new credible third-party source of information (such as the weather provider API)
 
-There are two possible approaches in resolving previously described problems:
+_Why is this a game-changer?_ There are two possible approaches in resolving previously described problems:
 1. The bottom up approach 
 > Building the network by validating all individual locations and ensuring that the energy which comes from these locations is green and meets all criteria.
 
