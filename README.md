@@ -3,7 +3,7 @@
 ## Key Elements
 
 ### Problem Analysis
-* Verification and cerfitication of small-scale green energy producers
+* Verification and certification of small-scale green energy producers
 * "Green-washing" - grey energy trading on the green energy market
 
 ### Solution
