@@ -120,12 +120,12 @@ _Industry and Stakeholders_
 - [x] As a User ISBAT add new green device or remove the existing one
 - [x] As a User ISBAT see all green energy outputs
 
-### Milestones Up Ahead 
+### Milestones Up Ahead
 
 #### Business & Product
 * __Establish deversified and credible network of validators__ - At least 9 validators consisted of governments, grid operators, universities in __the first three months__.
-* Form industry council for setting the proposed protocol standards of data - Include producers covering in total at least 50% of the industry market share in Europe in __the first three months__.
-* EU / Government partnerships for setting up the proper incentives - Establishing a working group in __the first three months__, propose a strategy for incentives in __the first year__.
+* __Form industry council for setting the proposed protocol standards of data__ - Include producers covering in total at least 50% of the industry market share in Europe in __the first three months__.
+* __EU / Government partnerships for setting up the proper incentives__ - Establishing a working group in __the first three months__, propose a strategy for incentives in __the first year__.
 
 #### Tech
 * PoA Beacon chain 
