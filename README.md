@@ -122,5 +122,28 @@ _Industry and Stakeholders_
 
 ### Milestones Up Ahead 
 
-### 100 days target
+#### Business & Product
+* Establish deversified and credible network of validators
+* Form industry council for setting the proposed protocol standards of data
+* Media partnerships for wide adoption
+* EU / Government partnerships for setting up the proper incentives
 
+#### Tech
+* PoA Beacon chain 
+* Shared security based sidechain 
+* Merkel Root tree hash structure
+* ML training model (combining top down and bottom up approaches)
+* API integration for PV devices
+* Third party data providers
+
+### 100 days target
+_SMART goals_
+
+
+#Team Deliverable 4 - online questionnaire
+
+__Problem/case (problem analysis) - Please describe the problem you are solving__
+
+__Solution - What did you make and why is this a game-changer?__ 
+
+__How does blockchain, AI or another tech used by you make a difference here? Clearly explain why this result was not possible with any other technology or a simple database.__
