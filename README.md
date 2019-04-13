@@ -248,5 +248,14 @@ __Decentralized validators platform__ allowing authorities to propose and achiev
 * Granting access to the new validator or revoking access to the existing one 
 * Adding a new credible third-party source of information (such as the weather provider API)
 
+There are two possible approaches in resolving previously described problems:
+1. The bottom up approach 
+> Building the network by validating all individual locations and ensuring that the energy which comes from these locations is green and meets all criteria.
+
+2. The top down approach - Big data analysis 
+> Since we know that only 30% of households with PV devices are actually registered in the system, we can take all historical smart meters data, and try to find similar corellations and predict which locations might also have PV devices, but are not registered yet.
+
+The solution that we are building combines these two approaches.
+
 ## Technology Impact
 _How does blockchain, AI or another tech used by you make a difference here? Clearly explain why this result was not possible with any other technology or a simple database._
