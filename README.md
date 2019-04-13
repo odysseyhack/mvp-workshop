@@ -168,12 +168,13 @@ The platform will serve as a reliable foundation for many other applications in 
 * __EU / Government partnerships for setting up the proper incentives__ - Establishing a working group in __the first three months__, propose a strategy for incentives in __the first year__.
 
 #### Tech
-* PoA Beacon chain 
-* Shared security based sidechain 
-* Merkel Root tree hash structure
-* ML training model (combining top down and bottom up approaches)
-* API integration for PV devices
-* Third party data providers
+* PoA Beacon chain - Q1
+* Mobile App - Q1
+* ML training model (combining top down and bottom up approaches) - Q1/Q2
+* Shared security based sidechain - Q2/Q3
+* Merkel Root tree hash structure - Q2/Q3
+* Third party data providers - Q3
+* API integration for PV devices - Q3
 
 ### 100 days target
 _SMART goals_
