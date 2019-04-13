@@ -33,37 +33,10 @@ class LocationsPage extends React.Component {
           <Col>
             <p className='installationSections'>DATE INITIATED</p>
           </Col>
-          <Col md='5'>
-            <p className='installationSections p-0'>DUE DATE</p>
+          <Col md='5' className='p-0'>
+            <p className='installationSections'>DUE DATE</p>
           </Col>
         </Row>
-        <RequestCard
-          downvoteCount={2}
-          upvoteCount={1}
-          title='Groningen'
-          location='Theatre Discrict 123'
-          type='new-location'
-          initiatedDate='MAR 11, 2019'
-          dueDate='10 minutes'
-        />
-        <RequestCard
-          downvoteCount={2}
-          upvoteCount={1}
-          title='Groningen'
-          location='Theatre Discrict 123'
-          type='new-location'
-          initiatedDate='MAR 11, 2019'
-          dueDate='10 minutes'
-        />
-        <RequestCard
-          downvoteCount={2}
-          upvoteCount={1}
-          title='Groningen'
-          location='Theatre Discrict 123'
-          type='new-location'
-          initiatedDate='MAR 11, 2019'
-          dueDate='10 minutes'
-        />
         <RequestCard
           downvoteCount={2}
           upvoteCount={1}
@@ -85,23 +58,13 @@ class LocationsPage extends React.Component {
             <p className='installationSections'>PRODUCING</p>
           </Col>
           <Col>
-            <p className='installationSections p-0'>CONSUMING</p>
+            <p className='installationSections'>CONSUMING</p>
           </Col>
           <Col>
-            <p className='installationSections p-0'>SENDING TO GRID</p>
+            <p className='installationSections'>SENDING TO GRID</p>
           </Col>
           <Col />
         </Row>
-        <LocationCard
-          downvoteCount={2}
-          upvoteCount={1}
-          title='Groningen'
-          location='Theatre Discrict 123'
-          devicesCount={5}
-          producing='4,000'
-          consuming='2,000'
-          sendingToGrid='2,000'
-        />
         <LocationCard
           downvoteCount={2}
           upvoteCount={1}

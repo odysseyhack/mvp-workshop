@@ -16,7 +16,28 @@ class DevicesPage extends React.Component {
     }
   }
 
+  renderDeviceCardRow = () => {
+    return (
+      <Row className='mt-4 pl-3 pr-3'>
+        <Col md='3'>
+          <p className='installationSections'>MODEL</p>
+        </Col>
+        <Col>
+          <p className='installationSections'>TYPE OF DEVICE</p>
+        </Col>
+        <Col>
+          <p className='installationSections'>MAX POWER (PMAX)</p>
+        </Col>
+        <Col>
+          <p className='installationSections'>OPERATING TEMPERATURE</p>
+        </Col>
+        <Col />
+      </Row>
+    )
+  }
+
   render () {
+    const DeviceCardRow = this.renderDeviceCardRow
     return (
       <RegularLayout>
         <Row>
@@ -33,37 +54,7 @@ class DevicesPage extends React.Component {
             </Button>
           </Col>
         </Row>
-        <Row className='mt-4 pl-3 pr-3'>
-          <Col md='3'>
-            <p className='installationSections'>MODEL</p>
-          </Col>
-          <Col>
-            <p className='installationSections'>TYPE OF DEVICE</p>
-          </Col>
-          <Col>
-            <p className='installationSections'>MAX POWER (PMAX)</p>
-          </Col>
-          <Col>
-            <p className='installationSections'>OPERATING TEMPERATURE</p>
-          </Col>
-          <Col />
-        </Row>
-        <DeviceCard
-          minTemp={-40}
-          maxTemp={90}
-          type='battery'
-          model='LG390N2T-A5'
-          brand='LG'
-          pmax={390}
-        />
-        <DeviceCard
-          minTemp={-28}
-          maxTemp={-48}
-          type='solar-panel'
-          model='LG390N2T-A5'
-          brand='LG'
-          pmax={390}
-        />
+        <DeviceCardRow />
         <DeviceCard
           minTemp={-40}
           maxTemp={90}

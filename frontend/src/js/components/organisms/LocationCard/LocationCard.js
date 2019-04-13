@@ -14,43 +14,6 @@ class LocationCard extends React.Component {
     }
   }
 
-  tempPrefix = temp => {
-    return temp > 0 ? '+' + temp : temp
-  }
-
-  renderDeviceType = () => {
-    const { type } = this.props
-    switch (type) {
-      case 'solar-panel':
-        return (
-          <div>
-            <img
-              alt='installation type'
-              src='https://images.vexels.com/media/users/3/145131/isolated/preview/d2ba09d9b4856df5b15cdc5636a45b37-sun-large-wavy-beams-icon-by-vexels.png'
-              width='35'
-              className='mr-2'
-            />
-            Solar panel
-          </div>
-        )
-      case 'battery':
-        return (
-          <div>
-            <img
-              alt='installation type'
-              src='https://images.vexels.com/media/users/3/145131/isolated/preview/d2ba09d9b4856df5b15cdc5636a45b37-sun-large-wavy-beams-icon-by-vexels.png'
-              width='35'
-              className='mr-2'
-            />
-            Battery
-          </div>
-        )
-      default:
-        break
-    }
-    return null
-  }
-
   render () {
     const {
       title,
