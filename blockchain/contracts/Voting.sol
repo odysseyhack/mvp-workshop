@@ -4,7 +4,7 @@ import "./Validators/Validated.sol";
 
 contract Voting is Validated {
     uint256 votingPeriod = 1000; // number of blocks validators should be able to vote after which election is discarded
-    bytes1 add = '0';
+    bytes1 add;
     bytes1 remove = '1';
     uint256 minNumberOfVotesForHousehold = 3;
 
@@ -37,7 +37,7 @@ contract Voting is Validated {
             election[_election].voted[msg.sender] = true;
             election[_election].votes++;
         } else {
-            require(election[_election].blockNumber + votingPeriod <= block.number);
+            require(election[_election].blockNumber + votingPeriod >= block.number);
             require(election[_election].voted[msg.sender] == false);
 
             election[_election].voted[msg.sender] = true;
@@ -52,6 +52,7 @@ contract Voting is Validated {
             }
 
             delete election[_election].votes;
+            delete election[_election].blockNumber;
             _deleteValidatorVotes(_election);
             return true;
         }

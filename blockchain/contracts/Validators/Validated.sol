@@ -36,10 +36,10 @@ contract Validated {
         require(validators.val[_validator] == true);
 
         validators.val[_validator] = false;
-        for (uint256 i = 0; i < validators.length; i++) {
+        for (uint256 i = 0; i < validators.validatorsArray.length; i++) {
             if(validators.validatorsArray[i] == _validator) {
                 validators.validatorsArray[i] = validators.validatorsArray[validators.length - 1];
-                delete validators.validatorsArray[validators.length];
+                delete validators.validatorsArray[validators.length - 1];
             }
         }
         validators.length--;
