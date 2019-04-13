@@ -74,7 +74,7 @@ There are two possible approaches in resolving this problem:
 
 
 2. The top down approach - Big data analysis 
-> Since we know that only 30% of households with PV devices are actually registered in the system, we can take all smart meters data, and try to find similar corellations and predict which locations might also have PV devices, but are not registered yet.
+> Since we know that only 30% of households with PV devices are actually registered in the system, we can take all smart meters data, and try to find similar correlations and predict which locations might also have PV devices, but are not registered yet.
 
 The solution that we are building combines these two approaches.
 
@@ -254,7 +254,7 @@ There are two possible approaches in resolving previously described problems:
 > Building the network by validating all individual locations and ensuring that the energy which comes from these locations is green and meets all criteria.
 
 2. The top down approach - Big data analysis 
-> Since we know that only 30% of households with PV devices are actually registered in the system, we can take all historical smart meters data, and try to find similar corellations and predict which locations might also have PV devices, but are not registered yet.
+> Since we know that only 30% of households with PV devices are actually registered in the system, we can take all historical smart meters data, and try to find similar correlations and predict which locations might also have PV devices, but are not registered yet.
 
 The solution that we are building combines these two approaches.
 
