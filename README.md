@@ -109,18 +109,41 @@ _Industry and Stakeholders_
 ### Milestones Now Achieved 
 
 #### User Stories
-- [ ] As a Validator ISBAT propose new validator that should enter the system by providing the name, last name, email 
-- [ ] As a Validator ISBAT accept or reject request for the new validator - ⅔ of votes is needed for accepting request
-- [ ] As a Validator ISBAT propose revoking access for another validator
-- [ ] As a Validator ISBAT accept or reject request for revoking access of another validator - ⅔ of votes is needed for accepting request
-- [ ] As a Validator ISBAT propose adding new green device producer to the system by providing Producer, Model and Maximum Output
-- [ ] As a Validator ISBAT accept or reject new device - ⅔ of votes is needed for accepting request
-- [ ] As a Validator ISBAT see all green energy outputs and recheck the “risky” outputs by marking them for re-validation process 
-- [ ] As a User ISBAT register my house by providing geo location and adding all green devices that I have installed 
-- [ ] As a User ISBAT add new green device or remove the existing one
-- [ ] As a User ISBAT see all green energy outputs
+- [x] As a Validator ISBAT propose new validator that should enter the system by providing the name, last name, email 
+- [x] As a Validator ISBAT accept or reject request for the new validator - ⅔ of votes is needed for accepting request
+- [x] As a Validator ISBAT propose revoking access for another validator
+- [x] As a Validator ISBAT accept or reject request for revoking access of another validator - ⅔ of votes is needed for accepting request
+- [x] As a Validator ISBAT propose adding new green device producer to the system by providing Producer, Model and Maximum Output
+- [x] As a Validator ISBAT accept or reject new device - ⅔ of votes is needed for accepting request
+- [x] As a Validator ISBAT see all green energy outputs and recheck the “risky” outputs by marking them for re-validation process 
+- [x] As a User ISBAT register my house by providing geo location and adding all green devices that I have installed 
+- [x] As a User ISBAT add new green device or remove the existing one
+- [x] As a User ISBAT see all green energy outputs
 
 ### Milestones Up Ahead 
 
-### 100 days target
+#### Business & Product
+* Establish deversified and credible network of validators
+* Form industry council for setting the proposed protocol standards of data
+* Media partnerships for wide adoption
+* EU / Government partnerships for setting up the proper incentives
 
+#### Tech
+* PoA Beacon chain 
+* Shared security based sidechain 
+* Merkel Root tree hash structure
+* ML training model (combining top down and bottom up approaches)
+* API integration for PV devices
+* Third party data providers
+
+### 100 days target
+_SMART goals_
+
+
+# Team Deliverable 4 - online questionnaire
+
+__Problem/case (problem analysis) - Please describe the problem you are solving__
+
+__Solution - What did you make and why is this a game-changer?__ 
+
+__How does blockchain, AI or another tech used by you make a difference here? Clearly explain why this result was not possible with any other technology or a simple database.__
