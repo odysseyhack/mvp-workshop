@@ -1,18 +1,10 @@
 import React from 'react'
-import { Card, Row, Col } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import classNames from 'classnames'
 
 import './ExploreCard.css'
 import * as appActions from '../../../redux/actions'
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker
-} from 'react-google-maps'
-import { geolocated } from 'react-geolocated'
 import MyMap from '../../atoms/MyMap/MyMap'
 
 class ExploreCard extends React.Component {
@@ -26,15 +18,6 @@ class ExploreCard extends React.Component {
 
   render () {
     const { location } = this.state
-    const {
-      image,
-      name,
-      battery,
-      voltage,
-      production,
-      consumption,
-      lastUpdate
-    } = this.props
     return (
       <Card className='exploreCard p-2'>
         <MyMap

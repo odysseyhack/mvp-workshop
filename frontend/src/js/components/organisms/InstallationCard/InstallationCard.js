@@ -2,7 +2,6 @@ import React from 'react'
 import { Card, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import classNames from 'classnames'
 
 import './InstallationCard.css'
 import * as appActions from '../../../redux/actions'

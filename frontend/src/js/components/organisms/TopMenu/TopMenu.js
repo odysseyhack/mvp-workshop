@@ -31,7 +31,7 @@ class TopMenu extends Component {
             </Navbar.Brand>
           </Link>
           <Navbar.Toggle />
-          <Navbar.Collapse className='justify-content-end'>
+          {/* <Navbar.Collapse className='justify-content-end'>
             <Nav>
               <Link className={this.getClassNames('/')} to='/'>
                 Overview
@@ -45,12 +45,29 @@ class TopMenu extends Component {
               <Link className={this.getClassNames('/explore')} to='/explore'>
                 Explore
               </Link>
-              {/* <Link className={this.getClassNames('/login')} to='/login'>
-                Login
+            </Nav>
+          </Navbar.Collapse> */}
+
+          <Navbar.Collapse className='justify-content-end'>
+            <Nav>
+              <Link className={this.getClassNames('/requests')} to='/requests'>
+                Requests
               </Link>
-              <Link className={this.getClassNames('/register')} to='/register'>
-                Register
-              </Link> */}
+              <Link className={this.getClassNames('/devices')} to='/devices'>
+                Devices
+              </Link>
+              <Link
+                className={this.getClassNames('/locations')}
+                to='/locations'
+              >
+                Locations
+              </Link>
+              <Link
+                className={this.getClassNames('/validators')}
+                to='/validators'
+              >
+                Validators
+              </Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

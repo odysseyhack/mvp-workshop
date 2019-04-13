@@ -3,12 +3,12 @@ import { Row, Col, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import './InstallationPage.css'
+import './ValidatorsPage.css'
 import * as appActions from '../../../redux/actions'
 import RegularLayout from '../../layouts/RegularLayout/RegularLayout'
 import InstallationCard from '../../organisms/InstallationCard/InstallationCard'
 
-class InstallationPage extends React.Component {
+class ValidatorsPage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -108,4 +108,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(InstallationPage)
+)(ValidatorsPage)

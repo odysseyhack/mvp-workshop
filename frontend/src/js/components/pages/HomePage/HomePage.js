@@ -108,12 +108,12 @@ class HomePage extends React.Component {
         <Row>
           <Col md='4'>
             <DashboardCard
-              image='https://images.vexels.com/media/users/3/145131/isolated/preview/d2ba09d9b4856df5b15cdc5636a45b37-sun-large-wavy-beams-icon-by-vexels.png'
+              image={require('../../../../assets/images/weather-sunny.png')}
               title='12°C'
               description='Groningen, NL'
             />
             <DashboardCard
-              image='https://images.vexels.com/media/users/3/145131/isolated/preview/d2ba09d9b4856df5b15cdc5636a45b37-sun-large-wavy-beams-icon-by-vexels.png'
+              image={require('../../../../assets/images/icon-irradiance.png')}
               title={
                 <span>
                   667.0 W/m<sup>2</sup>
@@ -136,7 +136,7 @@ class HomePage extends React.Component {
           </Col>
           <Col md='8'>
             <DashboardCard basic big>
-            <p className='mb-3'>MY ENERGY CONSUMPTION</p>
+              <p className='mb-3'>MY ENERGY CONSUMPTION</p>
               <BarChart width={690} height={330} data={data}>
                 <CartesianGrid vertical={false} strokeDasharray='3 3' />
                 <XAxis dataKey='name' stroke='#BFC5D2' />
@@ -175,7 +175,7 @@ class HomePage extends React.Component {
               <Col>
                 <DashboardCard
                   noMargin
-                  image='https://images.vexels.com/media/users/3/145131/isolated/preview/d2ba09d9b4856df5b15cdc5636a45b37-sun-large-wavy-beams-icon-by-vexels.png'
+                  image={require('../../../../assets/images/icon-production.png')}
                   title='4,090 W'
                   description='Production'
                 />
@@ -183,7 +183,7 @@ class HomePage extends React.Component {
               <Col>
                 <DashboardCard
                   noMargin
-                  image='https://images.vexels.com/media/users/3/145131/isolated/preview/d2ba09d9b4856df5b15cdc5636a45b37-sun-large-wavy-beams-icon-by-vexels.png'
+                  image={require('../../../../assets/images/icon-consumption.png')}
                   title='3,527 W'
                   description='Consumption'
                 />

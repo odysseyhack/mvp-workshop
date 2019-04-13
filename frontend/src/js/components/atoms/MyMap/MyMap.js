@@ -31,8 +31,8 @@ class MyMap extends Component {
         }
       }
     } else if (
-      prevState.location.lat != nextProps.lat ||
-      prevState.location.lng != nextProps.lng
+      prevState.location.lat !== nextProps.lat ||
+      prevState.location.lng !== nextProps.lng
     ) {
       return {
         location: {
@@ -41,18 +41,6 @@ class MyMap extends Component {
         }
       }
     }
-
-    //   nextProps.coords &&
-    //   (prevState.location.lat != nextProps.coords.latitude ||
-    //     prevState.location.lng != nextProps.coords.longitude)
-    // ) {
-    //   return {
-    //     location: {
-    //       lat: nextProps.coords.latitude,
-    //       lng: nextProps.coords.longitude
-    //     }
-    //   }
-    // }
     return null
   }
   render () {
