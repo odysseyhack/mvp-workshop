@@ -27,6 +27,7 @@ clientRouter.post('/users/register', val.user.register, users.register);
 clientRouter.get('/users/statistic', userPower.statistic);
 
 clientRouter.get('/admin/users/pending', authc.service, authz.roles([Role.VALIDATOR]), health);
+clientRouter.get('/admin/list', authc.service, authz.roles([Role.VALIDATOR]), users.admins);
 
 // client validation helpers resources
 clientRouter.post(`/validations/register1`, val.user.register1, h.ok);

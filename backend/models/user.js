@@ -16,22 +16,32 @@ module.exports = (sequelize, DataTypes) => {
 
     latitude: {
       type: DataTypes.STRING(128),
-      allowNull: false
+      allowNull: true
     },
 
     longitude: {
       type: DataTypes.STRING(128),
-      allowNull: false
+      allowNull: true
     },
 
     device_model: {
       type: DataTypes.STRING(128),
-      allowNull: false
+      allowNull: true
     },
 
     serial_number: {
       type: DataTypes.STRING(128),
-      allowNull: false
+      allowNull: true
+    },
+
+    name: {
+      type: DataTypes.STRING(128),
+      allowNull: true
+    },
+
+    company: {
+      type: DataTypes.STRING(128),
+      allowNull: true
     }
   }, {
     underscored: true,

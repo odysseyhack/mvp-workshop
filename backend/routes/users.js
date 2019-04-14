@@ -8,8 +8,14 @@ const { AuthenticationError } = require('../utils/errors');
 
 module.exports = {
   login,
-  register
+  register,
+  admins
 };
+
+async function admins (req, res, next) {
+  const admins = await usersService.getAdmins();
+  res.send(admins).end();
+}
 
 async function register (req, res, next) {
   try {

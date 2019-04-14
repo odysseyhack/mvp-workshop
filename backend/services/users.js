@@ -9,6 +9,7 @@ const fs = require('fs');
 const CsvReadableStream = require('csv-reader');
 const readXlsxFile = require('read-excel-file/node');
 const inputStream = fs.createReadStream('./resources/power.csv', 'utf8');
+const util = require('../utils/utils');
 const {
   AuthenticationError
 } = require('../utils/errors');
@@ -16,8 +17,18 @@ const {
 module.exports = {
   login,
   register,
-  checkIfUserExists
+  checkIfUserExists,
+  getAdmins
 };
+
+async function getAdmins () {
+  const admins = await db.User.findAll({
+    where: {
+      role_id: 2
+    }
+  });
+  return admins;
+}
 
 async function checkIfUserExists (email) {
   const found = await db.User.findOne({ where: { email: email }, attributes: ['email'], raw: true });
@@ -41,14 +52,17 @@ async function register (request, password, randomHash) {
 
     if (randomHash) {
       request.RoleId = await validHash(randomHash);
-
-      if (!request.RoleId) {
-        throw new errors.ConflictError();
-      }
+      const data = util.decrypt(randomHash);
+      request = {
+        ...request,
+        ...JSON.parse(data)
+      };
+    } else {
+      request.RoleId = Role.HOLDER;
     }
 
     if (!request.RoleId) {
-      request.RoleId = Role.HOLDER;
+      throw new errors.ConflictError();
     }
 
     const User = await db.User.create(request);
@@ -81,8 +95,8 @@ async function validHash (hash) {
   });
 
   if (correct) {
-    correct.expired = true;
-    await correct.save();
+    // correct.expired = true;
+    // await correct.save();
     return Role.VALIDATOR;
   }
 
