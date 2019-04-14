@@ -31,8 +31,8 @@ class AuthUserRoute extends Component {
         //   }
         // }
         console.log(response)
-        this.props.actions.userProfileSetUserId(response.data.id)
-        const userRole = determineUserRole(response.data.role)
+        this.props.actions.userProfileSetUserId(response.data.data.id)
+        const userRole = determineUserRole(response.data.data.role)
         this.props.actions.userProfileSetUserRole(userRole)
         console.log('userRole', userRole)
         if (userRole.showBackoffice === false) {
