@@ -5,14 +5,20 @@ export {
   getDevicesRequests,
   getLocationsRequests,
   getValidatorsRequests,
-  getInstallations
+  getInstallations,
+  voteForDevice,
+  getStatistics,
+  getActivePanels,
+  addPanel,
+  removeDevice
 }
 
 function getDevicesRequests () {
   return async dispatch => {
     try {
       const devicesData = await generalDataService.getDevicesRequests()
-      dispatch(getDevicesRequestsSuccess(devicesData.data))
+      console.log('devicesData', devicesData)
+      dispatch(getDevicesRequestsSuccess(devicesData.data.data.items))
     } catch (error) {
       console.log('error', error)
     }
@@ -66,4 +72,64 @@ function getInstallations () {
 
 function getInstallationsSuccess (installationsData) {
   return { type: ACTIONS.GET_INSTALLATION_DATA, installationsData }
+}
+
+function voteForDevice (userID, suggestionID, vote) {
+  return async dispatch => {
+    try {
+      await generalDataService.voteForDevice(userID, suggestionID, vote)
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
+}
+
+function getStatistics () {
+  return async dispatch => {
+    try {
+      const stats = await generalDataService.getStatistics()
+      dispatch(getStatisticsSuccess(stats.data))
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
+}
+
+function getStatisticsSuccess (statistics) {
+  return { type: ACTIONS.GET_STATISTICS, statistics }
+}
+
+function getActivePanels () {
+  return async dispatch => {
+    try {
+      const stats = await generalDataService.getActivePanels()
+      dispatch(getActivePanelsSuccess(stats.data.data.items))
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
+}
+
+function getActivePanelsSuccess (activePanels) {
+  return { type: ACTIONS.GET_ACTIVE_PANEL, activePanels }
+}
+
+function addPanel (userId, data) {
+  return async dispatch => {
+    try {
+      await generalDataService.addPanel(userId, data)
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
+}
+
+function removeDevice (userId, panelId) {
+  return async dispatch => {
+    try {
+      await generalDataService.removeDevice(userId, panelId)
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
 }

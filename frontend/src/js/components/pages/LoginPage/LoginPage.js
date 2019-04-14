@@ -26,7 +26,9 @@ class LoginPage extends React.Component {
   submitLogin = e => {
     e.preventDefault()
     const { email, password } = this.state
-    this.props.actions.loginUser(email, password)
+    this.props.actions.loginUser(email, password, () => {
+      this.props.history.replace('/')
+    })
   }
 
   renderLoginForm = () => {

@@ -3,18 +3,16 @@ export default function determineUserRole (roles) {
   var showBackoffice = false
 
   for (let i = 0; i < roles.length; i++) {
-    if (['HOLDER', 'VALIDATOR', 'CREATOR'].indexOf(roles[i]) !== -1) {
+    if (roles[i] === 1) {
       showDashboard = true
     }
-    if (['SYSTEM_ADMIN', 'SYSTEM_SUPPORT'].indexOf(roles[i]) !== -1) {
+    if (roles[i] === 2) {
       showBackoffice = true
     }
   }
 
   let redirectUrl = null
-  if (showDashboard && showBackoffice) {
-    redirectUrl = '/backoffice-rolepicker'
-  } else if (showDashboard) {
+  if (showDashboard) {
     redirectUrl = '/overview'
   } else if (showBackoffice) {
     redirectUrl = '/requests'

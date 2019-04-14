@@ -13,8 +13,28 @@ import * as appActions from '../../../redux/actions'
 import './DeviceModal.css'
 
 class DeviceModal extends Component {
+  tempPrefix = temp => {
+    return temp > 0 ? '+' + temp : temp
+  }
+
+  removeDevice = e => {
+    e.preventDefault()
+    const { actions, userId, panelId } = this.props
+    actions.removeDevice(userId, panelId)
+  }
+
   render () {
-    const { hide, show, type } = this.props
+    console.log('this.props', this.props)
+    const {
+      hide,
+      show,
+      type,
+      pmax,
+      brand,
+      maxTemp,
+      minTemp,
+      model
+    } = this.props
     return (
       <Modal show={show} onHide={hide}>
         <img
@@ -46,13 +66,13 @@ class DeviceModal extends Component {
             <Row className='mt-3 mb-1'>
               <Col>
                 <p>DEVICE</p>
-                {type}
+                {model}
               </Col>
             </Row>
             <Row className='mt-3 mb-1'>
               <Col>
                 <p>DEVICE MANUFACTURER</p>
-                {type}
+                {brand}
               </Col>
 
               <Col>
@@ -64,15 +84,15 @@ class DeviceModal extends Component {
             <Row className='mt-3 mb-1'>
               <Col>
                 <p>MAX POWER</p>
-                {type}
+                {pmax}
               </Col>
 
               <Col>
                 <p>OPERATING TEMPERATURE</p>
-                {type}
+                {this.tempPrefix(minTemp)} °C ~ {this.tempPrefix(maxTemp)} °C
               </Col>
             </Row>
-            <Row className='mt-3 mb-1'>
+            {/* <Row className='mt-3 mb-1'>
               <Col>
                 <p>DATE INITIATED</p>
                 {type}
@@ -81,7 +101,7 @@ class DeviceModal extends Component {
                 <p>INITIATOR</p>
                 {type}
               </Col>
-            </Row>
+            </Row> */}
           </div>
 
           <br />
@@ -89,6 +109,7 @@ class DeviceModal extends Component {
             variant='primary'
             type='submit'
             className='w-auto border-0 defaultButton defaultButtonRed d-block m-auto'
+            onClick={this.removeDevice}
           >
             Remove from list
           </Button>
@@ -98,11 +119,15 @@ class DeviceModal extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  userId: state.user.userId
+})
+
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(appActions, dispatch)
 })
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(DeviceModal)

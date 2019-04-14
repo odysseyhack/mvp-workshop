@@ -44,10 +44,10 @@ class App extends Component {
     if (loading) return <LoadingPage />
     return (
       <Switch>
-        <GuestUserRoute exact path='/' component={HomePage} />
         <GuestUserRoute exact path='/login' component={LoginPage} />
         <GuestUserRoute exact path='/register' component={RegisterPage} />
 
+        <AuthUserRoute exact path='/' component={HomePage} />
         <AuthUserRoute exact path='/overview' component={HomePage} />
         <AuthUserRoute
           exact

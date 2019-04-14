@@ -12,10 +12,22 @@ import {
 import * as appActions from '../../../redux/actions'
 import MyMap from '../../atoms/MyMap/MyMap'
 import './RequestModal.css'
+import moment from 'moment'
 
 class RequestModal extends Component {
+  tempPrefix = temp => {
+    return temp > 0 ? '+' + temp : temp
+  }
+
   renderByType = () => {
-    const { type, location = {} } = this.props
+    const { type, location = {}, initiatedDate, dueDate } = this.props
+    const {
+      modelNumber,
+      maxOutputPowerWats,
+      minOperatingTemperature,
+      maxOperatingTemperature,
+      producer
+    } = this.props.SolarPanel || {}
     switch (type) {
       case 'new-location':
         return (
@@ -65,42 +77,43 @@ class RequestModal extends Component {
           <div className='modalRowData'>
             <Row className='mt-3 mb-1'>
               <Col>
-                <p>DEVICE</p>
-                {type}
+                <p>MODEL</p>
+                {modelNumber}
               </Col>
             </Row>
             <Row className='mt-3 mb-1'>
               <Col>
                 <p>DATE INITIATED</p>
-                {type}
+                {moment(initiatedDate).format('MMM DD, YYYY')}
               </Col>
 
               <Col>
                 <p>DUE DATE</p>
-                {type}
+                {moment(dueDate).format('MMM DD, YYYY')}
               </Col>
             </Row>
             <hr />
             <Row className='mt-3 mb-1'>
               <Col>
                 <p>DEVICE MANUFACTURE</p>
-                {type}
+                {producer}
               </Col>
 
               <Col>
                 <p>DEVICE TYPE</p>
-                {type}
+                {'solar panel'}
               </Col>
             </Row>
             <Row className='mt-3 mb-1'>
               <Col>
                 <p>MAX POWER</p>
-                {type}
+                {maxOutputPowerWats}
               </Col>
 
               <Col>
                 <p>OPERATING TEMPERATURE</p>
-                {type}
+                {this.tempPrefix(minOperatingTemperature)} °C ~{' '}
+                {this.tempPrefix(maxOperatingTemperature)} °C
               </Col>
             </Row>
           </div>
@@ -293,7 +306,10 @@ class RequestModal extends Component {
       TypeField,
       showStatus,
       upvoteCount,
-      downvoteCount
+      downvoteCount,
+      actions,
+      userID,
+      reqId
     } = this.props
     return (
       <Modal show={show} onHide={hide}>
@@ -325,6 +341,10 @@ class RequestModal extends Component {
                 variant='primary'
                 type='submit'
                 className='w-auto border-0 mr-2 defaultButton'
+                onClick={e => {
+                  e.stopPropagation()
+                  actions.voteForDevice(userID, reqId, true)
+                }}
               >
                 {this.renderVoteResult(
                   require('../../../../assets/images/upvote-white.png'),
@@ -335,6 +355,10 @@ class RequestModal extends Component {
                 variant='primary'
                 type='submit'
                 className='w-auto border-0 defaultButton defaultButtonRed'
+                onClick={e => {
+                  e.stopPropagation()
+                  actions.voteForDevice(userID, reqId, false)
+                }}
               >
                 {this.renderVoteResult(
                   require('../../../../assets/images/downvote-white.png'),
@@ -349,11 +373,17 @@ class RequestModal extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    userID: state.user.userId
+  }
+}
+
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(appActions, dispatch)
 })
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(RequestModal)

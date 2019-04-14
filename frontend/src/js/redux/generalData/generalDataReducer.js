@@ -5,7 +5,9 @@ function initialState () {
     deviceRequests: [],
     locationRequests: [],
     validatorRequests: [],
-    installations: []
+    installations: [],
+    statistics: [],
+    activePanels: []
   }
 }
 
@@ -26,6 +28,17 @@ export default function userReducer (state = initialState(), action) {
         ...state,
         deviceRequests: action.validatorsData
       }
+    case ACTIONS.GET_STATISTICS:
+      return {
+        ...state,
+        statistics: action.statistics
+      }
+    case ACTIONS.GET_ACTIVE_PANEL:
+      return {
+        ...state,
+        activePanels: action.activePanels
+      }
+
     case ACTIONS.GET_INSTALLATION_DATA:
       return {
         ...state,

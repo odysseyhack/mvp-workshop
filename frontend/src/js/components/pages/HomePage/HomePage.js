@@ -64,9 +64,14 @@ class HomePage extends React.Component {
     }
   }
 
+  componentDidMount () {
+    this.props.actions.getStatistics()
+  }
+
   renderConsumptionChart = () => {
+    const { statistics } = this.props
     return (
-      <BarChart width={690} height={330} data={[]}>
+      <BarChart width={690} height={330} data={statistics}>
         <CartesianGrid vertical={false} strokeDasharray='3 3' />
 
         <XAxis dataKey='name' stroke='#BFC5D2' />
@@ -186,8 +191,10 @@ class HomePage extends React.Component {
   }
 }
 
-const mapStateToProps = () => {
-  return {}
+const mapStateToProps = state => {
+  return {
+    statistics: state.generalData.statistics
+  }
 }
 
 const mapDispatchToProps = dispatch => ({

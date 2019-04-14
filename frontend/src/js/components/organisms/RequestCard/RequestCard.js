@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, Row, Col, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import moment from 'moment'
 
 import './RequestCard.css'
 import * as appActions from '../../../redux/actions'
@@ -46,16 +47,26 @@ class RequestCard extends React.Component {
   }
 
   renderVoting = () => {
-    const { dueDate, upvoteCount, downvoteCount } = this.props
+    const {
+      dueDate,
+      upvoteCount,
+      downvoteCount,
+      actions,
+      userID,
+      reqId
+    } = this.props
     return (
       <Col className='m-auto p-0' md='5' style={{ lineHeight: '40px' }}>
-        {dueDate}
+        {moment(dueDate).format('MMM DD, YYYY')}
         <div className='d-inline-block float-right' style={{ marginRight: 40 }}>
           <Button
             variant='primary'
             type='submit'
             className='w-auto border-0 mr-2 defaultButton'
-            onClick={(e)=>{e.stopPropagation()}}
+            onClick={e => {
+              e.stopPropagation()
+              actions.voteForDevice(userID, reqId, true)
+            }}
           >
             {this.renderVoteResult(
               require('../../../../assets/images/upvote-white.png'),
@@ -67,7 +78,10 @@ class RequestCard extends React.Component {
             variant='primary'
             type='submit'
             className='w-auto border-0 defaultButton defaultButtonRed'
-            onClick={(e)=>{e.stopPropagation()}}
+            onClick={e => {
+              e.stopPropagation()
+              actions.voteForDevice(userID, reqId, false)
+            }}
           >
             {this.renderVoteResult(
               require('../../../../assets/images/downvote-white.png'),
@@ -160,7 +174,9 @@ class RequestCard extends React.Component {
             <Col className='m-auto p-0'>
               <TypeField />
             </Col>
-            <Col className='m-auto'>{initiatedDate}</Col>
+            <Col className='m-auto'>
+              {moment(initiatedDate).format('MMM DD, YYYY')}
+            </Col>
             {showStatus ? <Status /> : <Voting />}
           </Row>
         </Card>
@@ -175,8 +191,10 @@ class RequestCard extends React.Component {
   }
 }
 
-const mapStateToProps = () => {
-  return {}
+const mapStateToProps = state => {
+  return {
+    userID: state.user.userId
+  }
 }
 
 const mapDispatchToProps = dispatch => ({

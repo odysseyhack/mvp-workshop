@@ -22,6 +22,7 @@ class DevicesPage extends React.Component {
   componentDidMount = () => {
     const { actions } = this.props
     actions.getDevicesRequests()
+    actions.getActivePanels()
   }
 
   renderDeviceCardRow = () => {
@@ -73,7 +74,7 @@ class DevicesPage extends React.Component {
 
   render () {
     const { show } = this.state
-    const { deviceRequests } = this.props
+    const { deviceRequests, activePanels } = this.props
     const DeviceCardRow = this.renderDeviceCardRow
 
     return (
@@ -99,10 +100,20 @@ class DevicesPage extends React.Component {
 
         {this.renderRequestDevices()}
         {deviceRequests.map(req => (
-          <RequestCard {...req} />
+          <RequestCard
+            {...req}
+            title={req.SolarPanel.producer}
+            location={req.SolarPanel.modelNumber}
+            reqId={req.id}
+            initiatedDate={req.created_at}
+            dueDate={req.endsUntil}
+            type='new-device'
+            downvoteCount={0}
+            upvoteCount={0}
+          />
         ))}
 
-        <RequestCard
+        {/* <RequestCard
           downvoteCount={2}
           upvoteCount={1}
           title='Groningen'
@@ -110,28 +121,23 @@ class DevicesPage extends React.Component {
           type='new-device'
           initiatedDate='MAR 11, 2019'
           dueDate='10 minutes'
-        />
+        /> */}
 
         <h3>Approved devices (1,567)</h3>
 
         <DeviceCardRow />
 
-        <DeviceCard
-          minTemp={-40}
-          maxTemp={90}
-          type='battery'
-          model='LG390N2T-A5'
-          brand='LG'
-          pmax={390}
-        />
-        <DeviceCard
-          minTemp={-40}
-          maxTemp={90}
-          type='solar-panel'
-          model='LG390N2T-A5'
-          brand='LG'
-          pmax={390}
-        />
+        {activePanels.map(req => (
+          <DeviceCard
+            panelId={req.id}
+            minTemp={req.minOperatingTemperature}
+            maxTemp={req.maxOperatingTemperature}
+            type='solar-panel'
+            model={req.modelNumber}
+            brand={req.producer}
+            pmax={req.maxOutputPowerWats}
+          />
+        ))}
         <AddDeviceModal show={show} hide={this.hideModal} />
       </RegularLayout>
     )
@@ -140,7 +146,8 @@ class DevicesPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    deviceRequests: state.generalData.deviceRequests
+    deviceRequests: state.generalData.deviceRequests,
+    activePanels: state.generalData.activePanels
   }
 }
 

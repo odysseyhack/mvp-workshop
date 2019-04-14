@@ -92,7 +92,7 @@ class DeviceCard extends React.Component {
             <Col className='m-auto manageInstallationButton float-right text-right'>Manage</Col>
           </Row>
         </Card>
-        <DeviceModal show={show} hide={this.hideModal} />
+        <DeviceModal show={show} hide={this.hideModal} {...this.props}/>
       </>
     )
   }

@@ -8,6 +8,20 @@ import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router-dom'
 import classNames from 'classnames'
 
+const userImage = props => {
+  return (
+    <div onClick={props.onClick}>
+      <img
+        style={{ borderRadius: '50%', objectFit: 'cover' }}
+        alt='user profile'
+        src='https://i1.wp.com/frfars.org/wp-content/uploads/2018/12/place-holder-for-profile-picture-4.png?ssl=1'
+        width='30'
+        height='30'
+      />
+    </div>
+  )
+}
+
 class TopMenu extends Component {
   getClassNames = currentPath => {
     const { pathname } = this.props.location
@@ -34,6 +48,21 @@ class TopMenu extends Component {
             Validators
           </Link>
         </Nav>
+        <Dropdown className='topMenuDropdown m-0 nav-link'>
+          <Dropdown.Toggle as={userImage} />
+          <Dropdown.Menu>
+            <Dropdown.Item>
+              <Nav.Link
+                onClick={() => {
+                  this.props.actions.logoutUser()
+                  this.props.history.replace('/login')
+                }}
+              >
+                Logout
+              </Nav.Link>
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </Navbar.Collapse>
     )
   }
@@ -42,7 +71,7 @@ class TopMenu extends Component {
     return (
       <Navbar.Collapse className='justify-content-end'>
         <Nav>
-          <Link className={this.getClassNames('/')} to='/'>
+          <Link className={this.getClassNames('/overview')} to='/overview'>
             Overview
           </Link>
           <Link
@@ -55,25 +84,22 @@ class TopMenu extends Component {
             Explore
           </Link>
         </Nav>
+        <Dropdown className='topMenuDropdown m-0 nav-link'>
+          <Dropdown.Toggle as={userImage} />
+          <Dropdown.Menu>
+            <Dropdown.Item>
+              <Nav.Link onClick={this.props.actions.logoutUser}>
+                Logout
+              </Nav.Link>
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </Navbar.Collapse>
     )
   }
 
   render () {
     const { role } = this.props
-    const userImage = props => {
-      return (
-        <div onClick={props.onClick}>
-          <img
-            style={{ borderRadius: '50%', objectFit: 'cover' }}
-            alt='user profile'
-            src='https://i1.wp.com/frfars.org/wp-content/uploads/2018/12/place-holder-for-profile-picture-4.png?ssl=1'
-            width='30'
-            height='30'
-          />
-        </div>
-      )
-    }
 
     return (
       <Navbar className='topMenu' expand='lg' variant='light' sticky='top'>
@@ -88,19 +114,10 @@ class TopMenu extends Component {
             </Navbar.Brand>
           </Link>
           <Navbar.Toggle />
-          {role === 1
+          {console.log('role', role)}
+          {role.showDashboard
             ? this.renderPublicMenuAuth()
             : this.renderValidatorMenu()}
-          <Dropdown className='topMenuDropdown m-0 nav-link'>
-            <Dropdown.Toggle as={userImage} />
-            <Dropdown.Menu>
-              <Dropdown.Item>
-                <Nav.Link onClick={this.props.actions.logoutUser}>
-                  Logout
-                </Nav.Link>
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
         </Container>
       </Navbar>
     )

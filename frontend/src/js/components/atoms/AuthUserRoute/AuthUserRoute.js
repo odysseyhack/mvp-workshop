@@ -23,14 +23,23 @@ class AuthUserRoute extends Component {
     axios
       .post(process.env.REACT_APP_BACKEND_URL + '/users/me')
       .then(response => {
+        // const response = {
+        //   data: {
+        //     id: 6,
+        //     email: '32s1s12sd@gmail.com',
+        //     role: [2]
+        //   }
+        // }
         console.log(response)
-        this.props.actions.userProfileSetUserId(response.data.data.id)
-        const userRole = determineUserRole(response.data.data.roles)
+        this.props.actions.userProfileSetUserId(response.data.id)
+        const userRole = determineUserRole(response.data.role)
         this.props.actions.userProfileSetUserRole(userRole)
-        if (this.props.userRole.showDashboard === false) {
-          this.props.history.push(this.props.userRole.redirectUrl)
+        console.log('userRole', userRole)
+        if (userRole.showBackoffice === false) {
+          this.props.history.push(userRole.redirectUrl)
+          this.setState({ loading: false })
         } else {
-          // this.setState({ loading: false });
+          this.setState({ loading: false })
         }
       })
       .catch(error => {

@@ -3,11 +3,12 @@ import ACTIONS from '../../constants/ACTIONS'
 
 export { loginUser, registerStepOne, registerStepTwo, registerUser, logoutUser }
 
-function loginUser (email, password) {
+function loginUser (email, password, onSuccess) {
   return async dispatch => {
     try {
       const userData = await userService.loginUser(email, password)
-   
+      dispatch(onSuccess())
+
       // dispatch(loginUserSuccess(account))
     } catch (error) {
       console.log('error', error)
@@ -51,7 +52,7 @@ function registerStepTwo (data, onSuccess) {
         device_model: data.panelModel,
         serial_number: data.panelSerialNumber
       }
-      
+
       await userService.registerStepTwo(realData)
 
       dispatch(onSuccess())

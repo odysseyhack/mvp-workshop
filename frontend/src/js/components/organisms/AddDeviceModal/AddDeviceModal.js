@@ -19,8 +19,28 @@ class AddDeviceModal extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      deviceType: 'battery'
+      deviceType: 'solar',
+      producer: '',
+      modelNumber: '',
+      maxOutputPowerWats: '',
+      maxOperatingTemperature: '',
+      minOperatingTemperature: ''
     }
+  }
+
+  submitForm = e => {
+    e.preventDefault()
+    console.log('this.state', this.state)
+    const { actions, userId, hide } = this.props
+    actions.addPanel(userId, this.state)
+    hide()
+    alert("Successfully added")
+  }
+
+  handleChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    })
   }
 
   renderDeviceTypeCard = device => {
@@ -105,15 +125,15 @@ class AddDeviceModal extends Component {
 
     return (
       <Modal show={show} onHide={hide} className='modalRowData'>
-      <img
-        onClick={hide}
-        alt='icon downvote'
-        className='m-auto position-absolute'
-        style={{ top: -25, right: 0, cursor: 'pointer' }}
-        src={require('../../../../assets/images/close.png')}
-        height='18'
-        width='18'
-      />
+        <img
+          onClick={hide}
+          alt='icon downvote'
+          className='m-auto position-absolute'
+          style={{ top: -25, right: 0, cursor: 'pointer' }}
+          src={require('../../../../assets/images/close.png')}
+          height='18'
+          width='18'
+        />
         <Modal.Body>
           <Row>
             <Col>
@@ -145,89 +165,129 @@ class AddDeviceModal extends Component {
           </div>
           <br />
 
-          <Row>
-            <Col>
-              <Form.Group controlId='formBasicEmail'>
-                <p className='text-uppercase'>MODEL</p>
-                <Form.Control type='email' placeholder='Enter email' />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group controlId='formBasicEmail'>
-                <p className='text-uppercase'>MANUFACTURER</p>
-                <Form.Control type='email' placeholder='Enter email' />
-              </Form.Group>
-            </Col>
-          </Row>
+          <Form onSubmit={this.submitForm}>
+            <Row>
+              <Col>
+                <Form.Group controlId='modelNumber'>
+                  <p className='text-uppercase'>MODEL</p>
+                  <Form.Control
+                    onChange={this.handleChange}
+                    type='text'
+                    placeholder='Enter model number'
+                  />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group controlId='producer'>
+                  <p className='text-uppercase'>MANUFACTURER</p>
+                  <Form.Control
+                    onChange={this.handleChange}
+                    type='text'
+                    placeholder='Enter producer'
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
 
-          {deviceType === 'battery' ? (
-            <>
-              <Row>
-                <Col>
-                  <Form.Group controlId='formBasicEmail'>
-                    <p className='text-uppercase'>MAX POWER (KW/H)</p>
-                    <Form.Control type='email' placeholder='Enter email' />
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group controlId='formBasicEmail'>
-                    <p className='text-uppercase'>MASS (KG)</p>
-                    <Form.Control type='email' placeholder='Enter email' />
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <Form.Group controlId='formBasicEmail'>
-                    <p className='text-uppercase'>ACID VOLUME (L)</p>
-                    <Form.Control type='email' placeholder='Enter email' />
-                  </Form.Group>
-                </Col>
-                <Col />
-              </Row>
-            </>
-          ) : (
-            <>
-              <Row>
-                <Col>
-                  <Form.Group controlId='formBasicEmail'>
-                    <p className='text-uppercase'>MAX OUTPUT POWER (W)</p>
-                    <Form.Control type='email' placeholder='Enter email' />
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group controlId='formBasicEmail'>
-                    <p className='text-uppercase'>
-                      MAX OPERATING TEMERATURE (°C)
-                    </p>
-                    <Form.Control type='email' placeholder='Enter email' />
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <Form.Group controlId='formBasicEmail'>
-                    <p className='text-uppercase'>
-                      MIN OPERATING TEMERATURE (°C)
-                    </p>
-                    <Form.Control type='email' placeholder='Enter email' />
-                  </Form.Group>
-                </Col>
-                <Col />
-              </Row>
-            </>
-          )}
-          <br />
-          <Button
-            variant='primary'
-            type='submit'
-            className='w-auto border-0 d-block m-auto defaultButton pl-4 pr-4'
-          >
-            + Add new device
-          </Button>
+            {deviceType === 'battery' ? (
+              <>
+                <Row>
+                  <Col>
+                    <Form.Group controlId='maxOutputPowerWats'>
+                      <p className='text-uppercase'>MAX POWER (KW/H)</p>
+                      <Form.Control
+                        onChange={this.handleChange}
+                        type='text'
+                        placeholder='Enter max output power wats'
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group controlId='maxOperatingTemperature'>
+                      <p className='text-uppercase'>MASS (KG)</p>
+                      <Form.Control
+                        onChange={this.handleChange}
+                        type='text'
+                        placeholder='Enter max operating temperature'
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Form.Group controlId='formBasicEmail'>
+                      <p className='text-uppercase'>ACID VOLUME (L)</p>
+                      <Form.Control
+                        onChange={this.handleChange}
+                        type='text'
+                        placeholder='Enter email'
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col />
+                </Row>
+              </>
+            ) : (
+              <>
+                <Row>
+                  <Col>
+                    <Form.Group controlId='maxOutputPowerWats'>
+                      <p className='text-uppercase'>MAX OUTPUT POWER (W)</p>
+                      <Form.Control
+                        onChange={this.handleChange}
+                        type='text'
+                        placeholder='Enter max output power wats'
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group controlId='maxOperatingTemperature'>
+                      <p className='text-uppercase'>
+                        MAX OPERATING TEMERATURE (°C)
+                      </p>
+                      <Form.Control
+                        onChange={this.handleChange}
+                        type='text'
+                        placeholder='Enter max operating temperature'
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Form.Group controlId='minOperatingTemperature'>
+                      <p className='text-uppercase'>
+                        MIN OPERATING TEMERATURE (°C)
+                      </p>
+                      <Form.Control
+                        onChange={this.handleChange}
+                        type='text'
+                        placeholder='Enter min operating temperature'
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col />
+                </Row>
+              </>
+            )}
+            <br />
+            <Button
+              variant='primary'
+              type='submit'
+              className='w-auto border-0 d-block m-auto defaultButton pl-4 pr-4'
+            >
+              + Add new device
+            </Button>
+          </Form>
         </Modal.Body>
       </Modal>
     )
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    userId: state.user.userId
   }
 }
 
@@ -236,6 +296,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(AddDeviceModal)
