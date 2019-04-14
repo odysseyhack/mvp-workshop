@@ -8,7 +8,30 @@ const generalDataService = {
 }
 
 function getDevicesRequests () {
-  return axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/requests/devices`)
+  // return {
+  //   data: [
+  //     {
+  //       downvoteCount: 2,
+  //       upvoteCount: 1,
+  //       title: 'Groningen',
+  //       location: 'Theatre Discrict 123',
+  //       type: 'new-device',
+  //       initiatedDate: 'MAR 11, 2019',
+  //       dueDate: '10 minutes'
+  //     },
+  //     {
+  //       downvoteCount: 2,
+  //       upvoteCount: 1,
+  //       title: 'Groningen',
+  //       location: 'Theatre Discrict 123',
+  //       type: 'new-device',
+  //       initiatedDate: 'MAR 11, 2019',
+  //       dueDate: '10 minutes'
+  //     }
+  //   ]
+  // }
+
+  return axios.get(`${process.env.REACT_APP_BACKEND_URL}/solar-panels/suggestions`)
 }
 
 function getLocationsRequests () {

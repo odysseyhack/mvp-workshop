@@ -3,16 +3,14 @@ import { Form, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 class CredentialView extends React.Component {
-  submitForm = async () => {
-    const data = await this.props.submit(this.props.state)
-    if (data) {
-      this.props.goToNextStep()
-    }
+  submitForm = e => {
+    e.preventDefault()
+    this.props.submit(this.props.state, this.props.goToNextStep)
   }
 
   render () {
     return (
-      <Form>
+      <Form onSubmit={this.submitForm}>
         <Form.Group controlId='email'>
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -39,7 +37,7 @@ class CredentialView extends React.Component {
         <Button
           variant='primary'
           type='submit'
-          onClick={this.props.goToNextStep}
+          // onClick={this.props.goToNextStep}
           className='w-100 border-0 mt-2 defaultButton'
         >
           Sign up

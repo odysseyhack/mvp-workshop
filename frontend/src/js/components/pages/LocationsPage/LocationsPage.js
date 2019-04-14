@@ -17,6 +17,11 @@ class LocationsPage extends React.Component {
     }
   }
 
+  componentDidMount = () => {
+    const { actions } = this.props
+    actions.getLocationsRequests()
+  }
+
   renderLocationCardRow = () => {
     return (
       <Row className='mt-4 pl-3 pr-3'>
@@ -80,6 +85,8 @@ class LocationsPage extends React.Component {
   }
 
   render () {
+    const { locationRequests } = this.props
+
     return (
       <RegularLayout>
         <h3>Locations</h3>

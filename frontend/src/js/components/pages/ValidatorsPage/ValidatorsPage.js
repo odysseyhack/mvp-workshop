@@ -18,12 +18,19 @@ class ValidatorsPage extends React.Component {
     }
   }
 
+  componentDidMount = () => {
+    const { actions } = this.props
+    actions.getValidatorsRequests()
+  }
+
   hideModal = () => {
     this.setState({ show: false })
   }
 
   render () {
     const { show } = this.state
+    const { validatorRequests } = this.props
+    
     return (
       <RegularLayout>
         <Row>

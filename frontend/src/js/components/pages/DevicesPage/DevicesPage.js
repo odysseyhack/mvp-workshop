@@ -19,6 +19,11 @@ class DevicesPage extends React.Component {
     }
   }
 
+  componentDidMount = () => {
+    const { actions } = this.props
+    actions.getDevicesRequests()
+  }
+
   renderDeviceCardRow = () => {
     return (
       <Row className='mt-4 pl-3 pr-3'>
@@ -49,7 +54,7 @@ class DevicesPage extends React.Component {
         <Col md='3'>
           <p className='installationSections'>TITLE</p>
         </Col>
-        <Col>
+        <Col className='p-0'>
           <p className='installationSections'>ACTION TYPE</p>
         </Col>
         <Col>
@@ -68,6 +73,7 @@ class DevicesPage extends React.Component {
 
   render () {
     const { show } = this.state
+    const { deviceRequests } = this.props
     const DeviceCardRow = this.renderDeviceCardRow
 
     return (
@@ -92,6 +98,10 @@ class DevicesPage extends React.Component {
         </Row>
 
         {this.renderRequestDevices()}
+        {deviceRequests.map(req => (
+          <RequestCard {...req} />
+        ))}
+
         <RequestCard
           downvoteCount={2}
           upvoteCount={1}

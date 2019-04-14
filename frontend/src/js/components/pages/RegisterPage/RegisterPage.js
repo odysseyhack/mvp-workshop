@@ -22,7 +22,15 @@ class RegisterPage extends React.Component {
       password: '',
       location: {},
       panelModel: '',
-      panelSerialNumber: ''
+      panelSerialNumber: '',
+      hash: null
+    }
+  }
+
+  componentDidMount () {
+    const qs = this.props.location.search
+    if (qs.includes('?hash=')) {
+      this.setState({ hash: qs.split('?hash=')[1] })
     }
   }
 
@@ -32,8 +40,7 @@ class RegisterPage extends React.Component {
     })
   }
 
-  goToNextStep = e => {
-    e.preventDefault()
+  goToNextStep = () => {
     this.setState(prevState => ({ step: prevState.step + 1 }))
   }
 
@@ -42,28 +49,11 @@ class RegisterPage extends React.Component {
     this.setState(prevState => ({ step: prevState.step - 1 }))
   }
 
-  submitData = e => {
-    e.preventDefault()
-
+  submitData = () => {
     const { actions } = this.props
-
-    const {
-      email,
-      password,
-      location,
-      panelModel,
-      panelSerialNumber
-    } = this.state
-
-    const data = {
-      email,
-      password,
-      location,
-      panelModel,
-      panelSerialNumber
-    }
-
-    actions.registerUser(data)
+    actions.registerUser(this.state, () => {
+      this.props.history.replace('/')
+    })
   }
 
   setLocation = location => {
@@ -71,12 +61,13 @@ class RegisterPage extends React.Component {
   }
 
   renderStepOne = () => {
-    const { step } = this.state
+    const { step, hash } = this.state
     return step === 1 ? (
       <CredentialView
         state={this.state}
         goToNextStep={this.goToNextStep}
         handleChange={this.handleChange}
+        submit={(hash && this.submitData) || this.props.actions.registerStepOne}
       />
     ) : null
   }
@@ -91,6 +82,7 @@ class RegisterPage extends React.Component {
         goToPrevStep={this.goToPrevStep}
         setLocation={this.setLocation}
         handleChange={this.handleChange}
+        submit={this.props.actions.registerStepTwo}
       />
     ) : null
   }

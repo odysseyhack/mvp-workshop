@@ -9,6 +9,8 @@ import LoadingPage from '../../pages/LoadingPage/LoadingPage'
 import axios from 'axios'
 import determineUserRole from '../../../helpers/determine-user-role'
 
+axios.defaults.withCredentials = true
+axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
 class AuthUserRoute extends Component {
   constructor (props) {
     super(props)
@@ -19,8 +21,9 @@ class AuthUserRoute extends Component {
 
   componentDidMount () {
     axios
-      .get(process.env.REACT_APP_BACKEND_URL + '/users/me')
+      .post(process.env.REACT_APP_BACKEND_URL + '/users/me')
       .then(response => {
+        console.log(response)
         this.props.actions.userProfileSetUserId(response.data.data.id)
         const userRole = determineUserRole(response.data.data.roles)
         this.props.actions.userProfileSetUserRole(userRole)

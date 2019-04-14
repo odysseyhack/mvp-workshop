@@ -5,6 +5,11 @@ import Autocomplete from 'react-google-autocomplete'
 import MyMap from '../../atoms/MyMap/MyMap'
 
 class LocationView extends React.Component {
+  submitForm = e => {
+    e.preventDefault()
+    this.props.submit(this.props.state, this.props.goToNextStep)
+  }
+
   renderAutoComplete = () => {
     return (
       <Autocomplete
@@ -40,7 +45,7 @@ class LocationView extends React.Component {
           <Button
             variant='primary'
             type='submit'
-            onClick={this.props.goToNextStep}
+            // onClick={this.props.goToNextStep}
             className='w-100 border-0 defaultButton'
           >
             Submit
@@ -52,7 +57,7 @@ class LocationView extends React.Component {
   render () {
     const { location } = this.props.state
     return (
-      <Form>
+      <Form onSubmit={this.submitForm}>
         <Form.Group controlId='location'>
           <Form.Label>Your solar panel location</Form.Label>
           {this.renderAutoComplete()}
