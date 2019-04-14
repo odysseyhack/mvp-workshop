@@ -1,33 +1,34 @@
 'use strict';
 
 module.exports = (sequelize, dataTypes) => {
-  var UserAuth = sequelize.define('UserAuth', {
+  var UserAuth = sequelize.define('UserPanels', {
     id: {
       type: dataTypes.BIGINT.UNSIGNED,
       autoIncrement: true,
       primaryKey: true
     },
-    hash: {
+
+    url: {
       type: dataTypes.STRING(512),
       allowNull: false
+    },
+
+    descripiton: {
+      type: dataTypes.TEXT('medium'),
+      allowNull: true
+    },
+    status: {
+      type: dataTypes.ENUM('UNKNOWN', 'PENDING', 'COMPLETED'),
+      allowNull: false
     }
+
   }, {
     underscored: true,
     freezeTableName: true,
-    tableName: 'user_auth',
+    tableName: 'user_panel',
     charset: 'utf8',
     collate: 'utf8_unicode_ci'
   });
-
-  UserAuth.associate = function (models) {
-    models.UserAuth.belongsTo(models.User, {
-      onDelete: 'CASCADE', // todo: FK is on delete 'set null', and column is null
-      foreignKey: {
-        allowNull: false,
-        underscored: true
-      }
-    });
-  };
 
   return UserAuth;
 };
