@@ -119,7 +119,6 @@ async function getUserPanel (userId, panelId) {
 }
 
 async function getPanels (panelStatus) {
-  console.log(panelStatus)
   return db.SolarPanel.findAll({
     where: {
       status: panelStatus

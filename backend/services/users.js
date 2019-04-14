@@ -247,8 +247,18 @@ async function getSolarPanels (userId) {
 
 async function getHouseholds () {
   const households = await db.UserPower.findAll({
-    order: [['id', 'DESC'], ['date', 'DESC']]
+    order: [['user_id', 'DESC'], ['date', 'DESC']]
   });
 
-  return households;
+  let userId = 0;
+  const sol = [];
+
+  for (const household of households) {
+    if (household.user_id !== userId) {
+      userId = household.user_id;
+      sol.push(household);
+    }
+  }
+
+  return sol;
 }
