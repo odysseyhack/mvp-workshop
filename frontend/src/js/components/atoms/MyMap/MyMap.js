@@ -3,7 +3,8 @@ import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker
+  Marker,
+  InfoWindow
 } from 'react-google-maps'
 import { geolocated } from 'react-geolocated'
 
@@ -12,8 +13,8 @@ class MyMap extends Component {
     super(props)
     this.state = {
       location: {
-        lat: 53.2,
-        lng: 6.5374235
+        lat: 53.210462799999995,
+        lng: 6.5373772
       },
       oldCords: { lat: null, lng: null }
     }
@@ -44,6 +45,7 @@ class MyMap extends Component {
     return null
   }
   render () {
+    console.log('this.props', this.props)
     const MyMapComponent = withScriptjs(
       withGoogleMap(props => {
         const { defaultZoom } = props
@@ -54,6 +56,73 @@ class MyMap extends Component {
         return (
           <GoogleMap defaultZoom={defaultZoom} defaultCenter={position}>
             {props.isMarkerShown && <Marker position={position} />}
+            {props.multiMarkers && (
+              <>
+                <span className='marker-green'>
+                  <Marker
+                    options={{
+                      icon: require('../../../../assets/images/approved-location.png')
+                    }}
+                    position={{ lat: lat + 0.01, lng: lng + 0.02 }}
+                    onClick={props.onToggleOpen}
+                  >
+                    <InfoWindow onCloseClick={props.onToggleOpen}>
+                      <div>
+                        <div>Deviced installed: 6</div>
+                        <div>Sent to grid: 2,345 W</div>
+                      </div>
+                    </InfoWindow>
+                  </Marker>
+                </span>
+                <span className='marker-red'>
+                  <Marker
+                    options={{
+                      icon: require('../../../../assets/images/potential-fraud.png')
+                    }}
+                    position={{ lat: lat, lng: lng - 0.01 }}
+                    onClick={props.onToggleOpen}
+                  >
+                    <InfoWindow onCloseClick={props.onToggleOpen}>
+                      <div>
+                        <div>Deviced installed: 3</div>
+                        <div>Sent to grid: 1,349 W</div>
+                      </div>
+                    </InfoWindow>
+                  </Marker>
+                </span>
+                <span className='marker-green'>
+                  <Marker
+                    options={{
+                      icon: require('../../../../assets/images/approved-location.png')
+                    }}
+                    position={{ lat: lat + 0.013, lng: lng - 0.0135 }}
+                    onClick={props.onToggleOpen}
+                  >
+                    <InfoWindow onCloseClick={props.onToggleOpen}>
+                      <div>
+                        <div>Deviced installed: 2</div>
+                        <div>Sent to grid: 2,875 W</div>
+                      </div>
+                    </InfoWindow>
+                  </Marker>
+                </span>
+                <span className='marker-yellow'>
+                  <Marker
+                    options={{
+                      icon: require('../../../../assets/images/potential-location.png')
+                    }}
+                    position={{ lat: lat + 0.004, lng: lng + 0.004 }}
+                    onClick={props.onToggleOpen}
+                  >
+                    <InfoWindow onCloseClick={props.onToggleOpen}>
+                      <div>
+                        <div>Potential green device</div>
+                      </div>
+                    </InfoWindow>
+                  </Marker>
+                </span>
+              </>
+            )}
           </GoogleMap>
         )
       })

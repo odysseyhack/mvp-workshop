@@ -5,12 +5,12 @@ export {
   getDevicesRequests,
   getLocationsRequests,
   getValidatorsRequests,
-  getInstallations,
   voteForDevice,
   getStatistics,
   getActivePanels,
   addPanel,
-  removeDevice
+  removeDevice,
+  getUserHousehold
 }
 
 function getDevicesRequests () {
@@ -59,18 +59,18 @@ function getValidatorsRequestsSuccess (validatorsData) {
   return { type: ACTIONS.GET_VALIDATOR_REQUESTS, validatorsData }
 }
 
-function getInstallations () {
+function getUserHousehold (getUserHousehold) {
   return async dispatch => {
     try {
-      const installationsData = await generalDataService.getInstallations()
-      dispatch(getInstallationsSuccess(installationsData.data))
+      const installationsData = await generalDataService.getUserHousehold(getUserHousehold)
+      dispatch(getUserHouseholdSuccess(installationsData.data.data.items))
     } catch (error) {
       console.log('error', error)
     }
   }
 }
 
-function getInstallationsSuccess (installationsData) {
+function getUserHouseholdSuccess (installationsData) {
   return { type: ACTIONS.GET_INSTALLATION_DATA, installationsData }
 }
 

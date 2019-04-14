@@ -18,6 +18,11 @@ class InstallationPage extends React.Component {
     }
   }
 
+  componentDidMount () {
+    const { actions, userId } = this.props
+    actions.getUserHousehold(userId)
+  }
+
   renderInstallationCardRow = () => {
     return (
       <Row className='mt-4 pl-3 pr-3'>
@@ -91,7 +96,8 @@ class InstallationPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    installations: state.generalData.installations
+    installations: state.generalData.installations,
+    userId: state.user.userId
   }
 }
 

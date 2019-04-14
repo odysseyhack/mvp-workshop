@@ -20,39 +20,41 @@ class AuthUserRoute extends Component {
   }
 
   componentDidMount () {
-    axios
-      .post(process.env.REACT_APP_BACKEND_URL + '/users/me')
-      .then(response => {
-        // const response = {
-        //   data: {
-        //     id: 6,
-        //     email: '32s1s12sd@gmail.com',
-        //     role: [2]
-        //   }
-        // }
-        console.log(response)
-        this.props.actions.userProfileSetUserId(response.data.data.id)
-        const userRole = determineUserRole(response.data.data.role)
-        this.props.actions.userProfileSetUserRole(userRole)
-        console.log('userRole', userRole)
-        if (userRole.showBackoffice === false) {
-          this.props.history.push(userRole.redirectUrl)
-          this.setState({ loading: false })
-        } else {
-          this.setState({ loading: false })
+    // axios
+    //   .post(process.env.REACT_APP_BACKEND_URL + '/users/me')
+    //   .then(response => {
+    const response = {
+      data: {
+        data: {
+          id: 6,
+          email: '32s1s12sd@gmail.com',
+          role: [2]
         }
-      })
-      .catch(error => {
-        this.props.actions.userProfileSetUserId(null)
-        if (!error.response.status) {
-          // this.props.showErrorMessage('Network Error!')
-          this.props.history.push('/login')
-        } else if (error.response.status === 401) {
-          this.props.actions.userProfileSetUserId(null)
-          // this.props.showErrorMessage('Please login to continue.')
-          this.props.history.push('/login')
-        }
-      })
+      }
+    }
+    console.log(response)
+    this.props.actions.userProfileSetUserId(response.data.data.id)
+    const userRole = determineUserRole(response.data.data.role)
+    this.props.actions.userProfileSetUserRole(userRole)
+    console.log('userRole', userRole)
+    if (userRole.showBackoffice === false) {
+      this.props.history.push(userRole.redirectUrl)
+      this.setState({ loading: false })
+    } else {
+      this.setState({ loading: false })
+    }
+    // })
+    // .catch(error => {
+    //   this.props.actions.userProfileSetUserId(null)
+    //   if (!error.response.status) {
+    //     // this.props.showErrorMessage('Network Error!')
+    //     this.props.history.push('/login')
+    //   } else if (error.response.status === 401) {
+    //     this.props.actions.userProfileSetUserId(null)
+    //     // this.props.showErrorMessage('Please login to continue.')
+    //     this.props.history.push('/login')
+    //   }
+    // })
   }
 
   render () {

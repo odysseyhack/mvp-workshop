@@ -8,6 +8,7 @@ import * as appActions from '../../../redux/actions'
 import RegularLayout from '../../layouts/RegularLayout/RegularLayout'
 import RequestCard from '../../organisms/RequestCard/RequestCard'
 import LocationCard from '../../organisms/LocationCard/LocationCard'
+import MyMap from '../../atoms/MyMap/MyMap'
 
 class LocationsPage extends React.Component {
   constructor (props) {
@@ -90,7 +91,8 @@ class LocationsPage extends React.Component {
     return (
       <RegularLayout>
         <h3>Locations</h3>
-        {/* <MyMap /> */}
+        <MyMap multiMarkers defaultZoom={14} />
+        <br />
         <h3>Requested locations</h3>
         {this.renderRequestLocations()}
         <RequestCard

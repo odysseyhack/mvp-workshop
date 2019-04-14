@@ -4,12 +4,12 @@ const generalDataService = {
   getDevicesRequests,
   getLocationsRequests,
   getValidatorsRequests,
-  getInstallations,
   voteForDevice,
   getStatistics,
   getActivePanels,
   addPanel,
-  removeDevice
+  removeDevice,
+  getUserHousehold
 }
 
 function getDevicesRequests () {
@@ -28,10 +28,6 @@ function getValidatorsRequests () {
   return axios.get(
     `${process.env.REACT_APP_BACKEND_URL}/api/requests/validators`
   )
-}
-
-function getInstallations () {
-  return axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/installations`)
 }
 
 function voteForDevice (userID, suggestionID, vote) {
@@ -66,6 +62,10 @@ function removeDevice (userId, panelId) {
       process.env.REACT_APP_BACKEND_URL
     }/validators/${userId}/solar-panels/${panelId}/downvote`
   )
+}
+
+function getUserHousehold (userId) {
+  return axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}/solar-panels`)
 }
 
 export default generalDataService
