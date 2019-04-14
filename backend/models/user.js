@@ -32,6 +32,11 @@ module.exports = (sequelize, DataTypes) => {
     serial_number: {
       type: DataTypes.STRING(128),
       allowNull: false
+    },
+
+    company_name: {
+      type: DataTypes.STRING(128),
+      allowNull: true
     }
   }, {
     underscored: true,
@@ -43,13 +48,13 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function (models) {
     models.User.hasOne(models.UserAuth, { foreignKey: { allowNull: false } });
-    /* models.User.belongsTo(models.Role, {
+    models.User.belongsTo(models.Role, {
       onDelete: 'CASCADE', // todo: FK is on delete 'set null', and column is null
       foreignKey: {
         allowNull: false,
         underscored: true,
         as: 'role_id'
-      } }); */
+      } });
   };
 
   return User;

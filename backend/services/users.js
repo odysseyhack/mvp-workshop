@@ -15,7 +15,8 @@ module.exports = {
   login,
   register,
   checkIfUserExists,
-  addSolarPanel
+  addSolarPanel,
+  createUserVoting
 };
 
 async function checkIfUserExists (email) {
@@ -93,4 +94,20 @@ async function addSolarPanel (userId, data) {
   };
 
   await db.UserPanel.create(userPanels);
+}
+
+async function createUserVoting (userId, data) {
+  const fillData = {
+    producer: data.producer,
+    modelNumber: data.modelNumber,
+    maxOutputPowerWats: data.maxOutputPowerWats,
+    maxOperatingTemperature: data.maxOperatingTemperature,
+    minOperatingTemperature: data.minOperatingTemperature,
+    status: enums.PanelStatus.PENDING
+  };
+
+  const panel = await db.SolarPanel.create(fillData);
+  await createVoting(panel.id, enums.VoteStatus.ADD);
+
+  return panel.get();
 }

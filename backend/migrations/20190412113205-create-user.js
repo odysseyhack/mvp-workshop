@@ -19,22 +19,27 @@ module.exports = {
 
       latitude: {
         type: Sequelize.STRING(128),
-        allowNull: false
+        allowNull: true
       },
 
       longitude: {
         type: Sequelize.STRING(128),
-        allowNull: false
+        allowNull: true
       },
 
       device_model: {
         type: Sequelize.STRING(128),
-        allowNull: false
+        allowNull: true
       },
 
       serial_number: {
         type: Sequelize.STRING(128),
-        allowNull: false
+        allowNull: true
+      },
+
+      company_name: {
+        type: Sequelize.STRING(128),
+        allowNull: true
       },
 
       created_at: {

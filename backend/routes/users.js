@@ -10,7 +10,8 @@ module.exports = {
   login,
   register,
   me,
-  addSolarPanel
+  addSolarPanel,
+  createUserVoting
 };
 
 async function register (req, res, next) {
@@ -61,5 +62,14 @@ async function me (req, res, next) {
     res.status(200).send(Response.success(req.session.user)).end();
   } else {
     return next(new AuthenticationError());
+  }
+}
+
+async function createUserVoting (req, res, next) {
+  try {
+    const panels = await usersService.createUserVoting(req.session.user.id, req.body);
+    res.send(Response.success(panels)).end();
+  } catch (err) {
+    next(err);
   }
 }

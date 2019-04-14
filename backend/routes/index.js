@@ -35,6 +35,10 @@ clientRouter.post('/validators/:id/solar-panels', auth.isAuthc, auth.isAuthz('id
 clientRouter.post('/validators/:id/solar-panels/:panelId/downvote', auth.isAuthc, auth.isAuthz('id'), panelRoute.createPanelDownvote);
 clientRouter.post('/validators/:id/solar-panels/suggestions/:suggestionId/vote', auth.isAuthc, auth.isAuthz('id'), panelRoute.addNewVote);
 
+clientRouter.post('/validators/:id/solar-panels', auth.isAuthc, auth.isAuthz('id'), panelRoute.createPanelVote);
+clientRouter.post('/validators/:id/solar-panels/:panelId/downvote', auth.isAuthc, auth.isAuthz('id'), panelRoute.createPanelDownvote);
+clientRouter.post('/validators/:id/solar-panels/suggestions/:suggestionId/vote', auth.isAuthc, auth.isAuthz('id'), panelRoute.addNewVote);
+
 clientRouter.get('/solar-panels/suggestions', panelRoute.getSuggestionList);
 module.exports = {
   clientRouter
