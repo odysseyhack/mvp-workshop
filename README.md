@@ -225,9 +225,9 @@ UX Design 					|  	| One class SVM implementation  	| One class SVM training dat
 ## Problem/case (problem analysis)
 _Please describe the problem you are solving_
 * There is no way for small-scale green energy producers to validate the energy they produce
-* There are no enough incentives for them to register 
-> Only 30% of households with PV devices in Netherlands are actually registered
-* There is no way to prove that the energy going to the grid is green, thus resulting with "green-washing" - grey energy trading on the green energy market
+* There are not enough incentives for them to register 
+> Only 30% of households with PV devices in the Netherlands are actually registered
+* There is no way to prove that the energy going to the grid is green, thus resulting in "green-washing" - grey energy trading on the green energy market
 
 ## Solution 
 _What did you make and why is this a game-changer?_ 
@@ -241,18 +241,18 @@ __Decentralized validators platform__ allowing authorities to propose and achiev
 * Certification of new small-scale green energy producers by:
   * Processing requests for new locations coming from the Public web dashboard
   * Monitoring the network
-  * Detecting potential frauds by calculating the risk associated to each output
-  * Re-sending risky location to the certification queue 
-  * Detecting potential producers which are not certified in the system, but their smart meters show similar patterns as the ones which are already certified 
+  * Detecting potential frauds by calculating the risk associated with each output
+  * Re-sending a risky location to the certification queue 
+  * Detecting potential producers which are not certified in the system, but their smart meters show similar patterns like the ones which are already certified 
 * Adding new PV devices with all needed parameters to the blockchain
 * Granting access to the new validator or revoking access to the existing one 
 * Adding a new credible third-party source of information (such as the weather provider API)
 
-_Why is this a game-changer?_ There are two possible approaches in resolving previously described problems:
-1. The bottom up approach 
+_Why is this a game-changer?_ There are two possible approaches to resolving previously described problems:
+1. The bottom-up approach 
 > Building the network by validating all individual locations and ensuring that the energy which comes from these locations is green and meets all criteria.
 
-2. The top down approach - Big data analysis 
+2. The top-down approach - Big data analysis 
 > Since we know that only 30% of households with PV devices are actually registered in the system, we can take all historical smart meters data, and try to find similar correlations and predict which locations might also have PV devices, but are not registered yet.
 
 The solution that we are building combines these two approaches.
@@ -262,4 +262,4 @@ _How does blockchain, AI or another tech used by you make a difference here? Cle
 
 Private Blockchain / Delegated Proof of Authority gives the validators role to the committee, not an individual. In that way, the system is decentralized, immutable, reliable and transparent, without harming privacy, while sidechains bring efficiency to it.
 
-Machine Learning enables finding patterns and detecting uncertified locations which produce green energy by connecting what we know (previously certified locations) and remaining set of Big Data.
+Machine Learning enables finding patterns and detecting uncertified locations which produce green energy by connecting what we know (previously certified locations) and the remaining set of Big Data.
