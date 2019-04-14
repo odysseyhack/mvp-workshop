@@ -80,6 +80,8 @@ function voteForDevice (userID, suggestionID, vote) {
   return async dispatch => {
     try {
       await generalDataService.voteForDevice(userID, suggestionID, vote)
+
+      dispatch(getDevicesRequests())
       alert('Successfully voted')
     } catch (error) {
       if (error.response.status === 409) {
