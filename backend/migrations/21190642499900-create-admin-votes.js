@@ -2,16 +2,20 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('user_voting', {
+    return queryInterface.createTable('admin_votes', {
       id: {
         type: Sequelize.BIGINT.UNSIGNED,
         autoIncrement: true,
         primaryKey: true
       },
 
-      vote_type: {
-        type: Sequelize.ENUM('UNKNOWN', 'ACCEPT_HOUSEHOLD', 'ACCEPT_VALIDATOR', 'DOWNGRADE_HOUSEHOLD', 'DOWNGRADE_VALIDATOR'),
-        allowNull: false
+      admin_voting_id: {
+        type: Sequelize.BIGINT.UNSIGNED,
+        allowNull: false,
+        references: {
+          model: 'admin_voting',
+          key: 'id'
+        }
       },
 
       user_id: {
@@ -21,11 +25,6 @@ module.exports = {
           model: 'user',
           key: 'id'
         }
-      },
-
-      ends_until: {
-        allowNull: false,
-        type: Sequelize.DATE
       },
 
       created_at: {
@@ -39,6 +38,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('user_voting');
+    return queryInterface.dropTable('admin_votes');
   }
 };

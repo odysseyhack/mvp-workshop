@@ -13,6 +13,7 @@ const authz = require('./authz');
 const { Role } = require('../utils/enums');
 const auth = require('./authc');
 const panelRoute = require('./panel');
+const adminRoute = require('./admin');
 
 const clientRouter = express.Router();
 
@@ -42,6 +43,9 @@ clientRouter.get('/solar-panels', panelRoute.getPanels);
 clientRouter.post('/validators/:id/solar-panels', auth.isAuthc, auth.isAuthz('id'), panelRoute.createPanelVote);
 clientRouter.post('/validators/:id/solar-panels/:panelId/downvote', auth.isAuthc, auth.isAuthz('id'), panelRoute.createPanelDownvote);
 clientRouter.post('/validators/:id/solar-panels/suggestions/:suggestionId/vote', auth.isAuthc, auth.isAuthz('id'), panelRoute.addNewVote);
+
+clientRouter.post('/validators/admin', auth.isAuthc, adminRoute.createAdminVote);
+clientRouter.post('/validators/:id/admin/:suggestionUserId/vote', auth.isAuthc, /* auth.isAuthz('id'), */ adminRoute.addNewVote);
 
 clientRouter.get('/solar-panels/suggestions', panelRoute.getSuggestionList);
 module.exports = {
