@@ -112,6 +112,7 @@ _Industry and Stakeholders_
 ## Essential Details
 
 ### Code Validation
+![Our Code Score 10/10](/screenshots/code.png)
 
 ### Legal Arrangements
 Certify.Energy owns Public Web Dashboard, which is the only touchpoint for the end-users
