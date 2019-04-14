@@ -9,7 +9,6 @@ import RegularLayout from '../../layouts/RegularLayout/RegularLayout'
 import RequestCard from '../../organisms/RequestCard/RequestCard'
 
 class RequestsPage extends React.Component {
-
   constructor (props) {
     super(props)
     this.state = {
@@ -18,11 +17,8 @@ class RequestsPage extends React.Component {
   }
 
   renderRequestCardRow = resolved => {
-
     return (
-
       <Row className='mt-4 pl-3 pr-3'>
-
         <Col md='3'>
           <p className='installationSections'>TITLE</p>
         </Col>
@@ -49,17 +45,13 @@ class RequestsPage extends React.Component {
             <p className='installationSections'>DUE DATE</p>
           </Col>
         )}
-
       </Row>
     )
   }
 
   render () {
-
     return (
-
       <RegularLayout>
-
         <h3>Requests</h3>
 
         {this.renderRequestCardRow(false)}
@@ -70,10 +62,52 @@ class RequestsPage extends React.Component {
           title='Groningen'
           location='Theatre Discrict 123'
           type='revoke-validator'
+          // type='new-validator'
+          // type='new-device'
+          // type='risky-location'
+          // type='new-info-source'
           initiatedDate='MAR 11, 2019'
           dueDate='10 minutes'
         />
-
+        <RequestCard
+          downvoteCount={2}
+          upvoteCount={1}
+          title='Groningen'
+          location='Theatre Discrict 123'
+          // type='revoke-validator'
+          type='new-validator'
+          // type='new-device'
+          // type='risky-location'
+          // type='new-info-source'
+          initiatedDate='MAR 11, 2019'
+          dueDate='10 minutes'
+        />
+        <RequestCard
+          downvoteCount={2}
+          upvoteCount={1}
+          title='Groningen'
+          location='Theatre Discrict 123'
+          // type='revoke-validator'
+          // type='new-validator'
+          type='new-device'
+          // type='risky-location'
+          // type='new-info-source'
+          initiatedDate='MAR 11, 2019'
+          dueDate='10 minutes'
+        />
+        <RequestCard
+          downvoteCount={2}
+          upvoteCount={1}
+          title='Groningen'
+          location='Theatre Discrict 123'
+          // type='revoke-validator'
+          // type='new-validator'
+          // type='new-device'
+          type='risky-location'
+          // type='new-info-source'
+          initiatedDate='MAR 11, 2019'
+          dueDate='10 minutes'
+        />
         <br />
 
         <h3>See resolved</h3>
@@ -91,7 +125,6 @@ class RequestsPage extends React.Component {
           initiatedDate='MAR 11, 2019'
           dueDate='10 minutes'
         />
-        
       </RegularLayout>
     )
   }

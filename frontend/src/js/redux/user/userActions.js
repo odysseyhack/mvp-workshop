@@ -1,7 +1,7 @@
 import userService from '../../services/user-service'
 import ACTIONS from '../../constants/ACTIONS'
 
-export { getUserData }
+export { getUserData, userProfileSetUserId, userProfileSetUserRole }
 
 function getUserData () {
   return async dispatch => {
@@ -24,4 +24,12 @@ function getUserData () {
 
 function loginUserSuccess (userData) {
   return { type: ACTIONS.USER_LOGIN, userData }
+}
+
+function userProfileSetUserId (userId) {
+  return { type: ACTIONS.SET_USER_ID, userId }
+}
+
+function userProfileSetUserRole (role) {
+  return { type: ACTIONS.SET_USER_ROLE, role }
 }

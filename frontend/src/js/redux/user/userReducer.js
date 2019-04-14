@@ -6,7 +6,9 @@ function initialState () {
 
   return {
     profile: user,
-    userProfile: {}
+    userProfile: {},
+    role: null,
+    userId: null
   }
 }
 
@@ -28,6 +30,10 @@ export default function userReducer (state = initialState(), action) {
         ...state,
         profile: {}
       }
+    case ACTIONS.SET_USER_ROLE:
+      return { ...state, role: action.role }
+    case ACTIONS.SET_USER_ID:
+      return { ...state, userId: action.userId }
     default:
       return { ...state }
   }

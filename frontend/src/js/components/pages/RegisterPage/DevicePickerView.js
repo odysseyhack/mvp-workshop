@@ -2,6 +2,10 @@ import React from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 
 class DevicePickerView extends React.Component {
+  submit = e => {
+    e.preventDefault()
+    this.props.submitData()
+  }
   renderButtonsForPicker = () => {
     return (
       <Row className='mt-2'>
@@ -19,7 +23,6 @@ class DevicePickerView extends React.Component {
           <Button
             variant='primary'
             type='submit'
-            onClick={this.props.submitData}
             className='w-100 border-0 defaultButton'
           >
             Submit
@@ -30,8 +33,7 @@ class DevicePickerView extends React.Component {
   }
   render () {
     return (
-      <Form>
-
+      <Form onSubmit={this.submit}>
         <Form.Group controlId='panelModel'>
           <Form.Label>Your solar panel model</Form.Label>
           <Form.Control
@@ -53,7 +55,6 @@ class DevicePickerView extends React.Component {
         </Form.Group>
 
         {this.renderButtonsForPicker()}
-        
       </Form>
     )
   }

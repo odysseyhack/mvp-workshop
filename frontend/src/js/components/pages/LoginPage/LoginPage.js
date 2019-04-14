@@ -9,19 +9,49 @@ import * as appActions from '../../../redux/actions'
 import SplitLayout from '../../layouts/SplitLayout/SplitLayout'
 
 class LoginPage extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      email: '',
+      password: ''
+    }
+  }
+
+  handleChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    })
+  }
+
+  submitLogin = e => {
+    e.preventDefault()
+    const { email, password } = this.state
+    this.props.actions.loginUser(email, password, () => {
+      this.props.history.replace('/')
+    })
+  }
+
   renderLoginForm = () => {
     return (
-      <Form>
-        <Form.Group controlId='formBasicEmail'>
+      <Form onSubmit={this.submitLogin}>
+        <Form.Group controlId='email'>
           <p className='text-uppercase'>Email address</p>
-          <Form.Control type='email' placeholder='Enter email' />
+          <Form.Control
+            type='email'
+            placeholder='Enter email'
+            onChange={this.handleChange}
+          />
         </Form.Group>
 
-        <Form.Group controlId='formBasicPassword'>
+        <Form.Group controlId='password'>
           <p className='text-uppercase'>Password</p>
-          <Form.Control type='password' placeholder='Password' />
+          <Form.Control
+            type='password'
+            placeholder='Password'
+            onChange={this.handleChange}
+          />
         </Form.Group>
-        <Button type='submit' className='w-100 mt-2 defaultButton'>
+        <Button type='submit' className='w-100 mt-2 defaultButton border-0'>
           Sign in
         </Button>
         <p className='mt-3 text-center'>

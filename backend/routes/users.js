@@ -11,7 +11,10 @@ module.exports = {
   register,
   admins,
   me,
-  addSolarPanel
+  addSolarPanel,
+  logout,
+  getSolarPanels,
+  getHouseholds
 };
 
 async function admins (req, res, next) {
@@ -34,6 +37,11 @@ async function register (req, res, next) {
   } catch (err) {
     next(err);
   }
+}
+
+async function logout (req, res, next) {
+  req.session.destroy();
+  res.status(200).end();
 }
 
 async function login (req, res, next) {
@@ -62,10 +70,28 @@ async function addSolarPanel (req, res, next) {
   }
 }
 
+async function getSolarPanels (req, res, next) {
+  try {
+    const userPanels = await usersService.getSolarPanels(req.session.user.id);
+    res.status(200).send(Response.success(userPanels)).end();
+  } catch (err) {
+    next(err);
+  }
+}
+
 async function me (req, res, next) {
   if (req.session.state) {
     res.status(200).send(Response.success(req.session.user)).end();
   } else {
     return next(new AuthenticationError());
+  }
+}
+
+async function getHouseholds (req, res, next) {
+  try {
+    const households = await usersService.getHouseholds(req.session.user.id);
+    res.status(200).send(Response.success(households)).end();
+  } catch (err) {
+    next(err);
   }
 }

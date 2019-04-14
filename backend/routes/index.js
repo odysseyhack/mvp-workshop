@@ -26,6 +26,8 @@ clientRouter.use(session);
 clientRouter.get('/health', health);
 clientRouter.post('/users/me', users.me);
 
+clientRouter.post('/users/logout', users.logout);
+
 clientRouter.post('/users/login', val.user.login, users.login);
 clientRouter.post('/users/register', val.user.register, users.register);
 clientRouter.get('/users/statistic', userPower.statistic);
@@ -38,7 +40,11 @@ clientRouter.post(`/validations/register1`, val.user.register1, h.ok);
 clientRouter.post(`/validations/register2`, val.user.register2, h.ok);
 
 clientRouter.post('/users/:id/solar-panels', auth.isAuthc, auth.isAuthz('id'), users.addSolarPanel);
+clientRouter.get('/users/:id/solar-panels', auth.isAuthc, auth.isAuthz('id'), users.getSolarPanels);
+
 clientRouter.get('/solar-panels', panelRoute.getPanels);
+
+clientRouter.get('/households', users.getHouseholds);
 
 clientRouter.post('/validators/:id/solar-panels', auth.isAuthc, auth.isAuthz('id'), panelRoute.createPanelVote);
 clientRouter.post('/validators/:id/solar-panels/:panelId/downvote', auth.isAuthc, auth.isAuthz('id'), panelRoute.createPanelDownvote);

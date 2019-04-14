@@ -22,7 +22,9 @@ module.exports = {
   register,
   checkIfUserExists,
   getAdmins,
-  addSolarPanel
+  addSolarPanel,
+  getSolarPanels,
+  getHouseholds
 };
 
 let excel, csv;
@@ -72,8 +74,7 @@ async function register (request, password, randomHash) {
     }
 
     const User = await db.User.create(request);
-    console.log(User);
-    console.log(User.id);
+
     if (!User) {
       throw new Error('Failed to create a user');
     }
@@ -82,8 +83,9 @@ async function register (request, password, randomHash) {
 
     const excel = await prepareFromExcel();
     const csv = await prepareFromCSV(User.id);
-
+    
     const statistics = prepareFileForDatabse(csv, excel);
+    console.log(statistics);
     await db.UserPower.bulkCreate(statistics);
 
     await db.UserAuth.create({ 'user_id': User.id, 'hash': hash });
@@ -111,6 +113,7 @@ async function validHash (hash) {
 }
 
 function prepareFileForDatabse (csv = [], excel = []) {
+  console.log(csv, excel)
   const statistics = [];
   let csvRow = csv.pop();
   let excelRow = excel.pop();
@@ -169,7 +172,7 @@ async function prepareFromCSV (userId) {
     inputStream
       .pipe(CsvReadableStream({ parseNumbers: true, parseBooleans: true, trim: true, skipHeader: true }))
       .on('data', function (row) {
-        excel.push(row)
+        excel.push(row);
         dataTodatabase.push({
           grid: row[7],
           date: row[4],
@@ -180,10 +183,10 @@ async function prepareFromCSV (userId) {
           resolve(dataTodatabase);
         }
       })
-      .on('end', function (data) { 
+      .on('end', function (data) {
       });
   });
-  
+
   csv = dataTodatabase;
   return dataTodatabase;
 }
@@ -228,4 +231,34 @@ async function addSolarPanel (userId, data) {
   };
 
   await db.UserPanel.create(userPanels);
+}
+
+async function getSolarPanels (userId) {
+  return db.UserPanel.findAll({
+    where: {
+      user_id: userId
+    },
+    include: [{
+      model: db.SolarPanel,
+      required: true
+    }]
+  });
+}
+
+async function getHouseholds () {
+  const households = await db.UserPower.findAll({
+    order: [['user_id', 'DESC'], ['date', 'DESC']]
+  });
+
+  let userId = 0;
+  const sol = [];
+
+  for (const household of households) {
+    if (household.user_id !== userId) {
+      userId = household.user_id;
+      sol.push(household);
+    }
+  }
+
+  return sol;
 }

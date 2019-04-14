@@ -2,7 +2,9 @@
 button.btn-outline-primary.btn.ghostButton:active,
 .defaultButton:hover,
 button.btn-primary.btn.defaultButton:active {
+  border-color: #38bb8d;
   background-color: #38bb8d;
+  opacity: 0.8;
   color: #fff !important;
 }
 

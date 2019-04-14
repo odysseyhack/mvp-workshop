@@ -2,15 +2,18 @@ import React from 'react'
 import { Card, Row, Col, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import moment from 'moment'
 
 import './RequestCard.css'
 import * as appActions from '../../../redux/actions'
+import RequestModal from '../RequestModal/RequestModal'
 
 class RequestCard extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      loading: false
+      loading: false,
+      show: false
     }
   }
 
@@ -24,7 +27,7 @@ class RequestCard extends React.Component {
       case 'new-validator':
         return <div className='requestType goodRequest'>NEW VALIDATOR</div>
       case 'new-info-source':
-        return <div className='requestType goodRequest'>NEW DEVICE</div>
+        return <div className='requestType goodRequest'>NEW INFO SOURCE</div>
       case 'risky-location':
         return <div className='requestType badRequest'>RISKY LOCATION</div>
       case 'revoke-validator':
@@ -44,15 +47,26 @@ class RequestCard extends React.Component {
   }
 
   renderVoting = () => {
-    const { dueDate, upvoteCount, downvoteCount } = this.props
+    const {
+      dueDate,
+      upvoteCount,
+      downvoteCount,
+      actions,
+      userID,
+      reqId
+    } = this.props
     return (
-      <Col className='m-auto p-0' md='5'>
-        {dueDate}
+      <Col className='m-auto p-0' md='5' style={{ lineHeight: '40px' }}>
+        {moment(dueDate).format('MMM DD, YYYY')}
         <div className='d-inline-block float-right' style={{ marginRight: 40 }}>
           <Button
             variant='primary'
             type='submit'
             className='w-auto border-0 mr-2 defaultButton'
+            onClick={e => {
+              e.stopPropagation()
+              actions.voteForDevice(userID, reqId, true)
+            }}
           >
             {this.renderVoteResult(
               require('../../../../assets/images/upvote-white.png'),
@@ -64,6 +78,10 @@ class RequestCard extends React.Component {
             variant='primary'
             type='submit'
             className='w-auto border-0 defaultButton defaultButtonRed'
+            onClick={e => {
+              e.stopPropagation()
+              actions.voteForDevice(userID, reqId, false)
+            }}
           >
             {this.renderVoteResult(
               require('../../../../assets/images/downvote-white.png'),
@@ -128,32 +146,55 @@ class RequestCard extends React.Component {
     )
   }
 
+  hideModal = () => {
+    this.setState({ show: false })
+  }
+
   render () {
     const { title, location, initiatedDate, showStatus } = this.props
+    const { show } = this.state
     const TypeField = this.renderType
     const Voting = this.renderVoting
     const Status = this.renderStatus
+
     return (
-      <Card className='installationCard requestCard mt-3 mb-3 pl-3 pr-3'>
-        <Row className='h-100'>
-          <Col className='m-auto installationTitle' md='3'>
-            {title}
-            <br />
-            <p className='m-0'>{location}</p>
-          </Col>
-          <Col className='m-auto p-0'>
-            <TypeField />
-          </Col>
-          <Col className='m-auto'>{initiatedDate}</Col>
-          {showStatus ? <Status /> : <Voting />}
-        </Row>
-      </Card>
+      <>
+        <Card
+          className='installationCard requestCard mt-3 mb-3 pl-3 pr-3'
+          onClick={() => {
+            this.setState({ show: true })
+          }}
+        >
+          <Row className='h-100'>
+            <Col className='m-auto installationTitle' md='3'>
+              {title}
+              <br />
+              <p className='m-0'>{location}</p>
+            </Col>
+            <Col className='m-auto p-0'>
+              <TypeField />
+            </Col>
+            <Col className='m-auto'>
+              {moment(initiatedDate).format('MMM DD, YYYY')}
+            </Col>
+            {showStatus ? <Status /> : <Voting />}
+          </Row>
+        </Card>
+        <RequestModal
+          show={show}
+          hide={this.hideModal}
+          {...this.props}
+          TypeField={TypeField}
+        />
+      </>
     )
   }
 }
 
-const mapStateToProps = () => {
-  return {}
+const mapStateToProps = state => {
+  return {
+    userID: state.user.userId
+  }
 }
 
 const mapDispatchToProps = dispatch => ({

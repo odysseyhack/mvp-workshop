@@ -15,6 +15,7 @@
 
 .installationCard:hover {
   border-color: #38bb8d;
+  cursor: pointer;
 }
 
 .installationCard:hover .installationTitle {
