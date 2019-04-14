@@ -3,12 +3,11 @@
 ## Key Elements
 
 ### Problem Analysis
-_Verification and certification of small-scale green energy producers_
 
 * There is no way for small-scale green energy producers to validate the energy they produce
-  * There are no enough incentives for them to register 
-  * Only 30% of households with PV devices in Netherlands are actually registered
-* There is no way to prove that the energy going to the grid is green, thus resulting with "green-washing" - grey energy trading on the green energy market
+  * There are not enough incentives for them to register 
+  * Only 30% of households with PV devices in the Netherlands are actually registered
+* There is no way to prove that the energy going to the grid is green, thus resulting in "green-washing" - grey energy trading on the green energy market
 
 ### Solution
 
@@ -21,9 +20,9 @@ __Decentralized validators platform__ allowing authorities to propose and achiev
 * Certification of new small-scale green energy producers by:
   * Processing requests for new locations coming from the Public web dashboard
   * Monitoring the network
-  * Detecting potential frauds by calculating the risk associated to each output
-  * Re-sending risky location to the certification queue 
-  * Detecting potential producers which are not certified in the system, but their smart meters show similar patterns as the ones which are already certified 
+  * Detecting potential frauds by calculating the risk associated with each output
+  * Re-sending a risky location to the certification queue 
+  * Detecting potential producers which are not certified in the system, but their smart meters show similar patterns like the ones which are already certified 
 * Adding new PV devices with all needed parameters to the blockchain
 * Granting access to the new validator or revoking access to the existing one 
 * Adding a new credible third-party source of information (such as the weather provider API)
