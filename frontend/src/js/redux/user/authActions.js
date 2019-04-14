@@ -1,6 +1,5 @@
 import userService from '../../services/user-service'
 import ACTIONS from '../../constants/ACTIONS'
-// import { replace } from 'react-router-redux'
 
 export { loginUser, registerUser, logoutUser }
 
@@ -51,7 +50,6 @@ function logoutUser () {
   return async dispatch => {
     userService.logoutUser()
     dispatch(logoutUserSuccess())
-    // dispatch(replace('/'))
   }
 }
 

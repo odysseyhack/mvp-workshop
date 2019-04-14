@@ -59,13 +59,14 @@ class LocationsPage extends React.Component {
       </>
     )
   }
+
   renderRequestLocations = () => {
     return (
       <Row className='mt-4 pl-3 pr-3'>
         <Col md='3'>
           <p className='installationSections'>TITLE</p>
         </Col>
-        <Col>
+        <Col className='p-0'>
           <p className='installationSections'>ACTION TYPE</p>
         </Col>
         <Col>
@@ -77,6 +78,7 @@ class LocationsPage extends React.Component {
       </Row>
     )
   }
+
   render () {
     return (
       <RegularLayout>
@@ -99,8 +101,10 @@ class LocationsPage extends React.Component {
   }
 }
 
-const mapStateToProps = () => {
-  return {}
+const mapStateToProps = state => {
+  return {
+    locationRequests: state.generalData.locationRequests
+  }
 }
 
 const mapDispatchToProps = dispatch => ({

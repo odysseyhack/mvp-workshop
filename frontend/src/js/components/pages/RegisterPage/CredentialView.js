@@ -3,10 +3,16 @@ import { Form, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 class CredentialView extends React.Component {
+  submitForm = async () => {
+    const data = await this.props.submit(this.props.state)
+    if (data) {
+      this.props.goToNextStep()
+    }
+  }
+
   render () {
     return (
       <Form>
-        
         <Form.Group controlId='email'>
           <Form.Label>Email address</Form.Label>
           <Form.Control

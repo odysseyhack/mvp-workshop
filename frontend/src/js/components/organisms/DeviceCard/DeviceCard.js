@@ -5,13 +5,14 @@ import { bindActionCreators } from 'redux'
 
 import './DeviceCard.css'
 import * as appActions from '../../../redux/actions'
+import DeviceModal from '../DeviceModal/DeviceModal'
 
 class DeviceCard extends React.Component {
-  
   constructor (props) {
     super(props)
     this.state = {
-      loading: false
+      loading: false,
+      show: false
     }
   }
 
@@ -27,8 +28,8 @@ class DeviceCard extends React.Component {
           <div>
             <img
               alt='installation type'
-              src='https://images.vexels.com/media/users/3/145131/isolated/preview/d2ba09d9b4856df5b15cdc5636a45b37-sun-large-wavy-beams-icon-by-vexels.png'
-              width='35'
+              src={require('../../../../assets/images/solar-panel.png')}
+              width='25'
               className='mr-2'
             />
             Solar panel
@@ -40,8 +41,8 @@ class DeviceCard extends React.Component {
           <div>
             <img
               alt='installation type'
-              src='https://images.vexels.com/media/users/3/145131/isolated/preview/d2ba09d9b4856df5b15cdc5636a45b37-sun-large-wavy-beams-icon-by-vexels.png'
-              width='35'
+              src={require('../../../../assets/images/battery.png')}
+              width='25'
               className='mr-2'
             />
             Battery
@@ -54,32 +55,45 @@ class DeviceCard extends React.Component {
     return null
   }
 
+  hideModal = () => {
+    this.setState({ show: false })
+  }
+
   render () {
+    const { show } = this.state
     const { model, brand, pmax, minTemp, maxTemp } = this.props
     const DeviceType = this.renderDeviceType
 
     return (
-      <Card className='installationCard mt-3 mb-3 pl-3 pr-3'>
-        <Row className='h-100'>
-          <Col className='m-auto installationTitle' md='3'>
-            {model}
-            <br />
-            <p>{brand}</p>
-          </Col>
+      <>
+        <Card
+          className='installationCard mt-3 mb-3 pl-3 pr-3'
+          onClick={() => {
+            this.setState({ show: true })
+          }}
+        >
+          <Row className='h-100'>
+            <Col className='m-auto installationTitle' md='3'>
+              {model}
+              <br />
+              <p>{brand}</p>
+            </Col>
 
-          <Col className='m-auto'>
-            <DeviceType />
-          </Col>
+            <Col className='m-auto'>
+              <DeviceType />
+            </Col>
 
-          <Col className='m-auto'>{pmax} W</Col>
+            <Col className='m-auto'>{pmax} W</Col>
 
-          <Col className='m-auto'>
-            {this.tempPrefix(minTemp)} °C ~ {this.tempPrefix(maxTemp)} °C
-          </Col>
+            <Col className='m-auto'>
+              {this.tempPrefix(minTemp)} °C ~ {this.tempPrefix(maxTemp)} °C
+            </Col>
 
-          <Col className='m-auto manageInstallationButton'>Manage</Col>
-        </Row>
-      </Card>
+            <Col className='m-auto manageInstallationButton float-right text-right'>Manage</Col>
+          </Row>
+        </Card>
+        <DeviceModal show={show} hide={this.hideModal} />
+      </>
     )
   }
 }

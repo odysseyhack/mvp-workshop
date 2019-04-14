@@ -15,16 +15,19 @@ h1 {
   font-weight: 300;
   color: #2e384d;
 }
+
 h2 {
   font-size: 34px;
   font-weight: 400;
   color: #2e384d;
 }
+
 h3 {
   font-size: 28px;
-  font-weight: 400;
+  font-weight: 300;
   color: #2e384d;
 }
+
 h4 {
   font-size: 15px;
   font-weight: 500;
@@ -54,12 +57,14 @@ p {
 svg * {
   font-family: "Rubik", sans-serif;
 }
+
 .gauge {
   position: absolute;
   width: 100%;
   max-width: 220px;
   top: 15px;
 }
+
 .gauge .value-text {
   font-size: 28px;
   font-weight: 400;

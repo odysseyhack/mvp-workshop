@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 
 import * as appActions from '../redux/actions'
 import GuestUserRoute from './atoms/GuestUserRoute/GuestUserRoute'
-// import AuthUserRoute from './atoms/AuthUserRoute/AuthUserRoute'
+import AuthUserRoute from './atoms/AuthUserRoute/AuthUserRoute'
 
 import LoadingPage from './pages/LoadingPage/LoadingPage'
 import HomePage from './pages/HomePage/HomePage'

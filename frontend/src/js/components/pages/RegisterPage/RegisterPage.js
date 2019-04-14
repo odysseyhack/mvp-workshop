@@ -13,7 +13,6 @@ import LocationView from './LocationView'
 import DevicePickerView from './DevicePickerView'
 
 class RegisterPage extends React.Component {
-
   constructor (props) {
     super(props)
     this.state = {
@@ -47,7 +46,7 @@ class RegisterPage extends React.Component {
     e.preventDefault()
 
     const { actions } = this.props
-    
+
     const {
       email,
       password,
@@ -97,7 +96,6 @@ class RegisterPage extends React.Component {
   }
 
   renderStepThree = () => {
-
     const { step } = this.state
 
     return step === 3 ? (
@@ -109,7 +107,6 @@ class RegisterPage extends React.Component {
         submitData={this.submitData}
       />
     ) : null
-    
   }
 
   render () {
@@ -121,7 +118,6 @@ class RegisterPage extends React.Component {
           className='vertical-center position-relative'
           style={{ display: 'grid' }}
         >
-
           <Card
             className='m-auto card-container border-0'
             style={{ position: 'initial' }}
@@ -136,7 +132,7 @@ class RegisterPage extends React.Component {
               </div>
             </Link>
 
-            <h3 className='text-center'>Register</h3>
+            <h3>Register</h3>
 
             {this.renderStepOne()}
 
@@ -151,9 +147,7 @@ class RegisterPage extends React.Component {
           >
             <ProgressSteps stepCount={3} activeStep={step} />
           </div>
-
         </div>
-
       </SplitLayout>
     )
   }

@@ -21,7 +21,7 @@ class LoginPage extends React.Component {
           <p className='text-uppercase'>Password</p>
           <Form.Control type='password' placeholder='Password' />
         </Form.Group>
-        <Button type='submit' className='w-100 mt-2 defaultButton'>
+        <Button type='submit' className='w-100 mt-2 defaultButton border-0'>
           Sign in
         </Button>
         <p className='mt-3 text-center'>

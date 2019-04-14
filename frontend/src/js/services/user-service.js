@@ -28,7 +28,7 @@ function registerUser (email, password, firstName, lastName) {
 }
 
 function logoutUser () {
-  localStorage.removeItem('user')
+  return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/users/logout`)
 }
 
 export default userService
