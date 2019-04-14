@@ -25,6 +25,8 @@ clientRouter.use(session);
 clientRouter.get('/health', health);
 clientRouter.post('/users/me', users.me);
 
+clientRouter.post('/users/logout', users.logout);
+
 clientRouter.post('/users/login', val.user.login, users.login);
 clientRouter.post('/users/register', val.user.register, users.register);
 clientRouter.get('/users/statistic', userPower.statistic);

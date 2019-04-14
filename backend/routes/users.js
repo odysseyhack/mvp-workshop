@@ -11,7 +11,8 @@ module.exports = {
   register,
   admins,
   me,
-  addSolarPanel
+  addSolarPanel,
+  logout
 };
 
 async function admins (req, res, next) {
@@ -34,6 +35,11 @@ async function register (req, res, next) {
   } catch (err) {
     next(err);
   }
+}
+
+async function logout (req, res, next) {
+  req.session.destroy();
+  res.status(200).end();
 }
 
 async function login (req, res, next) {
