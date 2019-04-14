@@ -39,6 +39,8 @@ clientRouter.post(`/validations/register1`, val.user.register1, h.ok);
 clientRouter.post(`/validations/register2`, val.user.register2, h.ok);
 
 clientRouter.post('/users/:id/solar-panels', auth.isAuthc, auth.isAuthz('id'), users.addSolarPanel);
+clientRouter.get('/users/:id/solar-panels', auth.isAuthc, auth.isAuthz('id'), users.getSolarPanels);
+
 clientRouter.get('/solar-panels', panelRoute.getPanels);
 
 clientRouter.post('/validators/:id/solar-panels', auth.isAuthc, auth.isAuthz('id'), panelRoute.createPanelVote);

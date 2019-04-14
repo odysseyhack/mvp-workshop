@@ -22,7 +22,8 @@ module.exports = {
   register,
   checkIfUserExists,
   getAdmins,
-  addSolarPanel
+  addSolarPanel,
+  getSolarPanels
 };
 
 let excel, csv;
@@ -227,4 +228,16 @@ async function addSolarPanel (userId, data) {
   };
 
   await db.UserPanel.create(userPanels);
+}
+
+async function getSolarPanels (userId) {
+  return db.UserPanel.findAll({
+    where: {
+      user_id: userId
+    },
+    include: [{
+      model: db.SolarPanel,
+      required: true
+    }]
+  });
 }

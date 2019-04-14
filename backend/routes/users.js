@@ -12,7 +12,8 @@ module.exports = {
   admins,
   me,
   addSolarPanel,
-  logout
+  logout,
+  getSolarPanels
 };
 
 async function admins (req, res, next) {
@@ -63,6 +64,15 @@ async function addSolarPanel (req, res, next) {
 
     await usersService.addSolarPanel(req.session.user.id, data);
     res.status(200).end();
+  } catch (err) {
+    next(err);
+  }
+}
+
+async function getSolarPanels (req, res, next) {
+  try {
+    const userPanels = await usersService.getSolarPanels(req.session.user.id);
+    res.status(200).send(Response.success(userPanels)).end();
   } catch (err) {
     next(err);
   }
