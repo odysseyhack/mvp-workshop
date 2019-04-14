@@ -6,6 +6,7 @@ const errors = require('../utils/errors');
 const auth = require('./auth');
 const { Role } = require('../utils/enums');
 const fs = require('fs');
+const inputStream = fs.createReadStream('./resources/power.csv', 'utf8');
 const CsvReadableStream = require('csv-reader');
 const readXlsxFile = require('read-excel-file/node');
 const util = require('../utils/utils');
@@ -24,7 +25,7 @@ module.exports = {
   addSolarPanel
 };
 
-let excel = '';
+let excel, csv;
 
 async function getAdmins () {
   const admins = await db.User.findAll({
@@ -133,6 +134,10 @@ function prepareFileForDatabse (csv = [], excel = []) {
 async function prepareFromExcel () {
   const database = [];
 
+  if (excel) {
+    return excel;
+  }
+
   await new Promise((resolve, reject) => {
     readXlsxFile('./resources/excel.xlsx').then((rows) => {
       if (rows.length) {
@@ -149,18 +154,22 @@ async function prepareFromExcel () {
       resolve(database);
     });
   });
-
+  excel = database;
   return database;
 }
 
 async function prepareFromCSV (userId) {
   let dataTodatabase = [];
-  const inputStream = fs.createReadStream('./resources/power.csv', 'utf8');
+
+  if (csv) {
+    return csv;
+  }
 
   dataTodatabase = await new Promise((resolve, reject) => {
     inputStream
       .pipe(CsvReadableStream({ parseNumbers: true, parseBooleans: true, trim: true, skipHeader: true }))
       .on('data', function (row) {
+        excel.push(row)
         dataTodatabase.push({
           grid: row[7],
           date: row[4],
@@ -172,10 +181,10 @@ async function prepareFromCSV (userId) {
         }
       })
       .on('end', function (data) { 
-        inputStream.close();
       });
   });
-
+  
+  csv = dataTodatabase;
   return dataTodatabase;
 }
 
