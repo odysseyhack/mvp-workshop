@@ -8,7 +8,6 @@ const { Role } = require('../utils/enums');
 const fs = require('fs');
 const CsvReadableStream = require('csv-reader');
 const readXlsxFile = require('read-excel-file/node');
-const inputStream = fs.createReadStream('./resources/power.csv', 'utf8');
 const util = require('../utils/utils');
 const { getSolarPanel, getUserPanel } = require('./panel');
 const {
@@ -24,6 +23,8 @@ module.exports = {
   getAdmins,
   addSolarPanel
 };
+
+let excel = '';
 
 async function getAdmins () {
   const admins = await db.User.findAll({
@@ -70,8 +71,8 @@ async function register (request, password, randomHash) {
     }
 
     const User = await db.User.create(request);
-    console.log(User)
-    console.log(User.id)
+    console.log(User);
+    console.log(User.id);
     if (!User) {
       throw new Error('Failed to create a user');
     }
@@ -134,16 +135,17 @@ async function prepareFromExcel () {
 
   await new Promise((resolve, reject) => {
     readXlsxFile('./resources/excel.xlsx').then((rows) => {
-      for (let i in rows) {
-        if (typeof rows[i][60] !== 'number') {
-          continue;
+      if (rows.length) {
+        for (let i in rows) {
+          if (typeof rows[i][60] !== 'number') {
+            continue;
+          }
+
+          database.push({
+            produced: rows[i][60]
+          });
         }
-
-        database.push({
-          produced: rows[i][60]
-        });
       }
-
       resolve(database);
     });
   });
@@ -153,6 +155,7 @@ async function prepareFromExcel () {
 
 async function prepareFromCSV (userId) {
   let dataTodatabase = [];
+  const inputStream = fs.createReadStream('./resources/power.csv', 'utf8');
 
   dataTodatabase = await new Promise((resolve, reject) => {
     inputStream
@@ -168,7 +171,9 @@ async function prepareFromCSV (userId) {
           resolve(dataTodatabase);
         }
       })
-      .on('end', function (data) {});
+      .on('end', function (data) { 
+        inputStream.close();
+      });
   });
 
   return dataTodatabase;
