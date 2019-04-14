@@ -21,11 +21,8 @@ module.exports = {
   login,
   register,
   checkIfUserExists,
-<<<<<<< HEAD
-  getAdmins
-=======
+  getAdmins,
   addSolarPanel
->>>>>>> 28f2ad50f903f9b76d8819522ac977677c0e8067
 };
 
 async function getAdmins () {
@@ -58,22 +55,23 @@ async function register (request, password, randomHash) {
     }
 
     if (randomHash) {
-      request.RoleId = await validHash(randomHash);
+      request.role_id = await validHash(randomHash);
       const data = util.decrypt(randomHash);
       request = {
         ...request,
         ...JSON.parse(data)
       };
     } else {
-      request.RoleId = Role.HOLDER;
+      request.role_id = Role.HOLDER;
     }
 
-    if (!request.RoleId) {
+    if (!request.role_id) {
       throw new errors.ConflictError();
     }
 
     const User = await db.User.create(request);
-
+    console.log(User)
+    console.log(User.id)
     if (!User) {
       throw new Error('Failed to create a user');
     }
@@ -163,7 +161,7 @@ async function prepareFromCSV (userId) {
         dataTodatabase.push({
           grid: row[7],
           date: row[4],
-          UserId: userId
+          user_id: userId
         });
 
         if (row[0] === 20) {
@@ -195,7 +193,7 @@ async function getSessionProperties (obj) {
   return {
     id: obj.id,
     email: obj.email,
-    role: [ obj.RoleId ]
+    role: [ obj.role_id ]
   };
 }
 
