@@ -11,7 +11,7 @@ module.exports = {
 
 async function getPanels (req, res, next) {
   try {
-    const panels = await panelService.getPanels();
+    const panels = await panelService.getPanels(req.query.status);
     res.send(Response.success(panels)).end();
   } catch (err) {
     next(err);
@@ -38,7 +38,7 @@ async function createPanelDownvote (req, res, next) {
 
 async function getSuggestionList (req, res, next) {
   try {
-    const panels = await panelService.getSuggestionList();
+    const panels = await panelService.getSuggestionList(req.params.status);
     res.send(Response.success(panels)).end();
   } catch (err) {
     next(err);

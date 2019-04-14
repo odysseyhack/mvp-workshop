@@ -72,7 +72,11 @@ async function getSuggestionList () {
   return db.PanelVoting.findAll({
     where: {
       isActive: true
-    }
+    },
+    include: [{
+      model: db.SolarPanel,
+      required: true
+    }]
   });
 }
 
@@ -89,7 +93,7 @@ async function createVoting (panelId, voteType) {
   const voting = {
     solar_panel_id: panelId,
     endsUntil: new Date(),
-    voteType: enums.VoteStatus.REMOVE,
+    voteType: voteType,
     isActive: true
   };
 
@@ -114,6 +118,11 @@ async function getUserPanel (userId, panelId) {
   });
 }
 
-async function getPanels () {
-  return db.SolarPanel.findAll();
+async function getPanels (panelStatus) {
+  console.log(panelStatus)
+  return db.SolarPanel.findAll({
+    where: {
+      status: panelStatus
+    }
+  });
 }

@@ -72,8 +72,7 @@ async function register (request, password, randomHash) {
     }
 
     const User = await db.User.create(request);
-    console.log(User);
-    console.log(User.id);
+
     if (!User) {
       throw new Error('Failed to create a user');
     }
