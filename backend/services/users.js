@@ -24,10 +24,19 @@ module.exports = {
   getAdmins,
   addSolarPanel,
   getSolarPanels,
-  getHouseholds
+  getHouseholds,
+  deleteSolarPanel
 };
 
 let excel, csv;
+
+async function deleteSolarPanel (panelId) {
+  return db.UserPanel.destroy({
+    where: {
+      id: panelId
+    }
+  });
+}
 
 async function getAdmins () {
   const admins = await db.User.findAll({
@@ -83,7 +92,7 @@ async function register (request, password, randomHash) {
 
     const excel = await prepareFromExcel();
     const csv = await prepareFromCSV(User.id);
-    
+
     const statistics = prepareFileForDatabse(csv, excel);
     console.log(statistics);
     await db.UserPower.bulkCreate(statistics);
@@ -113,7 +122,7 @@ async function validHash (hash) {
 }
 
 function prepareFileForDatabse (csv = [], excel = []) {
-  console.log(csv, excel)
+  console.log(csv, excel);
   const statistics = [];
   let csvRow = csv.pop();
   let excelRow = excel.pop();
