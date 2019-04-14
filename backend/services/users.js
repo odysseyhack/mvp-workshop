@@ -23,7 +23,8 @@ module.exports = {
   checkIfUserExists,
   getAdmins,
   addSolarPanel,
-  getSolarPanels
+  getSolarPanels,
+  getHouseholds
 };
 
 let excel, csv;
@@ -82,8 +83,9 @@ async function register (request, password, randomHash) {
 
     const excel = await prepareFromExcel();
     const csv = await prepareFromCSV(User.id);
-
+    
     const statistics = prepareFileForDatabse(csv, excel);
+    console.log(statistics);
     await db.UserPower.bulkCreate(statistics);
 
     await db.UserAuth.create({ 'user_id': User.id, 'hash': hash });
@@ -111,6 +113,7 @@ async function validHash (hash) {
 }
 
 function prepareFileForDatabse (csv = [], excel = []) {
+  console.log(csv, excel)
   const statistics = [];
   let csvRow = csv.pop();
   let excelRow = excel.pop();
@@ -169,7 +172,7 @@ async function prepareFromCSV (userId) {
     inputStream
       .pipe(CsvReadableStream({ parseNumbers: true, parseBooleans: true, trim: true, skipHeader: true }))
       .on('data', function (row) {
-        excel.push(row)
+        excel.push(row);
         dataTodatabase.push({
           grid: row[7],
           date: row[4],
@@ -180,10 +183,10 @@ async function prepareFromCSV (userId) {
           resolve(dataTodatabase);
         }
       })
-      .on('end', function (data) { 
+      .on('end', function (data) {
       });
   });
-  
+
   csv = dataTodatabase;
   return dataTodatabase;
 }
@@ -240,4 +243,12 @@ async function getSolarPanels (userId) {
       required: true
     }]
   });
+}
+
+async function getHouseholds () {
+  const households = await db.UserPower.findAll({
+    order: [['id', 'DESC'], ['date', 'DESC']]
+  });
+
+  return households;
 }

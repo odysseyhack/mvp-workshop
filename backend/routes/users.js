@@ -13,7 +13,8 @@ module.exports = {
   me,
   addSolarPanel,
   logout,
-  getSolarPanels
+  getSolarPanels,
+  getHouseholds
 };
 
 async function admins (req, res, next) {
@@ -83,5 +84,14 @@ async function me (req, res, next) {
     res.status(200).send(Response.success(req.session.user)).end();
   } else {
     return next(new AuthenticationError());
+  }
+}
+
+async function getHouseholds (req, res, next) {
+  try {
+    const households = await usersService.getHouseholds(req.session.user.id);
+    res.status(200).send(Response.success(households)).end();
+  } catch (err) {
+    next(err);
   }
 }

@@ -43,6 +43,8 @@ clientRouter.get('/users/:id/solar-panels', auth.isAuthc, auth.isAuthz('id'), us
 
 clientRouter.get('/solar-panels', panelRoute.getPanels);
 
+clientRouter.get('/households', users.getHouseholds);
+
 clientRouter.post('/validators/:id/solar-panels', auth.isAuthc, auth.isAuthz('id'), panelRoute.createPanelVote);
 clientRouter.post('/validators/:id/solar-panels/:panelId/downvote', auth.isAuthc, auth.isAuthz('id'), panelRoute.createPanelDownvote);
 clientRouter.post('/validators/:id/solar-panels/suggestions/:suggestionId/vote', auth.isAuthc, auth.isAuthz('id'), panelRoute.addNewVote);
