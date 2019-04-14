@@ -88,7 +88,12 @@ class TopMenu extends Component {
           <Dropdown.Toggle as={userImage} />
           <Dropdown.Menu>
             <Dropdown.Item>
-              <Nav.Link onClick={this.props.actions.logoutUser}>
+              <Nav.Link
+                onClick={() => {
+                  this.props.actions.logoutUser()
+                  this.props.history.replace('/login')
+                }}
+              >
                 Logout
               </Nav.Link>
             </Dropdown.Item>

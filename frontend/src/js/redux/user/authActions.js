@@ -1,5 +1,7 @@
 import userService from '../../services/user-service'
 import ACTIONS from '../../constants/ACTIONS'
+import axios from 'axios'
+import determineUserRole from '../../helpers/determine-user-role'
 
 export { loginUser, registerStepOne, registerStepTwo, registerUser, logoutUser }
 
@@ -7,7 +9,13 @@ function loginUser (email, password, onSuccess) {
   return async dispatch => {
     try {
       const userData = await userService.loginUser(email, password)
-      dispatch(onSuccess())
+
+      axios
+        .post(process.env.REACT_APP_BACKEND_URL + '/users/me')
+        .then(response => {
+          const userRole = determineUserRole(response.data.data.role)
+          dispatch(onSuccess(userRole))
+        })
 
       // dispatch(loginUserSuccess(account))
     } catch (error) {

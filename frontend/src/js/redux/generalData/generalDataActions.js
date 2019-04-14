@@ -62,7 +62,9 @@ function getValidatorsRequestsSuccess (validatorsData) {
 function getUserHousehold (getUserHousehold) {
   return async dispatch => {
     try {
-      const installationsData = await generalDataService.getUserHousehold(getUserHousehold)
+      const installationsData = await generalDataService.getUserHousehold(
+        getUserHousehold
+      )
       dispatch(getUserHouseholdSuccess(installationsData.data.data.items))
     } catch (error) {
       console.log('error', error)
@@ -78,7 +80,11 @@ function voteForDevice (userID, suggestionID, vote) {
   return async dispatch => {
     try {
       await generalDataService.voteForDevice(userID, suggestionID, vote)
+      alert('Successfully voted')
     } catch (error) {
+      if (error.response.status === 409) {
+        alert('Already voted')
+      }
       console.log('error', error)
     }
   }
