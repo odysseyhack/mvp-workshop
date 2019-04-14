@@ -7,12 +7,14 @@ import './InstallationPage.css'
 import * as appActions from '../../../redux/actions'
 import RegularLayout from '../../layouts/RegularLayout/RegularLayout'
 import InstallationCard from '../../organisms/InstallationCard/InstallationCard'
+import AddInstallationModal from '../../organisms/AddInstallationModal/AddInstallationModal'
 
 class InstallationPage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      loading: false
+      loading: false,
+      show: false
     }
   }
 
@@ -44,8 +46,14 @@ class InstallationPage extends React.Component {
     )
   }
 
+  hideModal = () => {
+    this.setState({ show: false })
+  }
+
   render () {
+    const { show } = this.state
     const InstallationCardRow = this.renderInstallationCardRow
+
     return (
       <RegularLayout>
         <Row>
@@ -57,6 +65,9 @@ class InstallationPage extends React.Component {
               variant='primary'
               type='submit'
               className='w-auto border-0 float-right defaultButton pl-4 pr-4'
+              onClick={() => {
+                this.setState({ show: true })
+              }}
             >
               + Add installation
             </Button>
@@ -64,7 +75,7 @@ class InstallationPage extends React.Component {
         </Row>
         <InstallationCardRow />
         <InstallationCard
-          image='https://images.vexels.com/media/users/3/145131/isolated/preview/d2ba09d9b4856df5b15cdc5636a45b37-sun-large-wavy-beams-icon-by-vexels.png'
+          type='battery'
           name='GreenBattery'
           battery='86'
           voltage='55.20'
@@ -72,13 +83,16 @@ class InstallationPage extends React.Component {
           consumption='3,527'
           lastUpdate='5'
         />
+        <AddInstallationModal show={show} hide={this.hideModal} />
       </RegularLayout>
     )
   }
 }
 
-const mapStateToProps = () => {
-  return {}
+const mapStateToProps = state => {
+  return {
+    installations: state.generalData.installations
+  }
 }
 
 const mapDispatchToProps = dispatch => ({

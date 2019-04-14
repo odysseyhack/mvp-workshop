@@ -57,7 +57,6 @@ const BateryDiagram = CreateReactClass({
 })
 
 class HomePage extends React.Component {
-
   constructor (props) {
     super(props)
     this.state = {
@@ -68,7 +67,6 @@ class HomePage extends React.Component {
   renderConsumptionChart = () => {
     return (
       <BarChart width={690} height={330} data={[]}>
-
         <CartesianGrid vertical={false} strokeDasharray='3 3' />
 
         <XAxis dataKey='name' stroke='#BFC5D2' />
@@ -95,7 +93,6 @@ class HomePage extends React.Component {
           name='Sent to system'
           fill='#8182C9'
         />
-
       </BarChart>
     )
   }
@@ -103,7 +100,6 @@ class HomePage extends React.Component {
   renderLeftSide = () => {
     return (
       <Col md='4'>
-
         <DashboardCard
           image={require('../../../../assets/images/weather-sunny.png')}
           title='12°C'
@@ -121,9 +117,7 @@ class HomePage extends React.Component {
         />
 
         <DashboardCard basic>
-
           <Row>
-
             <Col>
               <p>55.16V</p>
             </Col>
@@ -131,15 +125,12 @@ class HomePage extends React.Component {
             <Col className='text-right'>
               <p>6.70A</p>
             </Col>
-
           </Row>
 
           <BateryDiagram value={86} />
 
           <p className='text-center'>BATTERY LEVEL</p>
-
         </DashboardCard>
-
       </Col>
     )
   }
@@ -149,25 +140,20 @@ class HomePage extends React.Component {
 
     return (
       <Col md='8'>
-
         <DashboardCard basic big>
           <p className='mb-3'>MY ENERGY CONSUMPTION</p>
 
           <ConsumptionChart />
-
         </DashboardCard>
 
         <Row>
-
           <Col>
-          
             <DashboardCard
               noMargin
               image={require('../../../../assets/images/icon-production.png')}
               title='4,090 W'
               description='Production'
             />
-
           </Col>
 
           <Col>
@@ -178,7 +164,6 @@ class HomePage extends React.Component {
               description='Consumption'
             />
           </Col>
-
         </Row>
       </Col>
     )
@@ -186,17 +171,15 @@ class HomePage extends React.Component {
 
   render () {
     const LeftSide = this.renderLeftSide
-    const RightSide= this.renderRightSide
+    const RightSide = this.renderRightSide
 
     return (
       <RegularLayout>
         <h2>Overview</h2>
         <Row>
-
           <LeftSide />
 
           <RightSide />
-          
         </Row>
       </RegularLayout>
     )

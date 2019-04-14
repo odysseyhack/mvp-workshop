@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 
 import * as appActions from '../redux/actions'
 import GuestUserRoute from './atoms/GuestUserRoute/GuestUserRoute'
-// import AuthUserRoute from './atoms/AuthUserRoute/AuthUserRoute'
+import AuthUserRoute from './atoms/AuthUserRoute/AuthUserRoute'
 
 import LoadingPage from './pages/LoadingPage/LoadingPage'
 import HomePage from './pages/HomePage/HomePage'
@@ -48,18 +48,18 @@ class App extends Component {
         <GuestUserRoute exact path='/login' component={LoginPage} />
         <GuestUserRoute exact path='/register' component={RegisterPage} />
 
-        <GuestUserRoute exact path='/overview' component={HomePage} />
-        <GuestUserRoute
+        <AuthUserRoute exact path='/overview' component={HomePage} />
+        <AuthUserRoute
           exact
           path='/installations'
           component={InstallationPage}
         />
-        <GuestUserRoute exact path='/explore' component={ExplorePage} />
+        <AuthUserRoute exact path='/explore' component={ExplorePage} />
 
-        <GuestUserRoute exact path='/requests' component={RequestsPage} />
-        <GuestUserRoute exact path='/devices' component={DevicesPage} />
-        <GuestUserRoute exact path='/locations' component={LocationsPage} />
-        <GuestUserRoute exact path='/validators' component={ValidatorsPage} />
+        <AuthUserRoute exact path='/requests' component={RequestsPage} />
+        <AuthUserRoute exact path='/devices' component={DevicesPage} />
+        <AuthUserRoute exact path='/locations' component={LocationsPage} />
+        <AuthUserRoute exact path='/validators' component={ValidatorsPage} />
 
         {/* <GuestUserRoute exact path='/home' component={DashboardPage} /> */}
 

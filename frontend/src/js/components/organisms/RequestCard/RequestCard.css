@@ -49,3 +49,8 @@
 .btn.defaultButtonRed {
   background-color: #f96270;
 }
+
+.btn.defaultButtonRed:hover {
+  background-color: #f96270;
+  opacity: 0.8;
+}

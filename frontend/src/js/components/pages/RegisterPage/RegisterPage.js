@@ -13,7 +13,6 @@ import LocationView from './LocationView'
 import DevicePickerView from './DevicePickerView'
 
 class RegisterPage extends React.Component {
-
   constructor (props) {
     super(props)
     this.state = {
@@ -23,7 +22,15 @@ class RegisterPage extends React.Component {
       password: '',
       location: {},
       panelModel: '',
-      panelSerialNumber: ''
+      panelSerialNumber: '',
+      hash: null
+    }
+  }
+
+  componentDidMount () {
+    const qs = this.props.location.search
+    if (qs.includes('?hash=')) {
+      this.setState({ hash: qs.split('?hash=')[1] })
     }
   }
 
@@ -33,8 +40,7 @@ class RegisterPage extends React.Component {
     })
   }
 
-  goToNextStep = e => {
-    e.preventDefault()
+  goToNextStep = () => {
     this.setState(prevState => ({ step: prevState.step + 1 }))
   }
 
@@ -43,28 +49,11 @@ class RegisterPage extends React.Component {
     this.setState(prevState => ({ step: prevState.step - 1 }))
   }
 
-  submitData = e => {
-    e.preventDefault()
-
+  submitData = () => {
     const { actions } = this.props
-    
-    const {
-      email,
-      password,
-      location,
-      panelModel,
-      panelSerialNumber
-    } = this.state
-
-    const data = {
-      email,
-      password,
-      location,
-      panelModel,
-      panelSerialNumber
-    }
-
-    actions.registerUser(data)
+    actions.registerUser(this.state, () => {
+      this.props.history.replace('/')
+    })
   }
 
   setLocation = location => {
@@ -72,12 +61,13 @@ class RegisterPage extends React.Component {
   }
 
   renderStepOne = () => {
-    const { step } = this.state
+    const { step, hash } = this.state
     return step === 1 ? (
       <CredentialView
         state={this.state}
         goToNextStep={this.goToNextStep}
         handleChange={this.handleChange}
+        submit={(hash && this.submitData) || this.props.actions.registerStepOne}
       />
     ) : null
   }
@@ -92,12 +82,12 @@ class RegisterPage extends React.Component {
         goToPrevStep={this.goToPrevStep}
         setLocation={this.setLocation}
         handleChange={this.handleChange}
+        submit={this.props.actions.registerStepTwo}
       />
     ) : null
   }
 
   renderStepThree = () => {
-
     const { step } = this.state
 
     return step === 3 ? (
@@ -109,7 +99,6 @@ class RegisterPage extends React.Component {
         submitData={this.submitData}
       />
     ) : null
-    
   }
 
   render () {
@@ -121,7 +110,6 @@ class RegisterPage extends React.Component {
           className='vertical-center position-relative'
           style={{ display: 'grid' }}
         >
-
           <Card
             className='m-auto card-container border-0'
             style={{ position: 'initial' }}
@@ -136,7 +124,7 @@ class RegisterPage extends React.Component {
               </div>
             </Link>
 
-            <h3 className='text-center'>Register</h3>
+            <h3>Register</h3>
 
             {this.renderStepOne()}
 
@@ -151,9 +139,7 @@ class RegisterPage extends React.Component {
           >
             <ProgressSteps stepCount={3} activeStep={step} />
           </div>
-
         </div>
-
       </SplitLayout>
     )
   }

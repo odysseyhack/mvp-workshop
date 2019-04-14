@@ -6,7 +6,6 @@ export default {
 
 let token
 function initInterceptors () {
-  
   axios.interceptors.request.use(
     async req => {
       const newRequest = { ...req }

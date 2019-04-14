@@ -6,6 +6,8 @@ import './ExplorePage.css'
 import * as appActions from '../../../redux/actions'
 import RegularLayout from '../../layouts/RegularLayout/RegularLayout'
 import ExploreCard from '../../organisms/ExploreCard/ExploreCard'
+import { Row, Col } from 'react-bootstrap'
+import DashboardCard from '../../organisms/DashboardCard/DashboardCard'
 
 class ExplorePage extends React.Component {
   constructor (props) {
@@ -20,6 +22,29 @@ class ExplorePage extends React.Component {
       <RegularLayout>
         <h3 className='mb-4'>Other Households</h3>
         <ExploreCard />
+        <Row>
+          <Col>
+            <DashboardCard
+              image={require('../../../../assets/images/icon-production-large-scale.png')}
+              title={<span>1,234</span>}
+              description='Producers in your area'
+            />
+          </Col>{' '}
+          <Col>
+            <DashboardCard
+              image={require('../../../../assets/images/icon-consumption.png')}
+              title={<span>2,123</span>}
+              description='Grid consumers in your area'
+            />
+          </Col>{' '}
+          <Col>
+            <DashboardCard
+              image={require('../../../../assets/images/icon-installation.png')}
+              title={<span>6,235</span>}
+              description='Installed devices in your area'
+            />
+          </Col>
+        </Row>
       </RegularLayout>
     )
   }
